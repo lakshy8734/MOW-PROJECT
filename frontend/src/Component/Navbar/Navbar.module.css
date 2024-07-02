@@ -1,0 +1,186 @@
+.nav {
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 5%;
+
+  position: sticky;
+  top: 0;
+  left: 0;
+  background: white;
+  width: 100%;
+  transition: height 0.5s, box-shadow 0.3s;
+  z-index: 1;
+}
+
+.nav.scrolled {
+  background: white;
+  height: 60px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav ul li {
+  transition: all 0.4s linear;
+}
+
+.nav ul li:hover {
+  color: #d33;
+}
+
+.logo img {
+  width: 2.9vw;
+  cursor: pointer;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1vw;
+  color: gray;
+  cursor: pointer;
+}
+
+.nav ul li {
+  all: unset;
+  font-weight: 100;
+  font-size: 1vw;
+  color: black;
+  cursor: pointer;
+  padding: 0.9vw 0vw;
+  display: flex;
+}
+
+.nav ul {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+nav .menu {
+  font-weight: 100;
+  display: flex;
+  gap: 2vw;
+}
+
+nav .menu li {
+  transition: color 0.3s linear;
+  position: relative;
+}
+
+nav .menu li:hover {
+  color: rgb(232, 44, 44);
+}
+
+nav .menu li:hover .submenu {
+  display: block;
+  box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
+}
+
+.line {
+  color: #c9c6c6;
+  width: 100%;
+  margin-top: 0.5vw;
+  margin-bottom: 0.5vw;
+  opacity: 0.4;
+}
+
+nav .menu .submenu {
+  position: absolute;
+  display: none;
+  top: 100%;
+  left: 0;
+  background: white;
+  z-index: 1;
+
+  padding: 0.3vw;
+  white-space: nowrap;
+  border-radius: 5px;
+
+  margin-top: 0.2vw;
+  transition: display 0.6s ease-in-out;
+}
+
+nav .menu .submenu li {
+  display: flex;
+  align-items: center;
+  padding: 5px 20px;
+  font-size: 1vw;
+  color: black;
+}
+
+nav .menu .submenu li:hover {
+  color: rgb(232, 44, 44);
+}
+
+nav .menu .submenu .submain:hover .submenu {
+  display: block;
+  box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
+}
+
+nav .menu .submenu .submain .submenu {
+  left: -12vw;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    padding: 20px 20px;
+  }
+
+  .nav .menu {
+    display: none;
+  }
+
+  .logo img {
+    width: 4vw;
+  }
+
+  .logo {
+    font-size: 3vw;
+  }
+
+  .nav ul li {
+    font-size: 3vw;
+  }
+}
+
+nav .menu .more2 {
+  display: none;
+}
+
+@media screen and (max-width: 1024px) {
+  nav .menu .more {
+    display: none;
+  }
+
+  nav .menu .more2 {
+    display: block;
+  }
+}
+
+nav .menu .more2 .submenu li {
+  display: flex;
+  gap: 1.2vw;
+}
+
+
+.hamburgerIcon {
+  display: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: gray;
+}
+
+
+@media screen and (max-width: 992px) {
+  .hamburgerIcon {
+    display: block;
+  }
+
+  .nav .menu {
+    display: none;
+  }
+}

@@ -1,0 +1,27 @@
+/*
+Theme Name: Beehive Child
+Description: Child theme for beehive theme
+Author: thunder-team
+Author URI: http://themeforest.net/user/thunder-team
+Template: beehive
+Version: 1.0.0
+Text Domain:  beehive
+*/
+
+
+.suggest-improvements {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #0056b3; /* Link color */
+    transition: color 0.3s ease; /* Smooth color transition on hover */
+}
+
+.suggest-improvements:hover {
+    color: #0056b3; /* Link color on hover */
+}
+
+.suggest-improvements .dashicons {
+    font-size: 20px; /* Adjust the icon size as needed */
+    margin-right: 5px; /* Adjust the space between the icon and text */
+}

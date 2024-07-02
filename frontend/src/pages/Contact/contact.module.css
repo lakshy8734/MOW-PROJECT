@@ -1,0 +1,1105 @@
+.nav {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 5%;
+
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    transition: height 0.5s, box-shadow 0.3s;
+    z-index: 1;
+}
+
+.nav.scrolled {
+    background: white;
+    height: 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.nav ul li {
+    transition: all 0.4s linear;
+}
+
+.nav ul li:hover {
+    color: #d33;
+}
+
+
+.logo img {
+    width: 2.9vw;
+    cursor: pointer;
+}
+
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 1vw;
+    color: gray;
+    cursor: pointer;
+}
+
+
+.nav ul li {
+    all: unset;
+    font-weight: 100;
+    font-size: 1vw;
+    color: black;
+    cursor: pointer;
+    padding: 0.9vw 0vw;
+}
+
+.nav ul {
+    all: unset;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+nav .menu {
+    font-weight: 100;
+    display: flex;
+    gap: 2vw;
+
+}
+
+
+nav .menu li {
+    transition: color 0.3s linear;
+    position: relative;
+}
+
+nav .menu li:hover {
+    color: rgb(232, 44, 44);
+
+}
+
+nav .menu li:hover .submenu {
+    display: block;
+    box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
+}
+
+.line {
+    color: #c9c6c6;
+    width: 100%;
+    margin-top: 0.5vw;
+    margin-bottom: 0.5vw;
+    opacity: 0.4;
+}
+
+nav .menu .submenu {
+    position: absolute;
+    display: none;
+    top: 100%;
+    left: 0;
+    background: white;
+    z-index: 1;
+
+    padding: 0.3vw;
+    white-space: nowrap;
+    border-radius: 5px;
+
+    margin-top: 0.2vw;
+    transition: display 0.6s ease-in-out;
+}
+
+
+nav .menu .submenu li {
+    display: flex;
+    align-items: center;
+    padding: 5px 20px;
+    font-size: 1vw;
+    color: black;
+}
+
+nav .menu .submenu li:hover {
+    color: rgb(232, 44, 44);
+}
+
+
+
+
+
+
+nav .menu .submenu .submain:hover .submenu {
+    display: block;
+    box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
+}
+
+nav .menu .submenu .submain .submenu {
+    left: -12vw;
+    display: none;
+}
+
+
+
+
+@media screen and (max-width:768px) {
+
+
+    .nav {
+        padding: 20px 20px;
+    }
+
+    .nav .menu {
+        display: none;
+    }
+
+
+    .logo img {
+        width: 4vw;
+    }
+
+
+    .logo {
+        font-size: 3vw;
+    }
+
+
+    .nav ul li {
+
+        font-size: 3vw;
+    }
+
+}
+
+
+nav .menu .more2 {
+    display: none;
+}
+
+
+@media screen and (max-width:1024px) {
+    nav .menu .more {
+        display: none;
+    }
+
+    nav .menu .more2 {
+        display: block;
+    }
+}
+
+nav .menu .more2 .submenu li {
+    display: flex;
+    gap: 1.2vw;
+}
+
+
+
+.background {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+
+.contact .bgcontact {
+    width: 100%;
+    height: 100%;
+    line-height: 2;
+}
+
+.contact .bgcontact {
+    position: relative;
+    background-image: url(../../assets/Contact.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 10%;
+}
+
+.contact .bgcontact::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.68);
+}
+
+.contact .bgcontact .content h2 {
+    color: white;
+    position: relative;
+    text-align: center;
+    font-size: 1.5vw;
+
+}
+
+.contact .bgcontact .content h1 {
+    color: white;
+    position: relative;
+    text-align: center;
+    font-size: 2.5vw
+}
+
+.contact .bgcontact .content p {
+    color: white;
+    position: relative;
+    text-align: center;
+    font-size: 1.3vw;
+    padding: 0 15%;
+    margin-bottom: 1em;
+}
+
+
+@media screen and (max-width:768px) {
+
+
+    .contact .bgcontact .content h2 {
+        font-size: 5vw;
+        margin-top: 1em;
+
+    }
+
+    .contact .bgcontact .content h1 {
+        color: white;
+        position: relative;
+        text-align: center;
+        font-size: 7vw;
+    }
+
+    .contact .bgcontact .content p {
+        color: white;
+        position: relative;
+        text-align: center;
+        font-size: 3.8vw;
+        padding: 0 0%;
+        margin-top: 1em;
+        line-height: 1.5;
+    }
+
+}
+
+.cart {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section {
+    background-color: #ffffff;
+    width: 75%;
+    position: relative;
+    top: -6vw;
+    padding: 10%;
+}
+
+@media screen and (max-width:768px) {
+    .section {
+        width: 95%;
+    }
+}
+
+.section h2 {
+    text-align: center;
+    color: #4f515b;
+    font-size: 2vw;
+}
+
+
+@media screen and (max-width:768px) {
+    .section h2 {
+        font-size: 7.4vw;
+        margin-top: 3em;
+    }
+}
+
+.section .contectlinks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5vw;
+    margin-top: 0.5em;
+    gap: 5px;
+}
+
+
+@media screen and (max-width:768px) {
+    .section .contectlinks {
+        font-size: 14.5vw;
+    }
+}
+
+
+.section .contectlinks .one {
+    cursor: pointer;
+    color: #3b5998;
+}
+
+.section .contectlinks .one:hover {
+    cursor: pointer;
+    color: #4e76cb;
+}
+
+.section .contectlinks .two {
+    cursor: pointer;
+    color: #bd081c;
+}
+
+.section .contectlinks .two:hover {
+    cursor: pointer;
+    color: #db0a22;
+}
+
+.section .contectlinks .three {
+    cursor: pointer;
+    color: #cd201f;
+}
+
+.section .contectlinks .three:hover {
+    cursor: pointer;
+    color: #e21e1e;
+}
+
+.section .contectlinks .four {
+    cursor: pointer;
+    color: #000000;
+}
+
+.section .contectlinks .four:hover {
+    cursor: pointer;
+    color: #393636;
+}
+
+.loccards {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 3em;
+}
+
+
+@media screen and (max-width:768px) {
+    .loccards {
+        flex-direction: column;
+    }
+}
+
+.loccards .loccard {
+    width: 35%;
+    padding: 3rem 1rem;
+    border-radius: 5px;
+    box-shadow: 0 10px 50px rgba(58, 46, 68, 8%);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+@media screen and (max-width:768px) {
+    .loccards .loccard {
+        width: 95%;
+    }
+}
+
+
+.loccards .loccard div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+
+    padding: 20px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(221, 51, 51, .05);
+    color: #d33;
+    margin-bottom: 1em;
+}
+
+.loccards .loccard h2 {
+    font-size: 2.5vw;
+    padding: 4%;
+    margin: 0;
+}
+
+.loccards .loccard p {
+    color: #868e93;
+    font-size: 1vw;
+    text-align: center;
+    padding: 4%;
+    margin: 0;
+}
+
+@media screen and (max-width:768px) {
+
+    .loccards .loccard div {
+
+        margin-bottom: 0em;
+        padding: 32px;
+    }
+
+    .loccards .loccard h2 {
+        font-size: 7vw;
+    }
+
+    .loccards .loccard p {
+        font-size: 3vw;
+    }
+
+}
+
+
+.map {
+
+    padding: 10% 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+}
+
+
+.msg h2 {
+    text-align: center;
+
+}
+
+.msg .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 2em;
+}
+
+.msg .form .basic {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.msg .form .basic input {
+    gap: 1em;
+    width: 50%;
+    border: transparent;
+    background: #f7f7f7;
+    padding: 1vw;
+    padding-left: 10px;
+    border-radius: 30px;
+    outline-color: #f7f7f7;
+    outline-style: hidden;
+    outline-width: thin;
+}
+
+.msg .form .basic input:focus {
+    outline-color: #d33;
+    outline-style: solid;
+    outline-width: thin;
+}
+
+
+.msg .form .sub {
+    width: 100%;
+    margin-top: 1em;
+}
+
+.msg .form .sub input {
+    gap: 1em;
+    width: 100%;
+    border: transparent;
+    background: #f7f7f7;
+    padding: 1vw;
+    padding-left: 10px;
+    border-radius: 30px;
+    outline-color: #f7f7f7;
+    outline-style: hidden;
+    outline-width: thin;
+}
+
+.msg .form .sub input:focus {
+    outline-color: #d33;
+    outline-style: solid;
+    outline-width: thin;
+}
+
+
+.msg .form .message {
+    width: 100%;
+    margin-top: 1em;
+}
+
+
+.msg .form .message textarea {
+    gap: 1em;
+    width: 100%;
+    border: transparent;
+    background: #f7f7f7;
+    padding: 1vw;
+    padding-left: 10px;
+    border-radius: 30px;
+    outline-color: #f7f7f7;
+    outline-style: hidden;
+    outline-width: thin;
+}
+
+.msg .form .message textarea:focus {
+    outline-color: #d33;
+    outline-style: solid;
+    outline-width: thin;
+}
+
+
+.msg .form .ReCAPTCHA {
+    display: flex;
+    justify-content: start;
+    margin: 2% 0;
+}
+
+
+.msg .form div {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.msg .form div button {
+    width: 50%;
+    padding: 1vw;
+    border-radius: 10vw;
+    border: transparent;
+    background-color: #d33;
+    background-image: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    font-size: 1vw;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+.msg .form div button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 200%;
+    /* Double the width to cover the entire area diagonally */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.199);
+    animation: shine 1s linear forwards;
+    cursor: pointer;
+    transform: rotate(45deg);
+    /* Rotate the shine by 45 degrees */
+}
+
+@keyframes shine {
+    from {
+        right: -100%;
+        opacity: 0;
+
+    }
+
+    to {
+        right: 100%;
+        opacity: 1;
+
+    }
+}
+
+
+@media screen and (max-width:600px) {
+    .msg .form .basic input {
+        gap: 1em;
+        width: 50%;
+        border: transparent;
+        background: #f7f7f7;
+        padding: 2vw;
+        padding-left: 10px;
+        border-radius: 30px;
+        outline-color: #f7f7f7;
+        outline-style: hidden;
+        outline-width: thin;
+    }
+
+    .msg .form .message {
+        width: 100%;
+        margin-top: 1em;
+    }
+    
+    .msg .form .message textarea {
+        padding: 5vw;
+    }
+
+    .msg .form .sub input {
+        padding: 2.3vw;
+    }
+
+
+    .msg .form .ReCAPTCHA {
+        display: flex;
+        justify-content: center;
+        margin: 5% 0;
+    }
+
+    .msg .form div button {
+        width: 100%;
+        padding: 4vw;
+        border-radius: 10vw;
+        border: transparent;
+        background-color: #d33;
+        background-image: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+        box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        font-size: 4vw;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}
+
+
+
+
+
+
+
+.link {
+    padding: 4%;
+    background-color: #F3F5F8;
+    display: flex;
+    justify-content: space-around;
+    transition: color 0.5s ease-in-out;
+
+}
+
+.link div {
+    cursor: pointer;
+    font-size: 1.2vw;
+}
+
+.link div:hover {
+
+    color: #d33;
+}
+
+
+
+
+.Usefullink {
+    padding: 4%;
+    display: flex;
+    justify-content: space-around;
+    transition: color 0.5s ease-in-out;
+    font-family: quicksand;
+}
+
+.Usefullink h4 {
+    font-size: 1.5vw;
+    color: #4f515b;
+}
+
+.links {
+    padding: 4%;
+    display: flex;
+    gap: 12vw;
+}
+
+.links ul {
+    margin-top: 1vw;
+}
+
+.links ul li {
+    list-style: none;
+    padding: 0.6vw 0px;
+    line-height: 1.8;
+    cursor: pointer;
+    font-weight: lighter;
+    transition: color 0.3s linear;
+}
+
+
+.links ul li:hover {
+    color: #d33;
+}
+
+
+@media screen and (max-width:768px) {
+    .link div {
+        font-size: 3.2vw;
+    }
+
+    .Usefullink {
+        flex-direction: column;
+        padding-left: 10vw;
+    }
+
+}
+
+
+@media screen and (max-width:600px) {
+    .Usefullink {
+        flex-direction: column;
+        padding-left: 10vw;
+    }
+
+    .links {
+        padding: 4%;
+        flex-direction: column;
+        gap: 12vw;
+    }
+
+    .Usefullink h4 {
+        font-size: 5vw;
+        color: #4f515b;
+    }
+
+    .links ul li {
+        font-size: 3.4vw;
+    }
+
+}
+
+
+
+
+.divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lines {
+    margin-bottom: 4vw;
+    margin-top: 2vw;
+    width: 90%;
+    color: #4f515b;
+}
+
+
+footer p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 100;
+    color: #4f515b;
+    font-size: 1.2vw;
+    line-height: 1.8;
+
+}
+
+
+footer {
+    padding-bottom: 2vw;
+}
+
+
+
+@media screen and (max-width: 768px) {
+    .maincard h1 {
+        font-size: 9vw;
+        margin-bottom: 2vw;
+    }
+
+    .btn2 {
+        width: 50%;
+
+        padding: 2vw;
+        border-radius: 1vw;
+        font-size: 5vw;
+        font-weight: 100;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        margin-top: 6vw;
+    }
+
+
+    .bottomcontainer {
+        justify-content: space-evenly;
+        gap: 3vw;
+    }
+
+    .bottomcontainer ul li {
+        list-style: none;
+        font-size: 5vw;
+        flex-wrap: wrap;
+        display: flex;
+        font-weight: 100;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+        color: #4f515b;
+    }
+
+
+    .divider {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .lines {
+        margin-bottom: 8vw;
+        margin-top: 4vw;
+        width: 90%;
+        color: #4f515b;
+    }
+
+
+    footer p {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 100;
+        text-align: center;
+        color: #4f515b;
+        font-size: 3.5vw;
+        line-height: 1.8;
+    }
+
+
+    footer {
+        margin-bottom: 4vw;
+    }
+
+
+    .cards h3 {
+
+        padding: 0vw 4vw;
+        font-size: 4.3vw;
+
+        font-weight: 300;
+        transition: color 0.3s linear;
+        line-height: 1.2;
+
+    }
+
+}
+
+
+
+/* Existing styles */
+
+/* Hamburger menu icon */
+
+.hamburgerIcon {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: gray;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -330px;
+    width: 330px;
+    height: 100%;
+    background-color: #fffefe;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    border: 1px solid #ccc;
+}
+
+.sidebarMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebarMenu>li {
+    padding: 15px 40px;
+    cursor: pointer;
+    color: #000000;
+    transition: all 0.3s linear;
+}
+
+
+.sidebarMenu>li {
+    padding: 10px 40px;
+    cursor: pointer;
+    color: #000000;
+    transition: all 0.3s linear;
+
+}
+
+
+.menu li:hover {
+    color: #d33;
+}
+
+
+
+
+.sidebarMenu>li:hover {
+    padding: 10px 40px;
+    color: #d33;
+    transition: all 0.3s linear;
+}
+
+
+.open {
+    display: block;
+}
+
+
+.sidebarMenu .submenu li {
+    padding: 5px 0;
+}
+
+.sidebarMenu .submenu li:hover {
+    color: #fe0000;
+}
+
+.sidebar.open {
+    right: 0;
+    overflow-y: scroll;
+}
+
+/* Style scrollbar */
+.sidebar.open::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.sidebar.open::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.sidebar.open::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.sidebar.open::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+
+.close {
+    position: fixed;
+    top: 1em;
+    right: 11.4em;
+    cursor: pointer;
+    color: #dddada;
+    font-size: 30px;
+    z-index: 1001;
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .hamburgerIcon {
+        display: block;
+    }
+
+    .nav .menu {
+        display: none;
+    }
+}
+
+.arrow {
+    cursor: pointer;
+    float: right;
+}
+
+.rotateArrow {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    display: none;
+    margin-top: 2vw;
+    border-left: 2px solid rgb(62, 62, 62);
+    padding-left: 10px;
+}
+
+
+.submenu li {
+    color: rgb(0, 0, 0);
+    transition: all 0.3s linear;
+}
+
+
+.submenu li:hover {
+    color: #d33;
+}
+
+
+.open {
+    display: block;
+    list-style: none;
+}
+
+
+.sidebarMenu .submenu li {
+    padding: 5px 0;
+}
+
+.sidebarMenu .submenu li:hover {
+    color: #fe0000;
+}
+
+.mainMenu {
+    padding: 1em;
+    color: #4f515b;
+    font-family: quicksand, Verdana, sans-serif;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+
+
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    /* Position the tooltip above the text */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.1s ease-in-out;
+    /* Tooltip shows immediately */
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}

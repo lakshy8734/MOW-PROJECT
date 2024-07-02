@@ -1,0 +1,324 @@
+body {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    /* background: black; */
+}
+
+.container {
+
+    position: relative;
+    right: 20em;
+    display: flex;
+    margin-top: 5em;
+    width: 50vw;
+    height: 120vh;
+}
+
+/* @media screen and (min-width: 880px)  {
+    .container {
+        width: 94vw;
+    }
+} */
+
+@media screen and (min-width: 880px) and (max-width: 1135px) {
+    .container {
+        width: 94vw;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 879px) {
+    .container {
+        width: 40vw;
+        flex-direction: column-reverse;
+        align-items: center;
+        margin-top: 72rem;
+    }
+}
+
+
+
+
+.backgroundVideo {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+   }
+
+.videocontainer iframe {
+    width: 100%;
+    height: 100%;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    gap: 12em;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 90px;
+    background-color: transparent; /* Initial transparent background */
+    transition: background-color 0.3s ease; /* Smooth transition */
+    z-index: 1000; /* Ensure it's above other content */
+}
+
+.scrolled {
+    background-color: rgba(0, 0, 0, 0.7); /* Change background color on scroll */
+}
+
+
+
+.hamburger {
+    cursor: pointer;
+  }
+  
+  .hamburger input {
+    display: none;
+  }
+  
+  .hamburger svg {
+    /* The size of the SVG defines the overall size */
+    height: 3em;
+    /* Define the transition for transforming the SVG */
+    transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .line {
+    fill: none;
+    stroke: white;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-width: 3;
+    /* Define the transition for transforming the Stroke */
+    transition: stroke-dasharray 600ms cubic-bezier(0.4, 0, 0.2, 1),
+                stroke-dashoffset 600ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .line-top-bottom {
+    stroke-dasharray: 12 63;
+  }
+  
+  .hamburger input:checked + svg {
+    transform: rotate(-45deg);
+  }
+  
+  .hamburger input:checked + svg .line-top-bottom {
+    stroke-dasharray: 20 300;
+    stroke-dashoffset: -32.42;
+  }
+  
+
+
+
+.LeftContainer {
+
+    width: 33vw;
+    height: 103.2vh;
+    padding: 5rem;
+    background: #d4d4d4;
+}
+
+
+@media screen and (min-width: 880px) and (max-width: 1135px) {
+    .LeftContainer {
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 879px) {
+    .LeftContainer {
+        width: 90vw;
+        height: 60rem;
+    }
+}
+
+
+
+
+.RightContainer {
+    width: 40vw;
+    height: 120vh;
+
+    background-color: rgba(221, 51, 51, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+@media screen and (min-width: 880px) and (max-width: 1135px) {
+    .RightContainer {
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width: 320px) and (max-width: 879px) {
+    .RightContainer {
+        width: 90vw;
+        padding: 10em;
+        height: 60rem;
+
+    }
+}
+
+
+.para {
+    font-size: 1.8em;
+    font-family: cursive;
+    font-weight: 600;
+}
+
+.input {
+    margin-top: 3rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.input input {
+    border: transparent;
+    background: #f7f7f7;
+    padding: 18px;
+    padding-left: 54px;
+    border-radius: 30px;
+    position: relative;
+}
+
+
+.input input:focus {
+    outline-color: red;
+    outline-style: solid;
+}
+
+
+.input2 {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+
+#remember {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+.btn1 {
+    width: 100%;
+    padding: 15px;
+    border-radius: 25px;
+    border: transparent;
+    background-color: #d33;
+    background-image: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    font-size: .9rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn1:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    animation: shine 1s linear forwards;
+    cursor: pointer;
+}
+
+@keyframes shine {
+    to {
+        right: 100%;
+    }
+}
+
+
+
+.btn2 {
+    all: unset;
+    color: #d33;
+    cursor: pointer;
+}
+
+
+.Pass {
+    all: unset;
+    color: black;
+    transition: all 0.4s linear;
+}
+
+.Pass:hover {
+    color: #d33;
+}
+
+
+.button {
+    margin-top: 5rem;
+    max-width: 320px;
+    display: flex;
+    padding: 0.5rem 1.4rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    gap: 0.75rem;
+    color: rgb(65, 63, 63);
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.button svg {
+    height: 24px;
+}
+
+.button:hover {
+    transform: scale(1.02);
+}
+
+.leftParaone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 8em;
+}
+
+
+.iconone {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
+.icontwo {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 3em;
+}

@@ -1,0 +1,86 @@
+/* App.css */
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #000000;
+    --background-color-dark: #121212;
+    --text-color-dark: #ffffff;
+}
+
+body.light-mode {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+}
+
+body.dark-mode {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+}
+
+/* Switch specific styles */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #2196F3;
+}
+
+input:checked+.slider:before {
+    transform: translateX(26px);
+}
+
+.circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.cross {
+    display: none;
+}
+
+input:not(:checked)+.slider .cross {
+    display: block;
+}
+
+.checkmark {
+    display: none;
+}
+
+input:checked+.slider .checkmark {
+    display: block;
+}

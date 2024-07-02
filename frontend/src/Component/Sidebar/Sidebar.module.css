@@ -1,0 +1,179 @@
+.hamburgerIcon {
+    display: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: gray;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -330px;
+    width: 330px;
+    height: 100%;
+    background-color: #fffefe;
+    z-index: 1000;
+    transition: right 0.3s ease;
+    border: 1px solid #ccc;
+}
+
+.sidebarMenu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebarMenu>li {
+    padding: 15px 40px;
+    cursor: pointer;
+    color: #000000;
+    transition: all 0.3s linear;
+}
+
+
+.sidebarMenu>li {
+    padding: 10px 40px;
+    cursor: pointer;
+    color: #000000;
+    transition: all 0.3s linear;
+
+}
+
+
+.menu li:hover {
+    color: #d33;
+}
+
+
+
+
+.sidebarMenu>li:hover {
+    padding: 10px 40px;
+    color: #d33;
+    transition: all 0.3s linear;
+}
+
+
+.open {
+    display: block;
+}
+
+
+.sidebarMenu .submenu li {
+    padding: 5px 0;
+}
+
+.sidebarMenu .submenu li:hover {
+    color: #fe0000;
+}
+
+.sidebar.open {
+    right: 0;
+    overflow-y: scroll;
+}
+
+/* Style scrollbar */
+.sidebar.open::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.sidebar.open::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.sidebar.open::-webkit-scrollbar-thumb {
+    background: #888;
+}
+
+/* Handle on hover */
+.sidebar.open::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+
+
+.close {
+    position: fixed;
+    top: 1em;
+    right: 11.4em;
+    cursor: pointer;
+    color: #dddada;
+    font-size: 30px;
+    z-index: 1001;
+}
+
+
+
+@media screen and (max-width: 992px) {
+    .hamburgerIcon {
+        display: block;
+    }
+
+    .nav .menu {
+        display: none;
+    }
+}
+
+.arrow {
+    cursor: pointer;
+    float: right;
+}
+
+.rotateArrow {
+    transform: rotate(180deg);
+}
+
+.submenu {
+    display: none;
+    margin-top: 2vw;
+    border-left: 2px solid rgb(62, 62, 62);
+    padding-left: 10px;
+}
+
+
+.submenu li {
+    color: rgb(0, 0, 0);
+    transition: all 0.3s linear;
+}
+
+
+.submenu li:hover {
+    color: #d33;
+}
+
+
+.open {
+    display: block;
+    list-style: none;
+}
+
+
+
+.sidebarMenu .submenu li {
+    padding: 5px 0;
+}
+
+.sidebarMenu .submenu li:hover {
+    color: #fe0000;
+}
+
+.mainMenu {
+    padding: 1em;
+    color: #4f515b;
+    font-family: quicksand, Verdana, sans-serif;
+}
+
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}

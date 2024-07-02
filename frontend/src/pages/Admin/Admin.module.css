@@ -1,0 +1,176 @@
+.Blog {
+    padding-left: 20%;
+    padding-top: 1%;
+    background: #15171a;
+    min-height: 100vh;
+}
+
+.passwordContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .eyeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    margin-left: -30px;
+    z-index: 1;
+  }
+
+  
+@media screen and (max-width:1024px) {
+
+    .Blog {
+        padding-left: 0%;
+    }
+    
+}
+
+
+.chart {
+    width: 96%;
+    padding: 2%;
+    box-shadow: 0px 0px 10px -4px rgba(255, 255, 255, 0.79);
+    margin-top:1em;
+}
+
+
+
+.Searching {
+    width: 96%;
+    padding: 1%;
+    box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.1);
+    margin-top: 1em;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    flex-wrap: wrap;
+}
+
+
+.search {
+    color: #555;
+    margin-right: 8px;
+}
+
+.Searching>input {
+    all: unset;
+    flex: 1;
+    padding: 8px;
+    background: none;
+    font-size: 16px;
+    color: #333;
+    min-width: 0; /* ensures proper resizing */
+}
+
+.Searching>input::placeholder {
+    color: #aaa;
+}
+
+
+.searchbutton {
+    margin-left: 8px;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.searchbutton:hover {
+    background-color: #0056b3;
+}
+
+
+@media (max-width: 600px) {
+    .Searching {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .searchbutton {
+        margin-left: 0;
+        margin-top: 8px;
+        width: 100%;
+    }
+}
+
+.form {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.formGroup input,
+.formGroup select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.submitButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+}
+
+.imagePreview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .profilePicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+  }
+
+  .formGroup textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; /* Allows the textarea to be vertically resizable */
+    min-height: 100px; /* Sets a minimum height for the textarea */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+  }
+  
+  .formGroup label[for="bio"] {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }

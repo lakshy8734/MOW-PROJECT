@@ -1,0 +1,511 @@
+.videoContainer {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.video {
+    width: 100%;
+    height: 100%;
+}
+
+
+.Secone {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.main {
+    min-height: 68vh;
+    z-index: 99999999;
+    display: flex;
+    width: 66.6%;
+    padding: 10px;
+    justify-content: center;
+    padding: 40px 0 30px;
+
+}
+
+.left {
+    width: 50%;
+    background-color: rgba(221, 51, 51, .8);
+    padding: 80px 50px;
+    text-align: center;
+
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+
+.leftContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.left h3 {
+    color: white;
+    font-size: 1.5vw;
+}
+
+.left h6 {
+    color: white;
+    margin-top: 0.5vw;
+    font-size: 1vw;
+    font-weight: 100;
+    line-height: 2;
+}
+
+.lefttext {
+    margin-top: 2.5vw;
+    display: flex;
+    gap: 5%;
+}
+
+
+.icon {
+    color: white;
+    font-size: 1.2vw;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 15px;
+}
+
+
+
+@media screen and (max-width:768px) {
+
+    .main {
+        min-height: 68vh;
+        background-color: black;
+        display: flex;
+        width: 100%;
+        padding: 10px;
+        padding-bottom: 0;
+        justify-content: center;
+        flex-direction: column-reverse;
+        align-items: center;
+
+    }
+
+    .leftContainer h3 {
+        font-size: 5.5vw;
+    }
+
+
+    .leftContainer h6 {
+        font-size: 4.1vw;
+        margin-top: 2.5vw;
+    }
+
+
+    .lefttext {
+        margin-top: 12vw;
+        display: flex;
+        gap: 5%;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lefttext h3 {
+        text-align: center;
+        margin-top: 2vw;
+        font-size: 5vw;
+
+
+    }
+
+    .lefttext h6 {
+        text-align: center;
+        font-size: 3.4vw;
+        font-weight: 300;
+
+    }
+
+    .icon {
+        font-size: 4vw;
+    }
+
+
+    .left {
+        width: 100%;
+        background-color: rgba(221, 51, 51, .8);
+        padding: 80px 50px;
+        text-align: center;
+
+    }
+
+}
+
+
+
+.right {
+    width: 50%;
+    background-color: #d1cfcebf;
+    padding: 80px 50px;
+    text-align: center;
+    line-height: 1.5;
+    position: relative;
+}
+
+.close {
+    border: transparent;
+    position: absolute;
+    top: 2vw;
+    right: 2vw;
+    padding: 0.9vw;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1vw;
+    font-weight: 600;
+    transition: background 0.4s linear;
+    transition: color 0.3s linear;
+    transition: animation 0.5s linear;
+}
+
+.close:hover {
+    animation: shake 0.5s ease forwards;
+    background: #d33;
+    color: white;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(5px);
+    }
+
+    50% {
+        transform: translateX(-5px);
+    }
+
+    75% {
+        transform: translateX(5px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+
+
+@media screen and (max-width : 768px) {
+    .close {
+        padding: 2.5vw;
+        font-size: 4vw;
+    }
+}
+
+
+.rightContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.right img {
+    width: 50%;
+}
+
+
+.right h3 {
+    font-size: 1.8vw;
+    margin-top: 1vw;
+    color: #4f515b;
+}
+
+.right h6 {
+    font-size: 1vw;
+    margin-top: 1vw;
+    color: #4f515bcf;
+    font-weight: 100;
+}
+
+
+
+.input {
+    margin-top: 1vw;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.input input {
+    width: 100%;
+    border: transparent;
+    background: #f7f7f7;
+    padding: 0.9vw;
+    padding-left: 54px;
+    border-radius: 30px;
+}
+
+
+.input input:focus {
+    outline-color: red;
+    outline-style: solid;
+}
+
+
+.icons {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    padding: 0.6vw;
+    border-radius: 28px;
+    color: #5e5e5e;
+}
+
+
+.bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1vw;
+}
+
+.bottom label {
+    font-size: 1vw;
+    color: #4f515b;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+
+.bottom a {
+    font-size: 1vw;
+    color: #4f515b;
+    font-weight: 100;
+    cursor: pointer;
+}
+
+
+.btn1 {
+    width: 100%;
+    padding: 1vw;
+    border-radius: 10vw;
+    border: transparent;
+    background-color: #d33;
+    background-image: linear-gradient(45deg, transparent 0%, rgba(255, 255, 255, 0.3) 50%, transparent 100%);
+    box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    font-size: 1vw;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+
+.btn1:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: 200%;
+    /* Double the width to cover the entire area diagonally */
+    height: 100%;
+    background: rgba(255, 255, 255, 0.199);
+    animation: shine 1s linear forwards;
+    cursor: pointer;
+    transform: rotate(45deg);
+    /* Rotate the shine by 45 degrees */
+}
+
+@keyframes shine {
+    from {
+        right: -100%;
+        opacity: 0;
+        /* Initially invisible */
+    }
+
+    to {
+        right: 100%;
+        opacity: 1;
+        /* Fully visible at the end */
+    }
+}
+
+
+
+
+.btn2 {
+    all: unset;
+    color: #d33c;
+    cursor: pointer;
+    font-size: 1vw;
+}
+
+
+
+.button {
+    margin-top: 2vw;
+    display: flex;
+    padding: 0.5vw;
+    font-size: 1vw;
+    line-height: 1vw;
+    font-weight: 300;
+    text-align: center;
+    text-transform: uppercase;
+    vertical-align: middle;
+    align-items: center;
+    border-radius: 1vw;
+    border: 1px solid rgba(0, 0, 0, 0.25);
+    gap: 0.75rem;
+    color: rgb(65, 63, 63);
+    background-color: #fff;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+
+.button svg {
+    height: 1.5vw;
+}
+
+.button:hover {
+    transform: scale(1.02);
+}
+
+
+
+@media screen and (max-width:768px) {
+    .right {
+        width: 100%;
+        padding: 80px 50px;
+        text-align: center;
+
+    }
+
+    .right h3 {
+        font-size: 5vw;
+        margin-top: 4vw;
+        color: #4f515b;
+    }
+
+    .right h6 {
+        font-size: 3.45vw;
+        margin-top: 4vw;
+        color: #4f515bcf;
+        font-weight: 100;
+    }
+
+    .input {
+        margin-top: 4vw;
+    }
+
+    .input input {
+        width: 100%;
+        border: transparent;
+        background: #f7f7f7;
+        padding: 3vw;
+        padding-left: 15vw;
+        border-radius: 30px;
+        font-size: 4vw;
+    }
+
+
+    .icons {
+        position: absolute;
+        background-color: rgb(255, 255, 255);
+        padding: 2.3vw;
+        border-radius: 28px;
+    }
+
+
+    .bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-top: 5vw;
+    }
+
+    .bottom label {
+        font-size: 3vw;
+        color: #4f515b;
+        font-weight: 100;
+    }
+
+
+    .bottom a {
+        font-size: 3vw;
+        color: #4f515b;
+        font-weight: 100;
+    }
+
+    .btn1 {
+        padding: 3vw;
+        font-size: 3vw;
+    }
+
+
+    .btn2 {
+        all: unset;
+        color: #d33;
+        cursor: pointer;
+        font-size: 3vw;
+    }
+
+
+    .button {
+        margin-top: 8vw;
+
+        padding: 2vw;
+        font-size: 3vw;
+        line-height: 1vw;
+        font-weight: 300;
+
+    }
+
+    .button svg {
+        height: 8vw;
+    }
+
+    .button:hover {
+        transform: scale(1.02);
+    }
+}
+
+
+
+.logicon{
+    display: flex;
+    margin-top: 1em;
+    align-items: center;
+    gap: 13%;
+}
+
+.loginicon {
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    background-color: #7289DA;
+    color: white;
+    border-radius: 50%;
+    transition: transform 0.3s linear; 
+}
+
+.FaReddit{
+    background-color: #ff4500;
+}
+.FaTelegram{
+    background-color: #0088cc;
+}
+
+.loginicon:hover {
+    transform: rotate(360deg); 
+}
