@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
 import LoginPop from "Component/LoginPop/LoginPop";
 import axios from "axios";
 import Confetti from "react-dom-confetti";
 import style from "./SubBlogs.module.css";
-import main from "../../assets/mow.webp";
-import img from "../../assets/mow.webp";
 
-import Load from '../../Component/Load/Load'
+import Load from "../../Component/Load/Load";
 
 import Navbar from "Component/Navbar/Navbar";
 
+import { PiSpeakerHighLight } from "react-icons/pi";
+import { PiPauseCircleFill } from "react-icons/pi";
+
 import {
-  FaHeart,
   FaComment,
-  FaYoutube,
-  FaInstagram,
-  FaPinterest,
   FaFacebook,
   FaShare,
-  FaArrowRight,
   FaClipboard,
   FaTwitter,
   FaWhatsapp,
@@ -73,16 +69,70 @@ function SubBlogs() {
   const [userId, setUserId] = useState(null);
   const [userDetails, setUserDetails] = useState(null);
 
+  const [isReading, setIsReading] = useState(false);
+  const [speed, setSpeed] = useState(1); // state to track speed
+  const speechSynthesisUtteranceRef = useRef(null);
+  const lastTapRef = useRef(0); // reference to track last tap time
+
+  const handleReadClick = () => {
+    if (isReading) {
+      window.speechSynthesis.cancel();
+      setIsReading(false);
+    } else {
+      const read = new SpeechSynthesisUtterance(blog?.content || "");
+      read.rate = speed; // set the speed
+      read.onend = () => {
+        setIsReading(false);
+      };
+      window.speechSynthesis.speak(read);
+      speechSynthesisUtteranceRef.current = read;
+      setIsReading(true);
+    }
+  };
+
+  const handleMouseDown = () => {
+    if (isReading && speechSynthesisUtteranceRef.current) {
+      speechSynthesisUtteranceRef.current.rate = 2;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(speechSynthesisUtteranceRef.current);
+      setSpeed(2);
+    }
+  };
+
+  const handleMouseUp = () => {
+    if (isReading && speechSynthesisUtteranceRef.current) {
+      speechSynthesisUtteranceRef.current.rate = 1;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(speechSynthesisUtteranceRef.current);
+      setSpeed(1);
+    }
+  };
+
+  const handleDoubleClick = () => {
+    const newSpeed = speed === 1 ? 2 : 1;
+    setSpeed(newSpeed);
+    if (isReading && speechSynthesisUtteranceRef.current) {
+      speechSynthesisUtteranceRef.current.rate = newSpeed;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(speechSynthesisUtteranceRef.current);
+    }
+  };
+
+  const handleTap = () => {
+    const now = Date.now();
+    const DOUBLE_TAP_DELAY = 300; // ms
+    if (now - lastTapRef.current < DOUBLE_TAP_DELAY) {
+      handleDoubleClick();
+    }
+    lastTapRef.current = now;
+  };
+
   useEffect(() => {
     const storedUserId = localStorage.getItem("userId");
     if (storedUserId) {
       setUserId(storedUserId);
-
     }
   }, []);
-
-
-
 
   useEffect(() => {
     const fetchLatestArticles = async () => {
@@ -96,8 +146,8 @@ function SubBlogs() {
           throw new Error("Expected an array of articles");
         }
         // me
-        const publishedBlogs = articles.filter(blog => blog.publish);
-        // 
+        const publishedBlogs = articles.filter((blog) => blog.publish);
+        //
         const latest = publishedBlogs.slice(-5).reverse(); // Get the last 5 published articles
         setLatestArticles(latest);
       } catch (error) {
@@ -107,7 +157,6 @@ function SubBlogs() {
 
     fetchLatestArticles();
   }, []);
-
 
   const handleShareClick = () => {
     setShowShare(true);
@@ -156,7 +205,7 @@ function SubBlogs() {
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/api/blog/currentblog/${currentBlogId}`
         );
-        console.log(`Main blog data received:`, response.data);
+        console.log("Main blog data received:", response.data);
         return response.data;
       } catch (error) {
         console.error(
@@ -173,7 +222,7 @@ function SubBlogs() {
         const response = await axios.get(
           `${process.env.REACT_APP_BACKEND_URL}/api/blog/subcategory/${subcategoryId}`
         );
-        console.log(`Related blogs data received:`, response.data);
+        console.log("Related blogs data received:", response.data);
         return response.data;
       } catch (error) {
         console.error(
@@ -215,7 +264,7 @@ function SubBlogs() {
         setBlog(blogData);
         setLikeCount(blogData.likes);
 
-        console.log(`Blog data set to state:`, blogData);
+        console.log("Blog data set to state:", blogData);
 
         if (likedStatus === "true") {
           setLiked(true);
@@ -226,28 +275,26 @@ function SubBlogs() {
           `Liked status set to: ${likedStatus === "true" ? "true" : "false"}`
         );
 
-        const relatedBlogsData = await fetchRelatedBlogs(blogData.subcategoryId);
+        const relatedBlogsData = await fetchRelatedBlogs(
+          blogData.subcategoryId
+        );
         // Filter related blogs to exclude the current blog and unpublished blogs
         const filteredRelatedBlogs = relatedBlogsData.filter(
-          (relatedBlog) => relatedBlog.blogId !== currentBlogId && relatedBlog.publish
+          (relatedBlog) =>
+            relatedBlog.blogId !== currentBlogId && relatedBlog.publish
         );
-
-        // const filteredRelatedBlogs = relatedBlogsData.filter(
-        //   (relatedBlog) => relatedBlog.blogId !== currentBlogId
-        // );
 
         setRelatedBlogs(filteredRelatedBlogs.slice(0, 6)); // Limit to 6 related blogs
         console.log(
-          `Filtered related blogs set to state:`,
+          "Filtered related blogs set to state:",
           filteredRelatedBlogs
         );
-
 
         await fetchUserDetails(blogData.userId);
 
         setLoading(false);
       } catch (error) {
-        console.error(`Error in fetchBlog:`, error);
+        console.error("Error in fetchBlog:", error);
         setError(error.message);
         setLoading(false);
       }
@@ -255,7 +302,6 @@ function SubBlogs() {
 
     fetchBlog();
   }, [blogId]);
-
 
   useEffect(() => {
     if (blog && blog.slug && blogId) {
@@ -400,24 +446,6 @@ function SubBlogs() {
     };
   }, []);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
-  const toggleSubmenu = (menu) => {
-    setSubmenus((prev) => {
-      const updatedSubmenus = Object.keys(prev).reduce((acc, key) => {
-        acc[key] = key === menu ? !prev[key] : false;
-        return acc;
-      }, {});
-      return updatedSubmenus;
-    });
-  };
-
   const [isCommentbarOpen, setIsCommentbarOpen] = useState(false);
 
   const closeSidebar2 = () => {
@@ -454,19 +482,6 @@ function SubBlogs() {
     window.scrollTo(0, 0);
   };
 
-  // const handleArticleClick = async (subcategoryId, slug, blogId) => {
-  //   try {
-
-  //      // Navigate to the new route with blogId in state
-  //      navigate(`/${slug}`, { state: { blogId: blogId } });
-
-  //      // Scroll to the top of the page
-  //      window.scrollTo(0, 0);
-  //   } catch (error) {
-  //     console.error('Error fetching subcategory details:', error);
-  //   }
-  // };
-
   if (loading) return <Load />;
   if (error) return <Error />;
 
@@ -489,208 +504,256 @@ function SubBlogs() {
           {isCommentbarOpen && (
             <div className={style.overlay2} onClick={closeSidebar2}></div>
           )}
+
+          <div className={style.authorname}>
+
+            <img className={style.profileImg} src={blog.mediaUrl} alt="" />
+
+            <div className="flex flex-col">
+              <h5 className=" sm:text-xs text-base">{blog.authorName} </h5>
+                <h6 className="sm:text-xs text-sm">{blog.createdAt}</h6>
+            </div>
+
+          </div>
+
           <div className={style.comment}>
-            <div className={style.Subcomment}>
-              <div className={style.likeContainer}>
-                <Confetti active={showLikeConfetti} config={config} />
+            <div className={style.likeContainer}>
+              <Confetti active={showLikeConfetti} config={config} />
 
-                <div className={style.heart} onClick={toggleLike}>
-                  {liked ? (
-                    <BsHeartFill color="red" size={20} />
-                  ) : (
-                    <BsHeart color="red" size={20} />
-                  )}
-                  <div className={style.amount}>{likeCount}</div>
-                </div>
-
-                <div>
-                  <FaComment onClick={toggleSidebar2} />
-                </div>
+              <div title="Like" className={style.heart} onClick={toggleLike}>
+                {liked ? (
+                  <BsHeartFill color="red" size={20} />
+                ) : (
+                  <BsHeart color="red" size={20} />
+                )}
+                <div className={style.amount}>{likeCount}</div>
               </div>
 
-              <div className={style.Subcomment}>
-                <div onClick={handleShareClick} style={{ cursor: "pointer" }}>
-                  <FaShare />
-                </div>
+              <div title="Comment" className={style.Facomment}>
+                <FaComment onClick={toggleSidebar2} />
+              </div>
+            </div>
 
-                {showShare && (
-                  <div className={style.modalOverlay}>
-                    <div className={style.modalContent}>
-                      <div className={style.modalHeader}>
-                        <button
-                          className={style.modalClose}
-                          onClick={handleCloseShare}
-                        >
-                          &times;
-                        </button>
+            <div className={style.Subcomment}>
+              <div
+                title="Share"
+                onClick={handleShareClick}
+                style={{ cursor: "pointer" }}
+              >
+                <FaShare />
+              </div>
+
+              {showShare && (
+                <div className={style.modalOverlay}>
+                  <div className={style.modalContent}>
+                    <div className={style.modalHeader}>
+                      <button
+                        className={style.modalClose}
+                        onClick={handleCloseShare}
+                      >
+                        &times;
+                      </button>
+                    </div>
+
+                    <div className={style.modalBody}>
+                      <div
+                        className={style.socialIcons}
+                        onClick={() => {
+                          window.open(
+                            `https://www.facebook.com/sharer/sharer.php?u=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaFacebook />
+                        <span>Facebook</span>
+                      </div>
+                      <div
+                        className={style.socialIcon}
+                        onClick={() => {
+                          window.open(
+                            `https://twitter.com/share?url=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaTwitter />
+                        <span>Twitter</span>
+                      </div>
+                      <div
+                        className={style.socialIcon}
+                        onClick={() => {
+                          window.open(
+                            `https://www.linkedin.com/sharing/share-offsite/?url=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaLinkedin />
+                        <span>LinkedIn</span>
+                      </div>
+                      <div
+                        className={style.socialIcon}
+                        onClick={() => {
+                          window.open(
+                            `https://api.whatsapp.com/send?text=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaWhatsapp />
+                        <span>WhatsApp</span>
                       </div>
 
-                      <div className={style.modalBody}>
-                        <div
-                          className={style.socialIcons}
-                          onClick={() => {
-                            window.open(
-                              `https://www.facebook.com/sharer/sharer.php?u=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaFacebook />
-                          <span>Facebook</span>
-                        </div>
-                        <div
-                          className={style.socialIcon}
-                          onClick={() => {
-                            window.open(
-                              `https://twitter.com/share?url=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaTwitter />
-                          <span>Twitter</span>
-                        </div>
-                        <div
-                          className={style.socialIcon}
-                          onClick={() => {
-                            window.open(
-                              `https://www.linkedin.com/sharing/share-offsite/?url=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaLinkedin />
-                          <span>LinkedIn</span>
-                        </div>
-                        <div
-                          className={style.socialIcon}
-                          onClick={() => {
-                            window.open(
-                              `https://api.whatsapp.com/send?text=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaWhatsapp />
-                          <span>WhatsApp</span>
-                        </div>
-
-                        <Confetti active={showConfetti} config={config} />
-                      </div>
+                      <Confetti active={showConfetti} config={config} />
                     </div>
                   </div>
-                )}
-
-                <div className={style.shareContainer}>
-                  <Confetti active={showConfetti} config={config} />
-                  <FaClipboard onClick={copyLinkToClipboard} />
                 </div>
-                <div className={style.authorname}>by {blog.authorName}</div>
+              )}
+
+              <div className={style.FaClipboard}>
+                <Confetti active={showConfetti} config={config} />
+                <FaClipboard title="Clipboard" onClick={copyLinkToClipboard} />
+              </div>
+
+              <div
+                title={
+                  isReading
+                    ? `Pause${speed === 2 ? " (2x)" : ""}`
+                    : `Read${speed === 2 ? " (2x)" : ""}`
+                }
+                className={style.shareContainer}
+                onClick={handleReadClick}
+                onMouseDown={handleMouseDown}
+                onMouseUp={handleMouseUp}
+                onTouchStart={handleMouseDown} // handle touch start
+                onTouchEnd={(e) => {
+                  handleMouseUp();
+                  handleTap();
+                }} // handle touch end and tap for double tap
+                onDoubleClick={handleDoubleClick}
+              >
+                {isReading ? <PiPauseCircleFill /> : <PiSpeakerHighLight />}
+                {speed === 2 && (
+                  <span className={style.speedIndicator}>2x</span>
+                )}
               </div>
             </div>
           </div>
 
           <img data-aos="fade-up" src={blog.mediaUrl} alt={blog.title} />
           <div dangerouslySetInnerHTML={{ __html: processedContent }}></div>
-          <div className={style.comment} style={{ marginBottom: "1em" }}>
-            <div className={style.Subcomment}>
-              <div className={style.likeContainer}>
-                <Confetti active={showLikeConfetti} config={config} />
 
-                <div className={style.heart} onClick={toggleLike}>
-                  {liked ? (
-                    <BsHeartFill color="red" size={20} />
-                  ) : (
-                    <BsHeart color="red" size={20} />
-                  )}
-                  <div className={style.amount}>{likeCount}</div>
-                </div>
+          <div className={style.comment}>
+            <div className={style.likeContainer}>
+              <Confetti active={showLikeConfetti} config={config} />
 
-                <div>
-                  <FaComment onClick={toggleSidebar2} />
-                </div>
+              <div title="Like" className={style.heart} onClick={toggleLike}>
+                {liked ? (
+                  <BsHeartFill color="red" size={20} />
+                ) : (
+                  <BsHeart color="red" size={20} />
+                )}
+                <div className={style.amount}>{likeCount}</div>
               </div>
 
-              <div className={style.Subcomment}>
-                <div onClick={handleShareClick} style={{ cursor: "pointer" }}>
-                  <FaShare />
-                </div>
+              <div title="Comment" className={style.Facomment}>
+                <FaComment onClick={toggleSidebar2} />
+              </div>
+            </div>
 
-                {showShare && (
-                  <div className={style.modalOverlay}>
-                    <div className={style.modalContent}>
-                      <div className={style.modalHeader}>
-                        <button
-                          className={style.modalClose}
-                          onClick={handleCloseShare}
-                        >
-                          &times;
-                        </button>
+            <div className={style.Subcomment}>
+              <div
+                title="Share"
+                onClick={handleShareClick}
+                style={{ cursor: "pointer" }}
+              >
+                <FaShare />
+              </div>
+
+              {showShare && (
+                <div className={style.modalOverlay}>
+                  <div className={style.modalContent}>
+                    <div className={style.modalHeader}>
+                      <button
+                        className={style.modalClose}
+                        onClick={handleCloseShare}
+                      >
+                        &times;
+                      </button>
+                    </div>
+
+                    <div className={style.modalBody}>
+                      <div
+                        className={style.socialIcons}
+                        onClick={() => {
+                          window.open(
+                            `https://www.facebook.com/sharer/sharer.php?u=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaFacebook />
+                        <span>Facebook</span>
+                      </div>
+                      <div
+                        className={style.socialIcon}
+                        onClick={() => {
+                          window.open(
+                            `https://twitter.com/share?url=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaTwitter />
+                        <span>Twitter</span>
+                      </div>
+                      <div
+                        className={style.socialIcon}
+                        onClick={() => {
+                          window.open(
+                            `https://www.linkedin.com/sharing/share-offsite/?url=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaLinkedin />
+                        <span>LinkedIn</span>
+                      </div>
+                      <div
+                        className={style.socialIcon}
+                        onClick={() => {
+                          window.open(
+                            `https://api.whatsapp.com/send?text=${shareLink}`,
+                            "_blank"
+                          );
+                        }}
+                      >
+                        <FaWhatsapp />
+                        <span>WhatsApp</span>
                       </div>
 
-                      <div className={style.modalBody}>
-                        <div
-                          className={style.socialIcons}
-                          onClick={() => {
-                            window.open(
-                              `https://www.facebook.com/sharer/sharer.php?u=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaFacebook />
-                          <span>Facebook</span>
-                        </div>
-                        <div
-                          className={style.socialIcon}
-                          onClick={() => {
-                            window.open(
-                              `https://twitter.com/share?url=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaTwitter />
-                          <span>Twitter</span>
-                        </div>
-                        <div
-                          className={style.socialIcon}
-                          onClick={() => {
-                            window.open(
-                              `https://www.linkedin.com/sharing/share-offsite/?url=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaLinkedin />
-                          <span>LinkedIn</span>
-                        </div>
-                        <div
-                          className={style.socialIcon}
-                          onClick={() => {
-                            window.open(
-                              `https://api.whatsapp.com/send?text=${shareLink}`,
-                              "_blank"
-                            );
-                          }}
-                        >
-                          <FaWhatsapp />
-                          <span>WhatsApp</span>
-                        </div>
-
-                        <Confetti active={showConfetti} config={config} />
-                      </div>
+                      <Confetti active={showConfetti} config={config} />
                     </div>
                   </div>
-                )}
-
-                <div className={style.shareContainer}>
-                  <Confetti active={showConfetti} config={config} />
-                  <FaClipboard onClick={copyLinkToClipboard} />
                 </div>
+              )}
+
+              <div className={style.FaClipboard}>
+                <Confetti active={showConfetti} config={config} />
+                <FaClipboard title="Clipboard" onClick={copyLinkToClipboard} />
+              </div>
+
+              <div
+                title={isReading ? "Pause" : "Read"}
+                className={style.shareContainer}
+                onClick={handleReadClick}
+              >
+                {isReading ? <PiPauseCircleFill /> : <PiSpeakerHighLight />}
               </div>
             </div>
           </div>
+
           <div className={style.article}>
             <hr style={{ color: "gray" }} />
 
@@ -699,19 +762,10 @@ function SubBlogs() {
                 Become a Contributor
               </button>
             </div>
+
             <div className={style.author}>
               <Author profilePicture={blog.mediaUrl} bio={userDetails.bio} />
-
             </div>
-
-            {/* <div className={style.pool}>
-              <p>0 people found this article entertaining!</p>
-              <p>Did you enjoy this article?</p>
-              <div>
-                <button>Yes</button>
-                <button>No</button>
-              </div>
-            </div> */}
 
             <div className={style.articles}>
               <h6>Related Articles</h6>
@@ -725,16 +779,14 @@ function SubBlogs() {
                       handleArticleClick(relatedBlog.slug, relatedBlog.blogId)
                     }
                   >
-                    <div>
-                      <div
-                        className={style.bb}
-                        style={{
-                          backgroundImage: `url(${relatedBlog.mediaUrl})`,
-                          backgroundSize: "cover",
-                          backgroundPosition: "center",
-                        }}
-                      ></div>
-                    </div>
+                    <div
+                      className={style.bb}
+                      style={{
+                        backgroundImage: `url(${relatedBlog.mediaUrl})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }}
+                    ></div>
                     <h4>{relatedBlog.title}</h4>
                   </div>
                 ))}
@@ -768,8 +820,7 @@ function SubBlogs() {
           </div>
         </div>
       </section>
-      <Shareit/>
-
+      <Shareit />
 
       <Link />
 

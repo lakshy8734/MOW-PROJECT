@@ -1,26 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import style from "./Admin.module.css";
 import Sidebar from "Component/DashboardSidebar/DashboardSidebar";
 import { ImSearch } from "react-icons/im";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import adminicon from "../../assets/admin-icon.png"; // Import the default image
-import axios from "axios"; // Ensure axios is properly imported
-import { FaEye, FaEyeSlash } from "react-icons/fa"; // Import eye icons
+import adminicon from "../../assets/admin-icon.png";
+import axios from "axios";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function Admin() {
+  const { theme } = useContext(ThemeContext);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     username: "",
     password: "",
     role: "Admin",
-    bio: "", // Add bio field to the state
+    bio: "",
   });
 
   const [profilePictureFile, setProfilePictureFile] = useState(null);
   const [profilePicturePreview, setProfilePicturePreview] = useState(adminicon);
-  const [showPassword, setShowPassword] = useState(false); // State to toggle password visibility
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -83,13 +85,12 @@ function Admin() {
     formDataToSend.append("username", formData.username);
     formDataToSend.append("password", formData.password);
     formDataToSend.append("role", formData.role);
-    formDataToSend.append("bio", formData.bio); // Append bio to formData
+    formDataToSend.append("bio", formData.bio);
 
     if (profilePictureFile) {
       formDataToSend.append("profilePicture", profilePictureFile);
       console.log(formDataToSend);
     } else {
-      // Append the default admin icon image
       const response = await fetch(adminicon);
       const blob = await response.blob();
       formDataToSend.append("profilePicture", blob, "adminicon.jpg");
@@ -97,7 +98,7 @@ function Admin() {
     }
 
     try {
-        console.log(formDataToSend);
+      console.log(formDataToSend);
       const response = await axios.post(
         `${process.env.REACT_APP_BACKEND_URL}/api/register`,
         formDataToSend
@@ -110,7 +111,7 @@ function Admin() {
         username: "",
         password: "",
         role: "Admin",
-        bio: "", // Reset bio field
+        bio: "",
       });
       setProfilePictureFile(null);
       setProfilePicturePreview(adminicon);
@@ -125,12 +126,9 @@ function Admin() {
   };
 
   return (
-    <div>
-      <div className={style.div}>
-        <Sidebar />
-      </div>
-
-      <div className={style.Blog}>
+    <div className={`${style.div} ${theme === "dark" ? style.dark : ""}`}>
+      <Sidebar />
+      <div className={`${style.Blog} ${theme === "dark" ? style.dark : ""}`}>
         <div
           style={{
             display: "flex",
@@ -138,17 +136,23 @@ function Admin() {
             justifyContent: "center",
           }}
         >
-          <div className={style.Searching}>
-            <ImSearch className={style.search} />
+          <div
+            className={`${style.Searching} ${
+              theme === "dark" ? style.dark : ""
+            }`}
+          >
+            <ImSearch
+              className={`${style.search} ${
+                theme === "dark" ? style.dark : ""
+              }`}
+            />
             <input
               type="text"
-              className="search-input"
+              className={`search-input ${theme === "dark" ? style.dark : ""}`}
               placeholder="Search..."
             />
-            
           </div>
         </div>
-
         <div
           style={{
             display: "flex",
@@ -157,7 +161,12 @@ function Admin() {
             marginTop: "20px",
           }}
         >
-          <form className={style.form} onSubmit={handleSubmit}>
+          <form
+            className={`${style.form} ${
+              theme === "dark" ? style.darkForm : style.lightForm
+            }`}
+            onSubmit={handleSubmit}
+          >
             <div className={style.imagePreview}>
               <img
                 src={profilePicturePreview}
@@ -166,17 +175,27 @@ function Admin() {
               />
             </div>
             <div className={style.formGroup}>
-              <label htmlFor="profilePicture">Profile Picture</label>
+              <label
+                htmlFor="profilePicture"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Profile Picture
+              </label>
               <input
                 type="file"
                 id="profilePicture"
                 name="profilePicture"
                 onChange={handleChange}
+                className={theme === "dark" ? style.dark : ""}
               />
             </div>
-
             <div className={style.formGroup}>
-              <label htmlFor="name">Name</label>
+              <label
+                htmlFor="name"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Name
+              </label>
               <input
                 type="text"
                 id="name"
@@ -184,10 +203,16 @@ function Admin() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Enter your name"
+                className={theme === "dark" ? style.dark : ""}
               />
             </div>
             <div className={style.formGroup}>
-              <label htmlFor="email">Email</label>
+              <label
+                htmlFor="email"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Email
+              </label>
               <input
                 type="email"
                 id="email"
@@ -195,10 +220,16 @@ function Admin() {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="Enter your email"
+                className={theme === "dark" ? style.dark : ""}
               />
             </div>
             <div className={style.formGroup}>
-              <label htmlFor="username">Username</label>
+              <label
+                htmlFor="username"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Username
+              </label>
               <input
                 type="text"
                 id="username"
@@ -206,10 +237,16 @@ function Admin() {
                 value={formData.username}
                 onChange={handleChange}
                 placeholder="Enter your username"
+                className={theme === "dark" ? style.dark : ""}
               />
             </div>
             <div className={style.formGroup}>
-              <label htmlFor="password">Password</label>
+              <label
+                htmlFor="password"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Password
+              </label>
               <div className={style.passwordContainer}>
                 <input
                   type={showPassword ? "text" : "password"}
@@ -218,6 +255,7 @@ function Admin() {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
+                  className={theme === "dark" ? style.dark : ""}
                 />
                 <button
                   type="button"
@@ -229,29 +267,45 @@ function Admin() {
               </div>
             </div>
             <div className={style.formGroup}>
-              <label htmlFor="role">Role</label>
+              <label
+                htmlFor="role"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Role
+              </label>
               <select
                 id="role"
                 name="role"
                 value={formData.role}
                 onChange={handleChange}
+                className={theme === "dark" ? style.dark : ""}
               >
                 <option value="Admin">Admin</option>
                 <option value="SubAdmin">SubAdmin</option>
               </select>
             </div>
             <div className={style.formGroup}>
-              <label htmlFor="bio">Bio</label>
+              <label
+                htmlFor="bio"
+                className={theme === "dark" ? style.dark : ""}
+              >
+                Bio
+              </label>
               <textarea
                 id="bio"
                 name="bio"
                 value={formData.bio}
                 onChange={handleChange}
                 placeholder="Enter your bio"
+                className={theme === "dark" ? style.dark : ""}
               />
             </div>
-
-            <button type="submit" className={style.submitButton}>
+            <button
+              type="submit"
+              className={`${style.submitButton} ${
+                theme === "dark" ? style.darkButton : style.lightButton
+              }`}
+            >
               Submit
             </button>
           </form>

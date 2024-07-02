@@ -1,3 +1,5 @@
+
+
 .button {
   width: 100%;
   padding: 0.9vw;
@@ -177,6 +179,7 @@
   right: 0;
   visibility: hidden;
   opacity: 0;
+  width: 12em;
   transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 

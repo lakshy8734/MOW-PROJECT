@@ -16,7 +16,26 @@
 
 .likeContainer {
   display: flex;
-  gap: 0.6em;
+}
+
+.Facomment {
+  padding-left: 2vw;
+}
+
+@media screen and (max-width:768px) {
+  .Facomment {
+    padding-left: 10vw;
+  }
+}
+
+.FaClipboard {
+  padding: 0% 1vw;
+}
+
+@media screen and (max-width:768px) {
+  .FaClipboard {
+    padding: 0% 6vw;
+  }
 }
 
 .modalBody {
@@ -415,11 +434,16 @@ footer {
 
 .comment {
   display: flex;
-  padding: 0% 3%;
+  padding: 2% 1%;
   gap: 4vw;
   align-items: center;
   justify-content: space-between;
   margin-top: 1.5em;
+  margin-bottom: 1.5em;
+  width: 100%;
+  border-bottom: 1px solid #e5f6fd;
+  border-top: 1px solid #e5f6fd;
+
 }
 
 .Subcomment {
@@ -437,6 +461,8 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
+
+
 }
 
 .comment .modalBody {
@@ -472,6 +498,7 @@ footer {
   font-family: "Quicksand", Verdana, sans-serif;
   color: #626c72;
 }
+
 .leftcontainer a {
   all: unset;
   text-align: left;
@@ -482,7 +509,7 @@ footer {
   color: #181818;
   font-weight: 500;
   cursor: pointer;
-  
+
 }
 
 .leftcontainer h1 {
@@ -1241,6 +1268,32 @@ footer {
 }
 
 .authorname {
-  margin-left: auto; /* This pushes the authorname to the right */
-  padding-left: 10px; /* Optional: Add some spacing if needed */
+  padding-left: 10px;
+  color: #4f515b;
+  margin: 1em 0 1em 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+
+}
+
+.speedIndicator {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: red;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+
+.authorname .profileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin: 0;
 }

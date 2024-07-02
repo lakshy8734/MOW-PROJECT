@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./DashboardSidebar.module.css";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,9 +16,12 @@ import { MdCategory } from "react-icons/md";
 import { TbCategoryFilled } from "react-icons/tb";
 import EditAdminProfile from "Component/editAdminProfile/editAdminProfile";
 import admin from "../../assets/admin-icon.png"; // Corrected import
+import { ThemeContext } from "../../contexts/ThemeContext";
+import ToggleSwitch from "../../Component/ToggleSwitch/ToggleSwitch";
 
 const DashboardSidebar = () => {
   const navigate = useNavigate();
+  const { theme, toggleTheme } = useContext(ThemeContext);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [userDetails, setUserDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -267,7 +270,7 @@ const DashboardSidebar = () => {
             </ul>
 
             <div className={styles.mode}>
-              <Switch />
+              <ToggleSwitch onChange={toggleTheme} checked={theme === "dark"} />
             </div>
           </div>
         </div>
@@ -368,7 +371,7 @@ const DashboardSidebar = () => {
         </ul>
 
         <div className={styles.mode}>
-          <Switch />
+          <ToggleSwitch onChange={toggleTheme} checked={theme === "dark"} />
         </div>
       </section>
       {isModalOpen && (

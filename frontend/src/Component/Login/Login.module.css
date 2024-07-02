@@ -502,9 +502,11 @@
 .FaReddit{
     background-color: #ff4500;
 }
-.FaTelegram{
-    background-color: #0088cc;
+
+.FaInstagram {
+    background: linear-gradient(45deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
 }
+
 
 .loginicon:hover {
     transform: rotate(360deg); 

@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import style from "./Main.module.css";
 import ApexChart from "../ApexChart/ApexChart";
 import axios from "axios";
 import PieChart from "../PieChart/PieChart";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 function Main() {
   const [data, setData] = useState({
@@ -19,6 +20,7 @@ function Main() {
   });
 
   const navigate = useNavigate();
+  const { theme } = useContext(ThemeContext);
 
   const fetchCounts = async () => {
     try {
@@ -36,8 +38,6 @@ function Main() {
         axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/blog`),
       ]);
 
-      console.log("Users Response Data:", timeResponse.data);
-
       const users = timeResponse.data;
       if (!users) {
         throw new Error("Users data is missing");
@@ -46,8 +46,6 @@ function Main() {
       const userActivity = processUserActivity(users);
       const { adminCount, subAdminCount } = processAdminCounts(users);
       const { activeUsers, inactiveUsers } = processActiveUsers(users);
-
-      console.log("Processed User Activity Data:", userActivity);
 
       setData({
         totalUsers: usersResponse.data.totalUsers || 0,
@@ -131,23 +129,23 @@ function Main() {
   };
 
   return (
-    <div className={style.main}>
+    <div className={`${style.main} ${theme === 'dark' ? style.dark : ''}`}>
       <div className={style.cards}>
-        <div className={style.child} onClick={() => handleNavigate("/users")}>
-          <h6>Users</h6>
-          <p>{data.totalUsers}</p>
+        <div className={`${style.child} ${theme === 'dark' ? style.dark : ''}`} onClick={() => handleNavigate("/users")}>
+          <h6 className={`${theme === 'dark' ? style.dark : ''}`}>Users</h6>
+          <p className={`${theme === 'dark' ? style.dark : ''}`}>{data.totalUsers}</p>
         </div>
-        <div className={style.child} onClick={() => handleNavigate("/blog")}>
-          <h6>Blogs</h6>
-          <p>{data.totalBlogs}</p>
+        <div className={`${style.child} ${theme === 'dark' ? style.dark : ''}`} onClick={() => handleNavigate("/blog")}>
+          <h6 className={`${theme === 'dark' ? style.dark : ''}`}>Blogs</h6>
+          <p className={`${theme === 'dark' ? style.dark : ''}`}>{data.totalBlogs}</p>
         </div>
-        <div className={style.child} onClick={() => handleNavigate("/tags")}>
-          <h6>Tags</h6>
-          <p>{data.totalTags}</p>
+        <div className={`${style.child} ${theme === 'dark' ? style.dark : ''}`} onClick={() => handleNavigate("/tags")}>
+          <h6 className={`${theme === 'dark' ? style.dark : ''}`}>Tags</h6>
+          <p className={`${theme === 'dark' ? style.dark : ''}`}>{data.totalTags}</p>
         </div>
-        <div className={style.child} onClick={() => handleNavigate("/links")}>
-          <h6>Links</h6>
-          <p>{data.totalLinks}</p>
+        <div className={`${style.child} ${theme === 'dark' ? style.dark : ''}`} onClick={() => handleNavigate("/links")}>
+          <h6 className={`${theme === 'dark' ? style.dark : ''}`}>Links</h6>
+          <p className={`${theme === 'dark' ? style.dark : ''}`}>{data.totalLinks}</p>
         </div>
       </div>
       <div className={style.pieCharts}>

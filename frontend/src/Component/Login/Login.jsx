@@ -8,7 +8,14 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import imgs from "../../assets/mow.webp";
 
-import { FaDiscord, FaReddit, FaTelegram } from "react-icons/fa";
+import { RiFacebookLine } from "react-icons/ri";
+import { CiInstagram } from "react-icons/ci";
+
+import { LoginSocialFacebook } from "reactjs-social-login";
+import { LoginSocialInstagram } from 'reactjs-social-login';
+
+
+
 
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -20,16 +27,28 @@ import {
   faKey,
 } from "@fortawesome/free-solid-svg-icons";
 
+
 import { GoogleLogin } from "@react-oauth/google";
 import { jwtDecode } from "jwt-decode";
 
 function Login({ isVisible, onClose, onLoginSuccess }) {
   const navigate = useNavigate();
 
-  const handleDiscordLogin = () => {
-    const discordAuthUrl = `https://discord.com/api/oauth2/authorize?client_id=1236732850821267456&redirect_uri=http://localhost:3000/auth/discord/callback&response_type=code&scope=identify`;
-    window.location.href = discordAuthUrl;
+
+
+  const [profile, setProfile] = useState(null);
+
+  const [profile2, setProfile2] = useState(null);
+
+  const handleInstagramResponse = (response) => {
+    console.log('Instagram login success:', response);
+    setProfile(response);
   };
+
+  const handleInstagramFailure = (error) => {
+    console.log('Instagram login failed:', error);
+  };
+
 
   const [scrolled, setScrolled] = useState(false);
 
@@ -130,7 +149,7 @@ function Login({ isVisible, onClose, onLoginSuccess }) {
     }
   };
 
-  
+
 
   // Function to handle successful Google Sign-In
   const handleGoogleSignInSuccess = (credentialResponse) => {
@@ -146,7 +165,7 @@ function Login({ isVisible, onClose, onLoginSuccess }) {
   // useEffect(() => {
 
   //   window.google.accounts.id.initialize({
-  //     client_id: `114638637552-do012jlib3toflmb720l6auec0g5el31.apps.googleusercontent.com`,
+  //     client_id: 114638637552-do012jlib3toflmb720l6auec0g5el31.apps.googleusercontent.com,
   //     callback: handleCredentialResponse,
   //   });
   // }, []);
@@ -215,8 +234,8 @@ function Login({ isVisible, onClose, onLoginSuccess }) {
       localStorage.setItem(roleKey, data.token);
       localStorage.setItem("userId", data.user.userId);
 
-     // Navigate based on user role
-     navigateBasedOnRole(data.user.role, data.user.userId);
+      // Navigate based on user role
+      navigateBasedOnRole(data.user.role, data.user.userId);
 
       toast.success("User Logged in successfully");
     } catch (error) {
@@ -230,25 +249,25 @@ function Login({ isVisible, onClose, onLoginSuccess }) {
     const token = localStorage.getItem(roleKey);
 
     if (token && localStorage.getItem("userId") === userId) {
-        switch (role) {
-            case "Admin":
-                console.log("Navigating to dashboard...");
-                navigate("/Blogs");
-                break;
-            case "SubAdmin":
-                console.log("Navigating to profile...");
-                navigate("/Blogs");
-                break;
-            case "User":
-            default:
-                console.log("Navigating to homepage...");
-                navigate("/Blogs");
-        }
+      switch (role) {
+        case "Admin":
+          console.log("Navigating to dashboard...");
+          navigate("/Blogs");
+          break;
+        case "SubAdmin":
+          console.log("Navigating to profile...");
+          navigate("/Blogs");
+          break;
+        case "User":
+        default:
+          console.log("Navigating to homepage...");
+          navigate("/Blogs");
+      }
     } else {
-        console.error("Role key or user ID mismatch.");
-        toast.error("An error occurred with user authentication.");
+      console.error("Role key or user ID mismatch.");
+      toast.error("An error occurred with user authentication.");
     }
-};
+  };
 
 
   return (
@@ -389,20 +408,59 @@ function Login({ isVisible, onClose, onLoginSuccess }) {
               </div>
 
               <div className={style.logicon}>
-                <FaDiscord
-                  onClick={handleDiscordLogin}
-                  className={style.loginicon}
-                />
-                <FaReddit className={`${style.loginicon} ${style.FaReddit}`} />
-                <FaTelegram
-                  className={`${style.loginicon} ${style.FaTelegram}`}
-                />
+
+
+                {!profile2 ? (
+                  <LoginSocialInstagram
+                    clientId="971563334677383"
+                    buttonText="Login with Instagram"
+                    onSuccess={handleInstagramResponse}
+                    onFailure={handleInstagramFailure}
+                  />
+                ) : (
+                  <div>
+                    <h1>{profile2.name || profile2.username}</h1>
+                    <h1>{profile2.id}</h1>
+                    <img src={profile2.profile_picture} alt="Profile" />
+                  </div>
+                )}
+
+
+
+                <CiInstagram className={`${style.loginicon} ${style.FaInstagram}`} />
+
+                {!profile ? (
+                  <LoginSocialFacebook
+                    appId="1933023657117855"
+                    onResolve={(response) => {
+                      console.log('Login success:', response);
+                      setProfile(response.data);
+                    }}
+                    onReject={(error) => {
+                      console.log('Login failed:', error);
+                    }}
+                    scope="email"
+                  >
+                    <RiFacebookLine style={{ display: 'flex' }} className={`${style.loginicon} ${style.FaTelegram}`} />
+
+                  </LoginSocialFacebook >
+                ) : (
+                  <div>
+                    <h1>{profile.name}</h1>
+                    <h1>{profile.short_name}</h1>
+                    <h1>{profile.id}</h1>
+                    <img src={profile.picture.data.url} alt="Profile" />
+                  </div>
+                )}
+
+
               </div>
             </div>
           </div>
         </section>
       )}
-    </div>
+
+    </div >
   );
 }
 
