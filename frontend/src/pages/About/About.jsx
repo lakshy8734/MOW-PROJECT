@@ -1,6 +1,6 @@
 import img from '../../assets/mow.webp'
 import style from './About.module.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import first from '../../assets/anime-gaming.webp'
 import sec from '../../assets/sec.webp'
 import third from '../../assets/third.webp'
