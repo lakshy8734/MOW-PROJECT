@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import style from "./Blog.module.css";
 import Sidebar from "Component/DashboardSidebar/DashboardSidebar";
 import DataTable from "react-data-table-component";
@@ -10,12 +10,14 @@ import Modal from "react-modal"; // Import react-modal
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import Select from "react-select";
-import Swal from 'sweetalert2';
-
+import Swal from "sweetalert2";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 Modal.setAppElement("#root"); // Set the root element for the modal
 
 function Blog() {
+  const { theme } = useContext(ThemeContext);
+
   const [blogs, setBlogs] = useState([]); // State to store fetched blogs data
   const [filteredBlogs, setFilteredBlogs] = useState([]);
   const [categories, setCategories] = useState({});
@@ -56,47 +58,46 @@ function Blog() {
   const customStyles = {
     header: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     headRow: {
       style: {
-        backgroundColor: "#242424",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
       },
     },
     headCells: {
       style: {
-        color: "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     rows: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
         "&:not(:last-of-type)": {
-          borderBottomColor: "#3d3d3d",
+          borderBottomColor: theme === "dark" ? "#3d3d3d" : "#ddd",
         },
-        minHeight: "100px", // Set a consistent row height
       },
       highlightOnHoverStyle: {
-        backgroundColor: "#3d3d3d",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#3d3d3d" : "#f0f0f0",
+        color: theme === "dark" ? "#ffffff" : "#000000",
         transitionDuration: "0.15s",
         transitionProperty: "background-color",
-        borderBottomColor: "#3d3d3d",
-        outline: "1px solid #3d3d3d",
+        borderBottomColor: theme === "dark" ? "#3d3d3d" : "#ddd",
+        outline: `1px solid ${theme === "dark" ? "#3d3d3d" : "#ddd"}`,
       },
     },
     pagination: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     table: {
       style: {
-        backgroundColor: "#242424",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
       },
     },
   };
@@ -296,30 +297,32 @@ function Blog() {
 
   const handlePublishStatusChange = async (blogId, newStatus) => {
     const result = await Swal.fire({
-      title: 'Are you sure?',
-      text: `Do you want to change the status to ${newStatus ? 'Publish' : 'Draft'}?`,
-      icon: 'warning',
+      title: "Are you sure?",
+      text: `Do you want to change the status to ${
+        newStatus ? "Publish" : "Draft"
+      }?`,
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonText: 'Yes, change it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: "Yes, change it!",
+      cancelButtonText: "No, cancel!",
     });
-  
+
     if (result.isConfirmed) {
       try {
         const response = await fetch(
           `${process.env.REACT_APP_BACKEND_URL}/api/blog/${blogId}/publish`,
           {
-            method: 'PUT',
+            method: "PUT",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
             body: JSON.stringify({ publish: newStatus }),
           }
         );
-  
+
         if (response.ok) {
           const updatedBlog = await response.json();
-          
+
           if (updatedBlog) {
             setBlogs((prevBlogs) =>
               prevBlogs.map((blog) =>
@@ -331,20 +334,20 @@ function Blog() {
                 blog.blogId === updatedBlog.blogId ? updatedBlog : blog
               )
             );
-            toast.success('Blog status updated successfully!');
+            toast.success("Blog status updated successfully!");
           } else {
-            throw new Error('Failed to update blog status');
+            throw new Error("Failed to update blog status");
           }
         } else {
-          throw new Error('Failed to update blog status');
+          throw new Error("Failed to update blog status");
         }
       } catch (error) {
-        setError(error.message || 'Failed to update blog status');
-        toast.error('Failed to update blog status');
+        setError(error.message || "Failed to update blog status");
+        toast.error("Failed to update blog status");
       }
     }
   };
-  
+
   const columns = [
     {
       name: "#",
@@ -512,11 +515,11 @@ function Blog() {
 
   return (
     <div>
-      <div className={style.div}>
+      <div className={`${style.div} ${theme === "dark" ? style.dark : ""}`}>
         <Sidebar />
       </div>
 
-      <div className={style.Blog}>
+      <div className={`${style.Blog} ${theme === "dark" ? style.dark : ""}`}>
         <div
           style={{
             display: "flex",
@@ -525,11 +528,21 @@ function Blog() {
             marginBottom: "20px",
           }}
         >
-          <div className={style.Searching}>
-            <ImSearch className={style.search} />
+          <div
+            className={`${style.Searching} ${
+              theme === "dark" ? style.dark : ""
+            }`}
+          >
+            <ImSearch
+              className={`${style.search} ${
+                theme === "dark" ? style.dark : ""
+              }`}
+            />
             <input
               type="text"
-              className="search-input"
+              className={`${style.searchInput} ${
+                theme === "dark" ? style.dark : ""
+              }`}
               placeholder="Search..."
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
@@ -537,7 +550,7 @@ function Blog() {
             <button
               className={`${style.searchbutton} ${
                 searchBy === "title" ? style.active : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
               onClick={() => handleSearchByChange("title")}
             >
               Title
@@ -545,7 +558,7 @@ function Blog() {
             <button
               className={`${style.searchbutton} ${
                 searchBy === "authorName" ? style.active : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
               onClick={() => handleSearchByChange("authorName")}
             >
               Author
@@ -553,7 +566,7 @@ function Blog() {
             <button
               className={`${style.searchbutton} ${
                 searchBy === "tagNames" ? style.active : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
               onClick={() => handleSearchByChange("tagNames")}
             >
               Tag
@@ -561,7 +574,7 @@ function Blog() {
             <button
               className={`${style.searchbutton} ${
                 searchBy === "categoryName" ? style.active : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
               onClick={() => handleSearchByChange("categoryName")}
             >
               Category
@@ -605,8 +618,8 @@ function Blog() {
               overflowY: "auto", // Enable vertical scrolling if content overflows
               marginRight: "-50%",
               transform: "translate(-50%, -50%)",
-              backgroundColor: "#242424",
-              color: "#ffffff",
+              backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+              color: theme === "dark" ? "#ffffff" : "#000000",
               padding: "20px",
               borderRadius: "10px",
             },
@@ -765,7 +778,7 @@ function Blog() {
                         ...base,
                         maxHeight: "300px", // Set the maximum height of the dropdown menu
                         overflowY: "auto", // Make the dropdown menu scrollable
-                         // Ensure the dropdown menu appears above other elements
+                        // Ensure the dropdown menu appears above other elements
                         borderRadius: "5px", // Optional: Rounded corners
                         boxShadow: "0 2px 10px rgba(0,0,0,0.1)", // Optional: Add shadow for better visibility
                       }),

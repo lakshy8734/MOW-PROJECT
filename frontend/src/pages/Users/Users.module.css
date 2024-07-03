@@ -1,8 +1,33 @@
+/* Variables for light theme */
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #000000;
+    --card-background-color-light: #f0f0f0;
+    --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Variables for dark theme */
+[data-theme='dark'] {
+    --background-color-dark: #15171a;
+    --text-color-dark: #ffffff;
+    --card-background-color-dark: #242424;
+    --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    --border-color-dark: #ffffff;
+    --input-background-dark: #2a2a2a;
+}
+
 .Blog {
     padding-left: 20%;
     padding-top: 1%;
-    background: #15171a;
+    background: var(--background-color-light);
     min-height: 100vh;
+}
+
+.Blog.dark {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
 }
 
 @media screen and (max-width: 1024px) {
@@ -14,10 +39,12 @@
 .chart {
     width: 96%;
     padding: 2%;
-    box-shadow: 0px 0px 10px -4px rgba(255, 255, 255, 0.79);
+    box-shadow: var(--box-shadow-light);
     margin-top: 1em;
-    background-color: #242424;
-    border-radius: 8px;
+}
+
+.chart.dark {
+    box-shadow: var(--box-shadow-dark);
 }
 
 .Searching {
@@ -27,15 +54,24 @@
     margin-top: 1em;
     display: flex;
     align-items: center;
-    background-color: white;
+    background-color: var(--background-color-light);
     border-radius: 8px;
     border: 1px solid #ddd;
     flex-wrap: wrap;
 }
 
+.Searching.dark {
+    background-color: var(--input-background-dark);
+    border-color: var(--border-color-dark);
+}
+
 .search {
     color: #555;
     margin-right: 8px;
+}
+
+.search.dark {
+    color: var(--text-color-dark);
 }
 
 .Searching > input {
@@ -45,11 +81,19 @@
     background: none;
     font-size: 16px;
     color: #333;
-    min-width: 0;
+    min-width: 0; /* ensures proper resizing */
+}
+
+.Searching > input.dark {
+    color: var(--text-color-dark);
 }
 
 .Searching > input::placeholder {
     color: #aaa;
+}
+
+.Searching > input.dark::placeholder {
+    color: var(--text-color-dark);
 }
 
 .searchbutton {
@@ -79,4 +123,119 @@
         margin-top: 8px;
         width: 100%;
     }
+}
+
+input:checked + .slider {
+    background-color: #4caf50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+.form {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 20px;
+    width: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 600px) {
+    .form {
+        width: 95%;
+    }
+}
+
+.form.darkForm {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+    border: 1px solid;
+    border-color: var(--border-color-dark);
+}
+
+.form.lightForm {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+}
+
+.formGroup {
+    margin-bottom: 20px;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 5px;
+    color: var(--text-color-light);
+}
+
+.formGroup label.dark {
+    color: var(--text-color-dark);
+}
+
+.formGroup input,
+.formGroup select,
+.formGroup textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    color: var(--text-color-light);
+    background-color: var(--background-color-light);
+}
+
+.formGroup input.dark,
+.formGroup select.dark,
+.formGroup textarea.dark {
+    background-color: var(--input-background-dark);
+    color: var(--input-text-dark);
+    border-color: var(--border-color-dark);
+}
+
+.submitButton {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.submitButton:hover {
+    background-color: #0056b3;
+}
+
+.imagePreview {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.profilePicture {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 10px;
+}
+
+.formGroup textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical; /* Allows the textarea to be vertically resizable */
+    min-height: 100px; /* Sets a minimum height for the textarea */
+    box-sizing: border-box; /* Ensures padding and border are included in the element's total width and height */
+}
+
+.formGroup label[for="bio"] {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 8px;
 }

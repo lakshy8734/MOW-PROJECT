@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import style from "./Category.module.css";
 import Sidebar from "Component/DashboardSidebar/DashboardSidebar";
 import DataTable from "react-data-table-component";
@@ -6,10 +6,13 @@ import { ImSearch } from "react-icons/im";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 Modal.setAppElement("#root");
 
 function Category() {
+  const { theme } = useContext(ThemeContext);
+
   const [categories, setCategories] = useState([]);
   const [filteredCategories, setFilteredCategories] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -26,48 +29,46 @@ function Category() {
   const customStyles = {
     header: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     headRow: {
       style: {
-        backgroundColor: "#242424",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
       },
     },
     headCells: {
       style: {
-        color: "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     rows: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
         "&:not(:last-of-type)": {
-          borderBottomColor: "#3d3d3d",
+          borderBottomColor: theme === "dark" ? "#3d3d3d" : "#ddd",
         },
-        zIndex: 0,
       },
       highlightOnHoverStyle: {
-        backgroundColor: "#3d3d3d",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#3d3d3d" : "#f0f0f0",
+        color: theme === "dark" ? "#ffffff" : "#000000",
         transitionDuration: "0.15s",
         transitionProperty: "background-color",
-        borderBottomColor: "#3d3d3d",
-        outline: "1px solid #3d3d3d",
-        zIndex: 0,
+        borderBottomColor: theme === "dark" ? "#3d3d3d" : "#ddd",
+        outline: `1px solid ${theme === "dark" ? "#3d3d3d" : "#ddd"}`,
       },
     },
     pagination: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     table: {
       style: {
-        backgroundColor: "#242424",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
       },
     },
   };
@@ -154,9 +155,9 @@ function Category() {
       toast.error("Description is required");
       return;
     }
-  
+
     console.log(currentCategory);
-  
+
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/api/categories/editcategory/${categoryId}`,
@@ -172,7 +173,7 @@ function Category() {
           }),
         }
       );
-  
+
       if (response.ok) {
         const updatedCategoryData = await response.json();
         setCategories((prevCategories) =>
@@ -187,7 +188,7 @@ function Category() {
             category.categoryId === updatedCategoryData.categoryId
               ? updatedCategoryData
               : category
-            )
+          )
         );
         toast.success("Category updated successfully!");
         setEditModalIsOpen(false);
@@ -196,7 +197,7 @@ function Category() {
         console.error("Error updating category:", errorData);
         // Log all validation errors
         if (errorData.errors) {
-          errorData.errors.forEach(err => toast.error(err.msg));
+          errorData.errors.forEach((err) => toast.error(err.msg));
         } else {
           throw new Error(errorData.error || "Failed to update category");
         }
@@ -206,7 +207,6 @@ function Category() {
       toast.error(error.message || "Failed to update category");
     }
   };
-  
 
   const columns = [
     {
@@ -289,11 +289,11 @@ function Category() {
 
   return (
     <div>
-      <div className={style.div}>
+      <div className={`${style.div} ${theme === "dark" ? style.dark : ""}`}>
         <Sidebar />
       </div>
 
-      <div className={style.Blog}>
+      <div className={`${style.Blog} ${theme === "dark" ? style.dark : ""}`}>
         <div
           style={{
             display: "flex",
@@ -302,11 +302,21 @@ function Category() {
             marginBottom: "20px",
           }}
         >
-          <div className={style.Searching}>
-            <ImSearch className={style.search} />
+          <div
+            className={`${style.Searching} ${
+              theme === "dark" ? style.dark : ""
+            }`}
+          >
+            <ImSearch
+              className={`${style.search} ${
+                theme === "dark" ? style.dark : ""
+              }`}
+            />
             <input
               type="text"
-              className="search-input"
+              className={`${style.searchInput} ${
+                theme === "dark" ? style.dark : ""
+              }`}
               placeholder="Search category..."
               value={searchText}
               onChange={handleSearch}
@@ -321,7 +331,9 @@ function Category() {
             justifyContent: "center",
           }}
         >
-          <div className={style.chart}>
+          <div
+            className={`${style.chart} ${theme === "dark" ? style.dark : ""}`}
+          >
             <DataTable
               columns={columns}
               data={filteredCategories}
@@ -357,8 +369,8 @@ function Category() {
               overflowY: "auto",
               marginRight: "-50%",
               transform: "translate(-50%, -50%)",
-              backgroundColor: "#242424",
-              color: "#ffffff",
+              backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+              color: theme === "dark" ? "#ffffff" : "#000000",
               padding: "20px",
               borderRadius: "10px",
             },
@@ -387,7 +399,7 @@ function Category() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               />
             </div>
@@ -407,7 +419,7 @@ function Category() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               />
             </div>
@@ -426,7 +438,7 @@ function Category() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               />
             </div>

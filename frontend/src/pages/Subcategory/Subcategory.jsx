@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import style from "./Subcategory.module.css";
 import Sidebar from "Component/DashboardSidebar/DashboardSidebar";
 import DataTable from "react-data-table-component";
@@ -6,10 +6,13 @@ import { ImSearch } from "react-icons/im";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Modal from "react-modal";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 Modal.setAppElement("#root");
 
 function Subcategory() {
+  const { theme } = useContext(ThemeContext);
+
   const [subcategories, setSubcategories] = useState([]);
   const [categories, setCategories] = useState([]);
   const [filteredSubcategories, setFilteredSubcategories] = useState([]);
@@ -24,56 +27,55 @@ function Subcategory() {
     description: "",
     subcategoryId: "",
   });
-
   const customStyles = {
     header: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     headRow: {
       style: {
-        backgroundColor: "#242424",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
       },
     },
     headCells: {
       style: {
-        color: "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     rows: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
         "&:not(:last-of-type)": {
-          borderBottomColor: "#3d3d3d",
+          borderBottomColor: theme === "dark" ? "#3d3d3d" : "#ddd",
         },
         zIndex: 0,
       },
       highlightOnHoverStyle: {
-        backgroundColor: "#3d3d3d",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#3d3d3d" : "#f0f0f0",
+        color: theme === "dark" ? "#ffffff" : "#000000",
         transitionDuration: "0.15s",
         transitionProperty: "background-color",
-        borderBottomColor: "#3d3d3d",
-        outline: "1px solid #3d3d3d",
+        borderBottomColor: theme === "dark" ? "#3d3d3d" : "#ddd",
+        outline: `1px solid ${theme === "dark" ? "#3d3d3d" : "#ddd"}`,
         zIndex: 0,
       },
     },
     pagination: {
       style: {
-        backgroundColor: "#242424",
-        color: "#ffffff",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+        color: theme === "dark" ? "#ffffff" : "#000000",
       },
     },
     table: {
       style: {
-        backgroundColor: "#242424",
+        backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
       },
     },
   };
-
+  
   useEffect(() => {
     const fetchSubcategories = async () => {
       setIsLoading(true);
@@ -111,7 +113,9 @@ function Subcategory() {
 
   useEffect(() => {
     const filtered = subcategories.filter((subcategory) =>
-      subcategory.subcategoryName.toLowerCase().includes(searchText.toLowerCase())
+      subcategory.subcategoryName
+        .toLowerCase()
+        .includes(searchText.toLowerCase())
     );
     setFilteredSubcategories(filtered);
   }, [searchText, subcategories]);
@@ -156,7 +160,8 @@ function Subcategory() {
   };
 
   const handleEditSave = async () => {
-    const { subcategoryName, categoryId, slug, description, subcategoryId } = currentSubcategory;
+    const { subcategoryName, categoryId, slug, description, subcategoryId } =
+      currentSubcategory;
     if (!subcategoryName) {
       toast.error("Subcategory Name is required");
       return;
@@ -169,9 +174,9 @@ function Subcategory() {
       toast.error("Description is required");
       return;
     }
-  
+
     console.log(currentSubcategory);
-  
+
     try {
       const response = await fetch(
         `${process.env.REACT_APP_BACKEND_URL}/api/subcategories/editcategory/${subcategoryId}`,
@@ -188,7 +193,7 @@ function Subcategory() {
           }),
         }
       );
-  
+
       if (response.ok) {
         const updatedSubcategoryData = await response.json();
         setSubcategories((prevSubcategories) =>
@@ -203,7 +208,7 @@ function Subcategory() {
             subcategory.subcategoryId === updatedSubcategoryData.subcategoryId
               ? updatedSubcategoryData
               : subcategory
-            )
+          )
         );
         toast.success("Subcategory updated successfully!");
         setEditModalIsOpen(false);
@@ -211,7 +216,7 @@ function Subcategory() {
         const errorData = await response.json();
         console.error("Error updating subcategory:", errorData);
         if (errorData.errors) {
-          errorData.errors.forEach(err => toast.error(err.msg));
+          errorData.errors.forEach((err) => toast.error(err.msg));
         } else {
           throw new Error(errorData.error || "Failed to update subcategory");
         }
@@ -239,7 +244,9 @@ function Subcategory() {
     {
       name: "Category Name",
       selector: (row) => {
-        const category = categories.find(cat => cat.categoryId === row.categoryId);
+        const category = categories.find(
+          (cat) => cat.categoryId === row.categoryId
+        );
         return category ? category.categoryName : "Unknown";
       },
       sortable: true,
@@ -312,11 +319,11 @@ function Subcategory() {
 
   return (
     <div>
-      <div className={style.div}>
+      <div className={`${style.div} ${theme === "dark" ? style.dark : ""}`}>
         <Sidebar />
       </div>
 
-      <div className={style.Blog}>
+      <div className={`${style.Blog} ${theme === "dark" ? style.dark : ""}`}>
         <div
           style={{
             display: "flex",
@@ -325,11 +332,21 @@ function Subcategory() {
             marginBottom: "20px",
           }}
         >
-          <div className={style.Searching}>
-            <ImSearch className={style.search} />
+          <div
+            className={`${style.Searching} ${
+              theme === "dark" ? style.dark : ""
+            }`}
+          >
+            <ImSearch
+              className={`${style.search} ${
+                theme === "dark" ? style.dark : ""
+              }`}
+            />
             <input
               type="text"
-              className="search-input"
+              className={`${style.searchInput} ${
+                theme === "dark" ? style.dark : ""
+              }`}
               placeholder="Search subcategory..."
               value={searchText}
               onChange={handleSearch}
@@ -344,7 +361,9 @@ function Subcategory() {
             justifyContent: "center",
           }}
         >
-          <div className={style.chart}>
+          <div
+            className={`${style.chart} ${theme === "dark" ? style.dark : ""}`}
+          >
             <DataTable
               columns={columns}
               data={filteredSubcategories}
@@ -380,8 +399,8 @@ function Subcategory() {
               overflowY: "auto",
               marginRight: "-50%",
               transform: "translate(-50%, -50%)",
-              backgroundColor: "#242424",
-              color: "#ffffff",
+              backgroundColor: theme === "dark" ? "#242424" : "#ffffff",
+              color: theme === "dark" ? "#ffffff" : "#000000",
               padding: "20px",
               borderRadius: "10px",
             },
@@ -410,7 +429,7 @@ function Subcategory() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               />
             </div>
@@ -429,7 +448,7 @@ function Subcategory() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               >
                 <option value="">Select Category</option>
@@ -456,7 +475,7 @@ function Subcategory() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               />
             </div>
@@ -475,7 +494,7 @@ function Subcategory() {
                   width: "100%",
                   padding: "8px",
                   borderRadius: "5px",
-                  border: "none",
+                  border: theme === "dark" ? "none" : "1px solid black",
                 }}
               />
             </div>
