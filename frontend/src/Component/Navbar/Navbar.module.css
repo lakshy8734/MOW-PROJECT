@@ -1,23 +1,52 @@
+/* Variables for light theme */
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --card-background-color-light: #f0f0f0;
+  --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Variables for dark theme */
+[data-theme='dark'] {
+  --background-color-dark: #15171a;
+  --text-color-dark: #ffffff;
+  --card-background-color-dark: #242424;
+  --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  --border-color-dark: #ffffff;
+  --input-background-dark: #2a2a2a;
+}
+
 .nav {
   height: 90px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 5%;
-
   position: sticky;
   top: 0;
   left: 0;
-  background: white;
+  background: var(--background-color-light);
   width: 100%;
   transition: height 0.5s, box-shadow 0.3s;
   z-index: 1;
 }
 
+.nav.dark {
+  background: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
 .nav.scrolled {
-  background: white;
+  background: var(--background-color-light);
   height: 60px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--box-shadow-light);
+}
+
+.nav.scrolled.dark {
+  background: var(--background-color-dark);
+  box-shadow: var(--box-shadow-dark);
 }
 
 .nav ul li {
@@ -25,6 +54,10 @@
 }
 
 .nav ul li:hover {
+  color: #d33;
+}
+
+.nav ul li:hover.dark {
   color: #d33;
 }
 
@@ -46,10 +79,14 @@
   all: unset;
   font-weight: 100;
   font-size: 1vw;
-  color: black;
+  color: var(--text-color-light);
   cursor: pointer;
   padding: 0.9vw 0vw;
   display: flex;
+}
+
+.nav ul li.dark {
+  color: var(--text-color-dark);
 }
 
 .nav ul {
@@ -74,9 +111,17 @@ nav .menu li:hover {
   color: rgb(232, 44, 44);
 }
 
+nav .menu li:hover.dark {
+  color: rgb(232, 44, 44);
+}
+
 nav .menu li:hover .submenu {
   display: block;
-  box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
+  box-shadow: var(--hover-box-shadow-light);
+}
+
+nav .menu li:hover .submenu.dark {
+  box-shadow: var(--hover-box-shadow-dark);
 }
 
 .line {
@@ -87,20 +132,26 @@ nav .menu li:hover .submenu {
   opacity: 0.4;
 }
 
+.line.dark {
+  color: var(--text-color-light);
+}
+
 nav .menu .submenu {
   position: absolute;
   display: none;
   top: 100%;
   left: 0;
-  background: white;
+  background: var(--background-color-light);
   z-index: 1;
-
   padding: 0.3vw;
   white-space: nowrap;
   border-radius: 5px;
-
   margin-top: 0.2vw;
   transition: display 0.6s ease-in-out;
+}
+
+nav .menu .submenu.dark {
+  background: var(--background-color-dark);
 }
 
 nav .menu .submenu li {
@@ -108,16 +159,28 @@ nav .menu .submenu li {
   align-items: center;
   padding: 5px 20px;
   font-size: 1vw;
-  color: black;
+  color: var(--text-color-light);
+}
+
+nav .menu .submenu li.dark {
+  color: var(--text-color-dark);
 }
 
 nav .menu .submenu li:hover {
   color: rgb(232, 44, 44);
 }
 
+nav .menu .submenu li:hover.dark {
+  color: rgb(232, 44, 44);
+}
+
 nav .menu .submenu .submain:hover .submenu {
   display: block;
-  box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
+  box-shadow: var(--hover-box-shadow-light);
+}
+
+nav .menu .submenu .submain:hover .submenu.dark {
+  box-shadow: var(--hover-box-shadow-dark);
 }
 
 nav .menu .submenu .submain .submenu {
@@ -127,23 +190,23 @@ nav .menu .submenu .submain .submenu {
 
 @media screen and (max-width: 768px) {
   .nav {
-    padding: 20px 20px;
+      padding: 20px 20px;
   }
 
   .nav .menu {
-    display: none;
+      display: none;
   }
 
   .logo img {
-    width: 4vw;
+      width: 4vw;
   }
 
   .logo {
-    font-size: 3vw;
+      font-size: 3vw;
   }
 
   .nav ul li {
-    font-size: 3vw;
+      font-size: 3vw;
   }
 }
 
@@ -153,11 +216,11 @@ nav .menu .more2 {
 
 @media screen and (max-width: 1024px) {
   nav .menu .more {
-    display: none;
+      display: none;
   }
 
   nav .menu .more2 {
-    display: block;
+      display: block;
   }
 }
 
@@ -166,7 +229,6 @@ nav .menu .more2 .submenu li {
   gap: 1.2vw;
 }
 
-
 .hamburgerIcon {
   display: none;
   font-size: 20px;
@@ -174,13 +236,12 @@ nav .menu .more2 .submenu li {
   color: gray;
 }
 
-
 @media screen and (max-width: 992px) {
   .hamburgerIcon {
-    display: block;
+      display: block;
   }
 
   .nav .menu {
-    display: none;
+      display: none;
   }
 }

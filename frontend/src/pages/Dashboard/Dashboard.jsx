@@ -11,9 +11,7 @@ function Dashboard() {
     <>
       <div className={style.div}>
         <Sidebar />
-        <button onClick={toggleTheme}>
-          Toggle to {theme === 'light' ? 'Dark' : 'Light'} Mode
-        </button>
+        
       </div>
       <Main />
     </>

@@ -169,44 +169,7 @@ function Blogs() {
 
       <Shareit/>
 
-      {/* <section data-aos="fade-up" className={style.link}>
-        <a
-          href="https://www.facebook.com/myotakuworld/"
-          className={style.tooltip}
-        >
-          <div style={{ color: "#1877f2" }}>
-            <FaFacebook />
-            <span className={style.tooltiptext}>Facebook</span>
-          </div>
-        </a>
-        <a
-          href="https://www.pinterest.com/myotakuworld/"
-          className={style.tooltip}
-        >
-          <div style={{ color: "#bd081c" }}>
-            <FaPinterest />
-            <span className={style.tooltiptext} >Pinterest</span>
-          </div>
-        </a>
-        <a
-          href="https://www.instagram.com/myotakuworld/"
-          className={style.tooltip}
-        >
-          <div style={{ color: "#c13584" }}>
-            <FaInstagram />
-            <span className={style.tooltiptext}>Instagram</span>
-          </div>
-        </a>
-        <a
-          href="https://www.youtube.com/channel/UCrMFWL5maGeVBYwwXuq5HMA"
-          className={style.tooltip}
-        >
-          <div style={{ color: "#ff0000" }}>
-            <FaYoutube />
-            <span className={style.tooltiptext}>YouTube</span>
-          </div>
-        </a>
-      </section> */}
+      
 
       <Link />
       <div className={style.divider}>
