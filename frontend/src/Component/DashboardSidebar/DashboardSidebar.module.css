@@ -1,75 +1,14 @@
-
-
-.button {
-  width: 100%;
-  padding: 0.9vw;
-  border-radius: 10vw;
-  border: transparent;
-  background-color: #d33;
-  background-image: linear-gradient(45deg,
-      transparent 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      transparent 100%);
-  box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
-  color: #fff;
-  position: relative;
-  overflow: hidden;
-  font-size: 0.9vw;
-  font-weight: 600;
-  cursor: pointer;
-  margin-top: 1.4vw;
+body.light {
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
 }
 
-.button:hover::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -100%;
-  width: 200%;
-  height: 100%;
-  background: rgba(255, 255, 255, 0.199);
-  animation: shine 1s linear forwards;
-  cursor: pointer;
-  transform: rotate(45deg);
-}
-
-@keyframes shine {
-  from {
-    right: -100%;
-    opacity: 0;
-  }
-
-  to {
-    right: 100%;
-    opacity: 1;
-  }
-}
-
-.button:hover {
-  background-color: #0056b3;
-}
-
-
-
-.underline {
-  color: rgb(255, 0, 0);
-  cursor: pointer;
-}
-
-.underline:hover {
-  text-decoration: underline;
-}
-
-@media screen and (max-width: 768px) {
-  .button {
-    font-size: 3.5vw;
-    padding: 3vw;
-    margin-top: 5vw;
-  }
+body.dark {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
 }
 
 /* sidebr */
-
 .sidebar {
   position: fixed;
   top: 0;
@@ -90,13 +29,15 @@
 
 .userDetails {
   display: flex;
-    justify-content: center;
-    align-items: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .profilePicture {
-  width: 40px; /* Adjust the size as needed */
-  height: 40px; /* Adjust the size as needed */
+  width: 40px;
+  /* Adjust the size as needed */
+  height: 40px;
+  /* Adjust the size as needed */
   border-radius: 50%;
   margin-right: 10px;
 }
@@ -110,7 +51,6 @@
 .logo {
   background: #383a45;
   width: 100%;
-  padding: 0.2vw;
 }
 
 .iconsContainer {
@@ -128,10 +68,10 @@
 
 
 /* General styles */
+
 .nav {
   position: sticky;
-  box-shadow: 0px 0px 4px white;
-  top: 0vh;
+  top: 0;
   width: 100%;
   height: 80px;
   padding: 1% 5%;
@@ -140,7 +80,6 @@
   justify-content: space-between;
   align-items: center;
   list-style: none;
-  background: #15171a;
 }
 
 .nav>ul {
@@ -151,12 +90,8 @@
 .nav>ul>li {
   list-style: none;
   cursor: pointer;
+
   transition: all 0.3s linear;
-}
-
-
-.navicon {
-  color: white;
 }
 
 .nav>ul>li:hover {
@@ -212,39 +147,6 @@ li:hover .Admin {
   }
 }
 
-/* Dark mode styles */
-.dark {
-  background: #ffffff;
-  box-shadow: 0px 0px 4px black;
-  border-bottom: 1px solid #444;
-}
-
-.dark .nav>ul>li:hover {
-  color: #ff6347;
-}
-
-.dark  .navicon {
-  color: rgb(0, 0, 0);
-}
-
-
-.dark .Admin {
-  background: #333;
-  box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
-}
-
-.dark .Admin .options {
-  color: #e0e0e0;
-}
-
-.dark .Admin .options:hover {
-  color: #ff6347;
-  background: linear-gradient(135deg, #444 0%, #555 100%);
-  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
-}
-
-
-
 /* 2 */
 
 li {
@@ -278,12 +180,7 @@ li {
 }
 
 
-.dark.leftcontainer h1 {
-  margin-top: 1em;
-  font-size: 2.5vw;
-  text-shadow: 0px 0px 10px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-}
+
 
 .leftcontainer ul {
   margin-top: 20%;
@@ -321,29 +218,12 @@ li {
   transform: translateY(0);
 }
 
-
-/* Dark */
-.sidebar.dark {
-  background-color: #333;
-  color: #fff;
-}
-
-.leftcontainer.dark {
-  background-color: #333;
-  color: #fff;
-}
-
 .leftcontainer h1 {
   margin-top: 1em;
   font-size: 2.5vw;
   text-shadow: 0px 0px 10px white;
   color: white;
 }
-
-.leftcontainer.dark h1 {
-  text-shadow: 0px 0px 10px black;
-}
-
 
 .leftcontainer ul {
   margin-top: 20%;
@@ -352,11 +232,13 @@ li {
   align-items: center;
   justify-content: center;
 }
+
 .leftcontainer {
   padding: 1em;
-  background-color: #15171a; /* Adjust background color as needed */
-  height: 100vh; /* Ensure the sidebar spans the full height */
+  background: var(--nav-background);
+  height: 100vh;
 }
+
 
 .leftcontainer .logo {
   display: flex;
@@ -381,10 +263,9 @@ li {
   margin-bottom: 1em;
   display: flex;
   align-items: center;
-  color: white;
   gap: 10px;
-  box-shadow: 0px 0px 4px rgba(255, 255, 255, 0.5);
   transition: all 0.3s ease;
+  border: 1px solid var(--border);
 }
 
 .leftcontainer ul li svg {
@@ -402,7 +283,7 @@ li {
 }
 
 .leftcontainer .mode {
-  margin-top: auto; /* Push the switch to the bottom */
+  margin-top: auto;
   display: flex;
   justify-content: center;
   padding: 1em 0;
@@ -410,8 +291,8 @@ li {
 
 
 .leftcontainer ul li.active {
-  background-color: #000000; /* Highlight background color for active state */
-  box-shadow: 0px 0px 8px rgba(255, 255, 255, 1); /* Enhanced shadow for active state */
+  background-color: #000000;
+  box-shadow: 0px 0px 8px rgba(255, 255, 255, 1);
 }
 
 
@@ -426,8 +307,6 @@ li {
 
 
 
-
-
 @media screen and (max-width:1024px) {
 
   .leftcontainer {
@@ -436,10 +315,8 @@ li {
 
 }
 
-/* Customize scrollbar appearance */
 .leftcontainer::-webkit-scrollbar {
   width: 6px;
-  /* Adjust scrollbar width */
 }
 
 .leftcontainer::-webkit-scrollbar-thumb {
@@ -450,11 +327,6 @@ li {
 .leftcontainer::-webkit-scrollbar-thumb:hover {
   background-color: rgba(0, 0, 0, 0.5);
 }
-
-
-
-
-
 
 
 .aside::-webkit-scrollbar {
@@ -516,33 +388,23 @@ li {
   padding-top: 10%;
 }
 
-
-
 /* General styles */
 
 
 .mainbox {
-  width: 20%;
+  width: 300px;
   height: 100%;
   position: fixed;
   top: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  background: #15171a;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.386);
+  background: linear-gradient(45deg, #262424, #c9c9c9a1);
   display: flex;
   text-align: center;
   flex-direction: column;
-  width: 300px;
 }
 
-.mainbox.dark{
-  display: flex;
-  flex-direction: column;
-  width: 300px;
-  background-color: #ffffff;
-  color: #000000;
-}
+
 
 .mainbox h1 {
   margin-top: 1em;
@@ -551,14 +413,6 @@ li {
   color: white;
 }
 
-.mainbox.dark h1{
-  margin-top: 1em;
-  font-size: 8.5vw;
-  text-shadow: 0px 0px 10px rgb(0, 0, 0);
-  color: rgb(0, 0, 0);
-}
-
-
 @media screen and (min-width: 425px) and (max-width: 1024px) {
   .mainbox h1 {
     margin-top: 1em;
@@ -566,14 +420,6 @@ li {
     text-shadow: 0px 0px 10px white;
     color: white;
   }
-
-  .mainbox.dark h1{
-    margin-top: 1em;
-    font-size: 4vw;
-    text-shadow: 0px 0px 10px rgb(0, 0, 0);
-    color: rgb(0, 0, 0);
-  }
-  
 }
 
 .mainbox ul {
@@ -581,7 +427,6 @@ li {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 5%;
   justify-content: center;
   margin-bottom: 5em;
 }
@@ -603,26 +448,12 @@ li {
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--border);
+  box-shadow: var(--box-shadow);
+  border: 1px solid var(--border);
 }
 
-.dark.mainbox ul li {
-  all: unset;
-  font-size: 5vw;
-  cursor: pointer;
-  width: 50%;
-  padding: 0.8em 3em;
-  border-radius: 5px;
-  margin-bottom: 1em;
-  display: inline-flex;
-  align-items: center;
-  color: rgb(5, 5, 5);
-  gap: 3px;
-  box-shadow: 0px 0px 4px rgb(0, 0, 0);
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 
 
 @media screen and (min-width: 425px) and (max-width: 1024px) {
@@ -630,9 +461,6 @@ li {
     font-size: 2vw;
   }
 
-   .dark.mainbox ul li {
-    font-size: 2vw;
-  }
 }
 
 .mainbox ul li:hover {
@@ -641,19 +469,11 @@ li {
   transform: translateY(-3px);
 }
 
-.dark.mainbox ul li:hover {
-  box-shadow: 0px 0px 8px rgb(0, 0, 0);
-  text-decoration: underline;
-  transform: translateY(-3px);
-}
-
 .mainbox ul li:active {
   transform: translateY(0);
 }
 
-.dark.mainbox ul li:active {
-  transform: translateY(0);
-}
+
 
 .mainbox .mode {
   bottom: 5px;
@@ -683,7 +503,6 @@ li {
   right: -330px;
   width: 300px;
   height: 100%;
-  background-color: #fffefe;
   z-index: 1000;
   transition: right 0.3s ease;
   border: 1px solid #ccc;
@@ -799,17 +618,3 @@ li {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
 }
-
-
-
-.sidebar.dark {
-  background-color: #333;
-  color: #fff;
-}
-
-
-.leftcontainer.dark {
-  background-color: #ffffff;
-  color: #fff;
-}
-

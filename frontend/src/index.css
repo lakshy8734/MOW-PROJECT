@@ -15,14 +15,24 @@
   --text-color-dark: #ffffff;
   --button-background-dark: #444444;
   --button-text-dark: #ffffff;
+
+  --border-light: #fff;
+  --border-dark: #000;
+
+  --box-shadow-light: 0px 0px 4px #000;
+  --box-shadow-dark: 0px 0px 4px #fff;
 }
 
 body.light {
   background-color: var(--background-color-light);
   color: var(--text-color-light);
+  --box-shadow: var(--box-shadow-light);
+  --border: var(--border-dark);
 }
 
 body.dark {
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);
+  --box-shadow: var(--box-shadow-dark);
+  --border: var(--border-light);
 }

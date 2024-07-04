@@ -108,6 +108,7 @@ const DashboardSidebar = () => {
   return (
     <>
       <div className={styles.sidebar}>
+
         <div className={styles.logo} onClick={handleLogoClick}>
           <img
             src={img}
@@ -143,7 +144,8 @@ const DashboardSidebar = () => {
 
           <ul>
             <li style={{ position: "relative" }}>
-              <FaRegUser style={{ color: "white" }} />
+
+              <FaRegUser />
 
               <div className={styles.Admin}>
                 {userDetails && (
@@ -170,9 +172,8 @@ const DashboardSidebar = () => {
           </ul>
         </nav>
 
-        <div
-          className={`${styles.sidebar2} ${isSidebarOpen ? styles.open : ""}`}
-        >
+        <div className={`${styles.sidebar2} ${isSidebarOpen ? styles.open : ""}`}>
+          
           {isSidebarOpen && (
             <div className={styles.close} onClick={closeSidebar}>
               <ImCross />
@@ -272,6 +273,7 @@ const DashboardSidebar = () => {
             <div className={styles.mode}>
               <ToggleSwitch onChange={toggleTheme} checked={theme === "dark"} />
             </div>
+
           </div>
         </div>
 
@@ -281,6 +283,7 @@ const DashboardSidebar = () => {
       </div>
 
       <section className={styles.leftcontainer}>
+
         <div className={styles.logo} onClick={handleLogout}>
           <img
             src={img}
@@ -374,6 +377,7 @@ const DashboardSidebar = () => {
           <ToggleSwitch onChange={toggleTheme} checked={theme === "dark"} />
         </div>
       </section>
+
       {isModalOpen && (
         <EditAdminProfile
           userDetails={userDetails}

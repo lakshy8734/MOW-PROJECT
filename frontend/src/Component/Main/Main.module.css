@@ -1,124 +1,123 @@
 /* Variables for light theme */
 :root {
-    --background-color-light: #ffffff;
-    --text-color-light: #000000;
-    --card-background-color-light: #f0f0f0;
-    --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Variables for dark theme */
-  [data-theme='dark'] {
-    --background-color-dark: #15171a;
-    --text-color-dark: #ffffff;
-    --card-background-color-dark: #242424;
-    --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
-    --border-color-dark: #ffffff;
-  }
-  
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --card-background-color-light: #f0f0f0;
+  --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Variables for dark theme */
+[data-theme='dark'] {
+  --background-color-dark: #15171a;
+  --text-color-dark: #ffffff;
+  --card-background-color-dark: #242424;
+  --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  --border-color-dark: #ffffff;
+}
+
+.main {
+  padding-left: 20%;
+  padding-top: 1%;
+  background-color: var(--background-color-light);
+  color: var(--text-color-light);
+  min-height: 110vh;
+}
+
+.main.dark {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+@media screen and (max-width: 1024px) {
   .main {
-    padding-left: 20%;
-    padding-top: 1%;
-    background-color: var(--background-color-light);
-    color: var(--text-color-light);
-    min-height: 110vh;
+    padding-left: 0%;
   }
-  
-  .main.dark {
-    background-color: var(--background-color-dark);
-    color: var(--text-color-dark);
+}
+
+.pieCharts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.cards>.child {
+  background-color: var(--card-background-color-light);
+  height: 200px;
+  box-shadow: var(--box-shadow-light);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  border: 2px solid transparent;
+}
+
+.cards>.child.dark {
+  background-color: var(--card-background-color-dark);
+  box-shadow: var(--box-shadow-dark);
+  border-color: var(--border-color-dark);
+}
+
+.cards>.child:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--hover-box-shadow-light);
+}
+
+.cards>.child:hover.dark {
+  box-shadow: var(--hover-box-shadow-dark);
+}
+
+.cards>.child h6 {
+  font-size: 2vw;
+  font-weight: bold;
+  color: var(--text-color-light);
+  margin: 0;
+}
+
+.cards>.child h6.dark {
+  color: var(--text-color-dark);
+}
+
+.cards>.child p {
+  font-size: 2vw;
+  font-weight: 600;
+  color: var(--text-color-light);
+  margin: 0;
+}
+
+.cards>.child p.dark {
+  color: var(--text-color-dark);
+}
+
+@media screen and (max-width: 650px) {
+  .cards>.child p {
+    font-size: 7vw;
+    padding-left: 0em;
   }
-  
-  @media screen and (max-width: 1024px) {
-    .main {
-      padding-left: 0%;
-    }
+
+  .cards>.child h6 {
+    font-size: 8vw;
   }
-  
-  .pieCharts {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-  
-  .cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-  }
-  
-  .cards > .child {
-    background-color: var(--card-background-color-light);
-    height: 200px;
-    box-shadow: var(--box-shadow-light);
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding: 20px;
-    cursor: pointer;
-    text-align: center;
-    border: 2px solid transparent;
-  }
-  
-  .cards > .child.dark {
-    background-color: var(--card-background-color-dark);
-    box-shadow: var(--box-shadow-dark);
-    border-color: var(--border-color-dark);
-  }
-  
-  .cards > .child:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--hover-box-shadow-light);
-  }
-  
-  .cards > .child:hover.dark {
-    box-shadow: var(--hover-box-shadow-dark);
-  }
-  
-  .cards > .child h6 {
-    font-size: 2vw;
-    font-weight: bold;
-    color: var(--text-color-light);
-    margin: 0;
-  }
-  
-  .cards > .child h6.dark {
-    color: var(--text-color-dark);
-  }
-  
-  .cards > .child p {
-    font-size: 2vw;
-    font-weight: 600;
-    color: var(--text-color-light);
-    margin: 0;
-  }
-  
-  .cards > .child p.dark {
-    color: var(--text-color-dark);
-  }
-  
-  @media screen and (max-width: 650px) {
-    .cards > .child p {
-      font-size: 7vw;
-      padding-left: 0em;
-    }
-  
-    .cards > .child h6 {
-      font-size: 8vw;
-    }
-  }
-  
-  .chart {
-    width: 96%;
-    padding: 2%;
-    box-shadow: 0px 0px 10px -4px rgba(255, 255, 255, 0.79);
-    margin-top: 1em;
-  }
-  
+}
+
+.chart {
+  width: 96%;
+  padding: 2%;
+  box-shadow: 0px 0px 10px -4px rgba(255, 255, 255, 0.79);
+  margin-top: 1em;
+}
