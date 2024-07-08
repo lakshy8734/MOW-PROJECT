@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect,useContext } from "react";
 import style from "./contact.module.css";
 import { useNavigate } from 'react-router-dom';
 import Link from "Component/Link/Link";
@@ -10,10 +10,15 @@ import axios from "axios";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Loader from "pages/Loader/Loader";
-import { Share } from "@material-ui/icons";
 import Shareit from "Component/Shareit/Shareit";
 
+import { ThemeContext } from "../../contexts/ThemeContext";
+import ToggleSwitch from "../../Component/ToggleSwitch/ToggleSwitch";
+
 function Contact() {
+
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   useEffect(() => {
     Aos.init({ duration: 2000 });
   }, []);
@@ -101,9 +106,11 @@ function Contact() {
       <ToastContainer />
       {loading && <Loader />} {/* Display the Loader component when loading */}
       <div>
+
         <div style={{ position: "sticky", top: "0", zIndex: "1" }}>
           <Navbar />
         </div>
+
         <section className={style.contact}>
           <div className={style.bgcontact}>
             <div data-aos="fade" className={style.content}>
@@ -114,16 +121,20 @@ function Contact() {
             </div>
           </div>
         </section>
-        <section data-aos="fade-up" className={style.cart}>
-          <div className={style.section}>
+
+        <section data-aos="fade-up" className={`${style.cart} ${theme === "dark" ? style.dark : ""}`}>
+
+          <div className={`${style.section}  ${theme === "dark" ? style.dark : ""}`}>
             <h2>Reach Us</h2>
+
             <div data-aos="fade-up" className={style.contectlinks}>
               <FaFacebook className={style.one} />
               <FaPinterest className={style.two} />
               <FaYoutube className={style.three} />
               <FaInstagram className={style.four} />
             </div>
-            <div data-aos="fade-up" className={style.loccards}>
+
+            <div data-aos="fade-up" className={`${style.loccards} ${theme === "dark" ? style.dark : ""}`}>
               <div className={style.loccard}>
                 <div><FaMapMarkerAlt /></div>
                 <h2>Address</h2>
@@ -146,7 +157,8 @@ function Contact() {
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d307154.91938712683!2d-74.8436!3d39.9815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c133adfaea5a4f%3A0x55e66e3832dc4e34!2s1525+NJ-38%2C+Hainesport%2C+NJ+08036%2C+USA!5e0!3m2!1sen!2sus!4v1620650192532!5m2!1sen!2sus"
               ></iframe>
             </section>
-            <section className={style.msg}>
+
+            <section className={` ${style.msg} ${theme === "dark" ? style.dark : ""}`}>
               <h2>Send Message</h2>
               <form data-aos="fade-up" className={style.form} onSubmit={handleSubmit}>
                 <div className={style.basic}>

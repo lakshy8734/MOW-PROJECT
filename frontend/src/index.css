@@ -8,11 +8,13 @@
 :root {
   --background-color-light: #ffffff;
   --text-color-light: #000000;
+  --text-color-light2: #4f515b;
   --button-background-light: #eeeeee;
   --button-text-light: #000000;
 
   --background-color-dark: #15171a;
   --text-color-dark: #ffffff;
+  --text-color-dark2: #ffffff;
   --button-background-dark: #444444;
   --button-text-dark: #ffffff;
 
@@ -23,9 +25,14 @@
   --box-shadow-dark: 0px 0px 4px #fff;
 }
 
+body {
+  transition: all 0.3s linear;
+}
+
 body.light {
   background-color: var(--background-color-light);
   color: var(--text-color-light);
+  --color: var(--text-color-light2);
   --box-shadow: var(--box-shadow-light);
   --border: var(--border-dark);
 }
@@ -33,6 +40,7 @@ body.light {
 body.dark {
   background-color: var(--background-color-dark);
   color: var(--text-color-dark);
+  --color: var(--text-color-dark2);
   --box-shadow: var(--box-shadow-dark);
   --border: var(--border-light);
 }

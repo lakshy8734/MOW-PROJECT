@@ -4,12 +4,10 @@
   border-radius: 10vw;
   border: transparent;
   background-color: #d33;
-  background-image: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    transparent 100%
-  );
+  background-image: linear-gradient(45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%);
   box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
   color: #fff;
   position: relative;
@@ -149,6 +147,7 @@
   margin: 1vw 0;
   font-size: 1.2em;
 }
+
 .nav {
   position: sticky;
   top: 0;
@@ -162,18 +161,18 @@
   list-style: none;
 }
 
-.nav > ul {
+.nav>ul {
   display: flex;
   gap: 1vw;
 }
 
-.nav > ul > li {
+.nav>ul>li {
   list-style: none;
   cursor: pointer;
   transition: all 0.3s linear;
 }
 
-.nav > ul > li:hover {
+.nav>ul>li:hover {
   color: #d33;
 }
 
@@ -215,14 +214,14 @@
 }
 
 /* 1440-2560 */
-.Sideicons > .MsideTop {
+.Sideicons>.MsideTop {
   margin-top: 10em;
   display: flex;
   justify-content: center;
   gap: 5em;
 }
 
-.MsideTop > .diva1 {
+.MsideTop>.diva1 {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -232,22 +231,28 @@
   font-size: 1.5vw;
 }
 
-.MsideTop > .diva1 > h6 {
+@media screen and (max-width:768px) {
+  .MsideTop>.diva1 {
+    font-size: 5vw;
+  }
+}
+
+.MsideTop>.diva1>h6 {
   font-weight: 100;
 }
 
-.MsideTop > .diva1:hover {
+.MsideTop>.diva1:hover {
   color: #d33;
 }
 
-.Sideicons > .MsideTop2 {
+.Sideicons>.MsideTop2 {
   margin-top: 2.5em;
   display: flex;
   justify-content: center;
   gap: 5.2em;
 }
 
-.MsideTop2 > .diva1 {
+.MsideTop2>.diva1 {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -258,11 +263,20 @@
   font-weight: 100;
 }
 
-.MsideTop2 > .diva1 > h6 {
+
+@media screen and (max-width:768px) {
+
+  .MsideTop2>.diva1 {
+    font-size: 5vw;
+  }
+
+}
+
+.MsideTop2>.diva1>h6 {
   font-weight: 100;
 }
 
-.MsideTop2 > .diva1:hover {
+.MsideTop2>.diva1:hover {
   color: #d33;
 }
 
@@ -304,7 +318,7 @@
   }
 }
 
-.midcontainer > h1 {
+.midcontainer>h1 {
   font-family: nunito sans, Arial, sans-serif !important;
   border-bottom: 1px solid #e7edf2;
   padding: 2%;
@@ -315,7 +329,7 @@
   font-size: 1.2vw;
 }
 
-.midcontainer > h1 > span {
+.midcontainer>h1>span {
   font-size: 1.2vw;
   border: 1px solid #e7edf2;
   padding: 3px;
@@ -323,28 +337,28 @@
 }
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
-  .midcontainer > h1 {
+  .midcontainer>h1 {
     padding: 2%;
     width: 100%;
     font-size: 2.5vw;
   }
 
-  .midcontainer > h1 > span {
+  .midcontainer>h1>span {
     font-size: 2vw;
   }
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .midcontainer > h1 {
+  .midcontainer>h1 {
     font-size: 5vw;
   }
 
-  .midcontainer > h1 > span {
+  .midcontainer>h1>span {
     font-size: 3vw;
   }
 }
 
-.midcontainer > .Mline {
+.midcontainer>.Mline {
   width: 30%;
   height: 2px;
   background-color: #d33;
@@ -352,7 +366,7 @@
   flex-direction: row;
 }
 
-.midcontainer > .searching {
+.midcontainer>.searching {
   margin-top: 1em;
   display: flex;
   align-items: center;
@@ -364,7 +378,7 @@
 }
 
 @media screen and (min-width: 600px) and (max-width: 900px) {
-  .midcontainer > .searching {
+  .midcontainer>.searching {
     margin-top: 1em;
     display: flex;
     align-items: center;
@@ -376,7 +390,7 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .midcontainer > .searching {
+  .midcontainer>.searching {
     margin-top: 1em;
     display: flex;
     flex-direction: column;
@@ -388,7 +402,7 @@
   }
 }
 
-.midcontainer > .searching > input {
+.midcontainer>.searching>input {
   all: unset;
   padding: 1.5% 2%;
   width: 40%;
@@ -398,25 +412,23 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .midcontainer > .searching > input {
+  .midcontainer>.searching>input {
     width: 95%;
   }
 }
 
-.midcontainer > .searching > input:focus {
+.midcontainer>.searching>input:focus {
   outline-color: #d33;
 }
 
-.midcontainer > .searching > div {
+.midcontainer>.searching>div {
   width: 40px;
   height: 39px;
   background-color: #d33;
-  background-image: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    transparent 100%
-  );
+  background-image: linear-gradient(45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -426,40 +438,38 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .midcontainer > .searching > div {
+  .midcontainer>.searching>div {
     display: none;
   }
 }
 
-.midcontainer > .searching > div::before {
+.midcontainer>.searching>div::before {
   content: "";
   position: absolute;
   top: 0;
   left: 100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.8) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.8) 50%,
+      transparent 100%);
   transition: transform 0.5s ease-in-out;
   transform: translateX(-100%) rotate(45deg);
 }
 
-.midcontainer > .searching > div:hover::before {
+.midcontainer>.searching>div:hover::before {
   transform: translateX(-200%) rotate(45deg);
 }
 
-.midcontainer > .searching > div > .searchingIcon {
+.midcontainer>.searching>div>.searchingIcon {
   font-weight: 400;
   font-size: 1.4em;
   color: white;
   cursor: pointer;
 }
 
-.midcontainer > .searching > select {
+.midcontainer>.searching>select {
   margin-left: 5%;
   padding: 2% 8% 2% 1.5%;
   border-radius: 30px;
@@ -469,13 +479,13 @@
 }
 
 @media screen and (min-width: 320px) and (max-width: 600px) {
-  .midcontainer > .searching > select {
+  .midcontainer>.searching>select {
     width: 100%;
     margin-left: 0%;
   }
 }
 
-.midcontainer > .searching > select:focus {
+.midcontainer>.searching>select:focus {
   border: 1px solid #d33;
   outline: none;
 }
@@ -508,14 +518,12 @@
   justify-content: start;
   padding-left: 5%;
 
-  background-image: linear-gradient(
-    60deg,
-    rgba(221, 51, 51, 0.08),
-    #fff,
-    rgba(221, 51, 51, 0.08),
-    #fff,
-    rgba(221, 51, 51, 0.08)
-  );
+  background-image: linear-gradient(60deg,
+      rgba(221, 51, 51, 0.08),
+      #fff,
+      rgba(221, 51, 51, 0.08),
+      #fff,
+      rgba(221, 51, 51, 0.08));
   color: #626c72;
   font-size: 0.9em;
 
@@ -553,8 +561,10 @@
   justify-content: center;
   margin: 10px 10px 0px 0px;
   /* height: 100%; */
-  flex-wrap: wrap; /* Allow wrapping to ensure proper layout */
-  overflow: hidden; /* Hide overflowing content */
+  flex-wrap: wrap;
+  /* Allow wrapping to ensure proper layout */
+  overflow: hidden;
+  /* Hide overflowing content */
 }
 
 .card {
@@ -606,6 +616,7 @@
 .number {
   font-size: 1em;
 }
+
 .cardText {
   font-size: 1em;
   color: #838daa;
@@ -658,12 +669,10 @@
   position: sticky;
   top: 10vw;
   border-radius: 5px;
-  background: linear-gradient(
-    135deg,
-    rgba(221, 51, 51, 0.05) 0%,
-    rgba(255, 255, 255, 0) 25%,
-    rgba(221, 51, 51, 0.07) 100%
-  );
+  background: linear-gradient(135deg,
+      rgba(221, 51, 51, 0.05) 0%,
+      rgba(255, 255, 255, 0) 25%,
+      rgba(221, 51, 51, 0.07) 100%);
 }
 
 hr {
@@ -690,7 +699,7 @@ hr {
   scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.1);
 }
 
-.aside > h1 {
+.aside>h1 {
   font-size: 1.2em;
   color: #4f515b;
 }
@@ -753,21 +762,21 @@ hr {
   margin: 0;
 }
 
-.sidebarMenu > li {
+.sidebarMenu>li {
   padding: 15px 40px;
   cursor: pointer;
   color: #000000;
   transition: all 0.3s linear;
 }
 
-.sidebarMenu > li {
+.sidebarMenu>li {
   padding: 10px 40px;
   cursor: pointer;
   color: #000000;
   transition: all 0.3s linear;
 }
 
-.sidebarMenu > li:hover {
+.sidebarMenu>li:hover {
   padding: 10px 40px;
   color: #d33;
   transition: all 0.3s linear;
@@ -954,12 +963,10 @@ hr {
   border-radius: 10vw;
   border: transparent;
   background-color: #d33;
-  background-image: linear-gradient(
-    45deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.3) 50%,
-    transparent 100%
-  );
+  background-image: linear-gradient(45deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.3) 50%,
+      transparent 100%);
   box-shadow: 0 1px 2px 0 rgba(221, 51, 51, 0.5);
   color: #fff;
   position: relative;
@@ -1015,21 +1022,21 @@ hr {
   margin-bottom: 1em;
 }
 
-.Sideicons > .sideTop {
+.Sideicons>.sideTop {
   margin-top: 10em;
   display: flex;
   justify-content: center;
   gap: 5em;
 }
 
-.Sideicons > .sideTop2 {
+.Sideicons>.sideTop2 {
   margin-top: 3em;
   display: flex;
   justify-content: center;
   gap: 5.9em;
 }
 
-.sideTop > .div1 {
+.sideTop>.div1 {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -1038,18 +1045,18 @@ hr {
   transition: all 0.3s linear;
 }
 
-.sideTop > .div1:hover {
+.sideTop>.div1:hover {
   color: #d33;
 }
 
-.Sideicons > .MsideTop > .sideTop2 {
+.Sideicons>.MsideTop>.sideTop2 {
   margin-top: 2.5em;
   display: flex;
   justify-content: center;
   gap: 5.2em;
 }
 
-.sideTop2 > .div1 {
+.sideTop2>.div1 {
   display: flex;
   flex-direction: column;
   gap: 0.2em;
@@ -1058,7 +1065,7 @@ hr {
   transition: all 0.3s linear;
 }
 
-.sideTop2 > .div1:hover {
+.sideTop2>.div1:hover {
   color: #d33;
 }
 
@@ -1177,6 +1184,7 @@ hr {
   cursor: pointer;
   transition: all 0.3s linear;
 }
+
 .cardTitle:hover {
   font-size: 18px;
   margin: 10px 0;
@@ -1208,13 +1216,16 @@ hr {
 
 /* General list item styles */
 li {
-  cursor: pointer; /* Change cursor to pointer */
+  cursor: pointer;
+  /* Change cursor to pointer */
   padding: 10px;
   margin: 5px 0;
-  transition: color 0.2s ease-in-out; /* Smooth color transition */
+  transition: color 0.2s ease-in-out;
+  /* Smooth color transition */
 }
 
 /* Hover effect for list items */
 li:hover {
-  color: #d33; /* Change text color on hover */
+  color: #d33;
+  /* Change text color on hover */
 }

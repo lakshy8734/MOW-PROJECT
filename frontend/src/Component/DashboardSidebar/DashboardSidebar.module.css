@@ -235,7 +235,12 @@ li {
 
 .leftcontainer {
   padding: 1em;
-  background: var(--nav-background);
+  background: white;
+  height: 100vh;
+}
+.leftcontainer.dark {
+  padding: 1em;
+  background-color: var(--background-color-dark);
   height: 100vh;
 }
 
@@ -398,7 +403,21 @@ li {
   top: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  background: linear-gradient(45deg, #262424, #c9c9c9a1);
+  background: white;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+
+.mainbox.dark {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: var(--background-color-dark);
   display: flex;
   text-align: center;
   flex-direction: column;

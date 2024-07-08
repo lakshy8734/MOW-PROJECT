@@ -190,23 +190,34 @@ nav .menu .submenu .submain .submenu {
 
 @media screen and (max-width: 768px) {
   .nav {
-      padding: 20px 20px;
+    padding: 20px 20px;
   }
 
   .nav .menu {
-      display: none;
+    display: none;
   }
 
   .logo img {
-      width: 4vw;
+    width: 4vw;
   }
 
   .logo {
-      font-size: 3vw;
+    font-size: 3vw;
   }
 
   .nav ul li {
-      font-size: 3vw;
+    font-size: 3vw;
+  }
+}
+
+
+@media screen and (max-width: 385px) {
+  .logo img {
+    width: 14vw;
+  }
+
+  .logo h2{
+    display: none;
   }
 }
 
@@ -216,11 +227,11 @@ nav .menu .more2 {
 
 @media screen and (max-width: 1024px) {
   nav .menu .more {
-      display: none;
+    display: none;
   }
 
   nav .menu .more2 {
-      display: block;
+    display: block;
   }
 }
 
@@ -238,10 +249,10 @@ nav .menu .more2 .submenu li {
 
 @media screen and (max-width: 992px) {
   .hamburgerIcon {
-      display: block;
+    display: block;
   }
 
   .nav .menu {
-      display: none;
+    display: none;
   }
 }

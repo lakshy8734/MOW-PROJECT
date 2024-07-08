@@ -1,200 +1,22 @@
-.nav {
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 5%;
-
-    position: sticky;
-    top: 0;
-    left: 0;
-    background: white;
-    width: 100%;
-    transition: height 0.5s, box-shadow 0.3s;
-    z-index: 1;
+/* Variables for light theme */
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #000000;
+    --card-background-color-light: #f0f0f0;
+    --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-.nav.scrolled {
-    background: white;
-    height: 60px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 2;
+/* Variables for dark theme */
+[data-theme='dark'] {
+    --background-color-dark: #15171a;
+    --text-color-dark: #ffffff;
+    --card-background-color-dark: #242424;
+    --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    --border-color-dark: #ffffff;
+    --input-background-dark: #2a2a2a;
 }
-
-.nav ul li {
-    transition: all 0.4s linear;
-}
-
-.nav ul li:hover {
-    color: #d33;
-}
-
-.logo img {
-    width: 2.9vw;
-    cursor: pointer;
-}
-
-
-.logo {
-    display: flex;
-    align-items: center;
-    font-weight: 600;
-    font-size: 1vw;
-    color: gray;
-    cursor: pointer;
-}
-
-
-.nav ul li {
-    all: unset;
-    font-weight: 100;
-    font-size: 1vw;
-    color: black;
-    cursor: pointer;
-    padding: 0.9vw 0vw;
-    transition: all 0.3s linear;
-}
-
-.nav ul {
-    all: unset;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-
-nav .menu {
-    font-weight: 100;
-    display: flex;
-    gap: 2vw;
-
-}
-
-
-nav .menu li {
-    transition: color 0.3s linear;
-    position: relative;
-}
-
-nav .menu li:hover {
-    color: rgb(232, 44, 44);
-
-}
-
-nav .menu li:hover .submenu {
-    display: block;
-    box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
-}
-
-.line {
-    color: #c9c6c6;
-    width: 100%;
-    margin-top: 0.5vw;
-    margin-bottom: 0.5vw;
-    opacity: 0.4;
-}
-
-nav .menu .submenu {
-    position: absolute;
-    display: none;
-    top: 100%;
-    left: 0;
-    background: white;
-    z-index: 1;
-
-    padding: 0.3vw;
-    white-space: nowrap;
-    border-radius: 5px;
-
-    margin-top: 0.2vw;
-    transition: display 0.6s ease-in-out;
-}
-
-
-nav .menu .submenu li {
-    display: flex;
-    align-items: center;
-    padding: 5px 20px;
-    font-size: 1vw;
-    color: black;
-}
-
-nav .menu .submenu li:hover {
-    color: rgb(232, 44, 44);
-}
-
-
-
-
-
-
-nav .menu .submenu .submain:hover .submenu {
-    display: block;
-    box-shadow: 0px -3px red, 0px 2px 15px #c9c6c6;
-}
-
-nav .menu .submenu .submain .submenu {
-    left: -12vw;
-    display: none;
-}
-
-
-
-
-@media screen and (max-width:768px) {
-
-
-    .nav {
-        padding: 20px 20px;
-    }
-
-    .nav .menu {
-        display: none;
-    }
-
-
-    .logo img {
-        width: 4vw;
-    }
-
-
-    .logo {
-        font-size: 3vw;
-    }
-
-
-    .nav ul li {
-
-        font-size: 3vw;
-    }
-
-}
-
-
-nav .menu .more2 {
-    display: none;
-}
-
-
-@media screen and (max-width:1024px) {
-    nav .menu .more {
-        display: none;
-    }
-
-    nav .menu .more2 {
-        display: block;
-    }
-}
-
-nav .menu .more2 .submenu li {
-    display: flex;
-    gap: 1.2vw;
-}
-
-
-
-
-
 
 .About {
     padding: 2%;
@@ -208,16 +30,31 @@ nav .menu .more2 .submenu li {
     padding: 1%;
 }
 
+.About.dark h6 {
+    font-weight: 300;
+    color: var(--text-color-dark2);
+    text-align: start;
+    font-size: 1em;
+    padding: 1%;
+}
+
 .About h5 {
     font-weight: 300;
     color: #4f515b;
     text-align: start;
     font-size: 0.9em;
-    padding: 3px 0 0 1% ;
+    padding: 3px 0 0 1%;
+}
+
+.About.dark h5 {
+    font-weight: 300;
+    color: var(--text-color-dark2);
+    text-align: start;
+    font-size: 0.9em;
+    padding: 3px 0 0 1%;
 }
 
 .About h2 {
-    /* font-family: quicksand, Verdana, sans-serif; */
     font-weight: 700;
     color: #4f515b;
     text-align: start;
@@ -225,9 +62,16 @@ nav .menu .more2 .submenu li {
     padding: 0.3% 1%;
 }
 
+.About.dark h2 {
+    font-weight: 700;
+    color: var(--text-color-dark2);
+    text-align: start;
+    font-size: 1.922em;
+    padding: 0.3% 1%;
+}
+
 .About p {
     font-weight: 100;
-    color: #4f515b;
     text-align: start;
     font-size: 0.9em;
     margin-top: 0.5em;
@@ -244,12 +88,24 @@ nav .menu .more2 .submenu li {
     .About h2 {
         font-size: 1.7em;
     }
+
+    .About.dark h2 {
+        font-size: 1.7em;
+    }
 }
 
 
 .About h3 {
     font-weight: 700;
     color: #4f515b;
+    text-align: start;
+    font-size: 1.922em;
+    padding: 1%;
+}
+
+.About.dark h3 {
+    font-weight: 700;
+    color: var(--text-color-dark2);
     text-align: start;
     font-size: 1.922em;
     padding: 1%;

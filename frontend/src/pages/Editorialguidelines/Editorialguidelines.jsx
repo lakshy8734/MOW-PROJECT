@@ -1,15 +1,8 @@
 import style from './Editorialguidelines.module.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect,useContext } from 'react';
 import Link from 'Component/Link/Link';
 import Navbar from 'Component/Navbar/Navbar';
-
-import {
-    FaYoutube,
-    FaInstagram,
-    FaPinterest,
-    FaFacebook,
-} from "react-icons/fa";
-// import { Link } from 'react-router-dom';
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 
 import Aos from "aos";
@@ -19,6 +12,7 @@ import Shareit from 'Component/Shareit/Shareit';
 
 
 function Editorialguidelines() {
+    const { theme, toggleTheme } = useContext(ThemeContext);
     const navigate = useNavigate();
 
     const handleLogoClick = () => {
@@ -31,8 +25,8 @@ function Editorialguidelines() {
                 <Navbar />
             </div>
 
-            <section className={style.About}>
-                <p data-aos="fade-up">
+            <section className={` ${style.About}  ${theme === "dark" ? style.dark : ""}`}>
+                <p  data-aos="fade-up">
                     At My Otaku World, our passion lies in creating content that resonates with our incredible community of anime enthusiasts and dedicated gamers.
                 </p>
 
@@ -145,57 +139,6 @@ function Editorialguidelines() {
 
             <Shareit/>
 
-
-            {/* <section className={style.Usefullink} >
-
-                <div className={style.links}>
-                    <div data-aos="fade-up">
-                        <h4>
-                            Company
-                        </h4>
-                        <ul>
-                            <li onClick={() => { navigate('/') }}>Home</li>
-                            <li onClick={() => { navigate('/blogs') }} >Blog</li>
-                            <li style={{ color: "red" }} onClick={() => { navigate('/about') }}>About</li>
-                            <li onClick={() => { navigate('/contact') }}>Contact</li>
-                        </ul>
-                    </div>
-                    <div data-aos="fade-up">
-                        <h4>
-                            Community
-                        </h4>
-                        <ul>
-                            <li>Members</li>
-                            <li>Forums</li>
-                            <li onClick={() => { navigate('/Contributor') }}>Become a <br />Contributors</li>
-
-                        </ul>
-                    </div>
-                </div>
-
-                <div className={style.links}>
-                    <div data-aos="fade-up">
-                        <h4>
-                            Useful links
-                        </h4>
-                        <ul>
-                            <li>Editorial Guidelines</li>
-                            <li>Verification & Fact- <br /> Checking Policy</li>
-                        </ul>
-                    </div>
-                    <div data-aos="fade-up">
-                        <h4>
-                            Legal
-                        </h4>
-                        <ul>
-                            <li>DMCA</li>
-                            <li>Privacy Policy</li>
-                            <li>Terms of Use</li>
-
-                        </ul>
-                    </div>
-                </div>
-            </section> */}
 
             <Link />
 

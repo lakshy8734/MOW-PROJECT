@@ -172,7 +172,7 @@ const DashboardSidebar = () => {
           </ul>
         </nav>
 
-        <div className={`${styles.sidebar2} ${isSidebarOpen ? styles.open : ""}`}>
+        <div className={`${styles.sidebar2} ${isSidebarOpen ? styles.open : ""} `}>
           
           {isSidebarOpen && (
             <div className={styles.close} onClick={closeSidebar}>
@@ -180,7 +180,7 @@ const DashboardSidebar = () => {
             </div>
           )}
 
-          <div className={styles.mainbox}>
+          <div className={`${styles.mainbox} ${theme === "dark" ? styles.dark : ""}`}>
             <div className={styles.logo} onClick={handleLogout}>
               <img
                 src={img}
@@ -282,7 +282,7 @@ const DashboardSidebar = () => {
         )}
       </div>
 
-      <section className={styles.leftcontainer}>
+      <section className={`${styles.leftcontainer} ${theme === "dark" ? styles.dark : ""}`}>
 
         <div className={styles.logo} onClick={handleLogout}>
           <img

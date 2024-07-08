@@ -1,3 +1,27 @@
+/* Variables for light theme */
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #000000;
+    --border-color-light: #ccc;
+    --hover-color-light: #d33;
+    --scrollbar-track-light: #f1f1f1;
+    --scrollbar-thumb-light: #888;
+    --scrollbar-thumb-hover-light: #555;
+  }
+  
+  /* Variables for dark theme */
+  :root {
+    --background-color-dark: #15171a;
+    --text-color-dark: #ffffff;
+    --border-color-dark: #333;
+    --hover-color-dark: #fe0000;
+    --scrollbar-track-dark: #333;
+    --scrollbar-thumb-dark: #555;
+    --scrollbar-thumb-hover-dark: #888;
+  }
+  
+
+
 .hamburgerIcon {
     display: none;
     font-size: 20px;
@@ -17,6 +41,11 @@
     transition: right 0.3s ease;
     border: 1px solid #ccc;
 }
+
+.sidebar.dark {
+    background-color: var(--background-color-dark);
+    border-color: var(--border-color-dark);
+  }
 
 .sidebarMenu {
     list-style: none;
@@ -68,6 +97,16 @@
     color: #fe0000;
 }
 
+.sidebarMenu > li.dark {
+    color: var(--text-color-dark);
+  }
+  
+ 
+  
+  .sidebarMenu > li:hover.dark {
+    color: var(--hover-color-dark);
+  }
+
 .sidebar.open {
     right: 0;
     overflow-y: scroll;
@@ -92,6 +131,20 @@
 .sidebar.open::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+
+.sidebarMenu .submenu li:hover.dark {
+    color: var(--hover-color-dark);
+  }
+  
+  .sidebar.open.dark::-webkit-scrollbar-track {
+    background: var(--scrollbar-track-dark);
+  }
+  .sidebar.open.dark::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb-dark);
+  }
+  .sidebar.open.dark::-webkit-scrollbar-thumb:hover {
+    background: var(--scrollbar-thumb-hover-dark);
+  }
 
 
 
@@ -166,8 +219,13 @@
     color: #4f515b;
     font-family: quicksand, Verdana, sans-serif;
 }
+.submenu li.dark {
+  color: var(--text-color-dark);
+}
 
-
+.mainMenu.dark {
+    color: var(--text-color-dark);
+  }
 .overlay {
     position: fixed;
     top: 0;

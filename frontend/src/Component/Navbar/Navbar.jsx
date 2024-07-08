@@ -81,7 +81,7 @@ const Navbar = () => {
           onClick={handleLogoClick}
         >
           <img src={img} alt="" />
-          <h2>My Otaku World</h2>
+          <h2 >My Otaku World</h2>
         </div>
 
         <ul className={`${style.menu} ${theme === "dark" ? style.dark : ""}`}>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Login from "../../Component/Login/Login";
 import style from "./Home.module.css";
 import img from "../../assets/mow.webp";
@@ -35,8 +35,13 @@ import { ImCross } from "react-icons/im";
 import Link from "Component/Link/Link";
 import Aos from "aos";
 import "aos/dist/aos.css";
+import { ThemeContext } from "../../contexts/ThemeContext";
+import ToggleSwitch from "../../Component/ToggleSwitch/ToggleSwitch";
+
 
 function Home() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
   const navigate = useNavigate();
   // const userId = localStorage.getItem("userId");
 
@@ -111,7 +116,7 @@ function Home() {
     const adminToken = localStorage.getItem("adminToken");
     const subAdminToken = localStorage.getItem("subAdminToken");
     const userId = localStorage.getItem("userId");
-  
+
     if (adminToken && userId) {
       navigate("/dashboard");
     } else if (subAdminToken && userId) {
@@ -123,15 +128,20 @@ function Home() {
   };
 
   const handleDashboard = () => {
-    handleNavigation("/dashboard", "Unauthorized access. Redirecting to homepage.");
+    handleNavigation(
+      "/dashboard",
+      "Unauthorized access. Redirecting to homepage."
+    );
   };
 
   const handleProfile = () => {
-    handleNavigation("/profile", "Unauthorized access. Redirecting to homepage.");
+    handleNavigation(
+      "/profile",
+      "Unauthorized access. Redirecting to homepage."
+    );
   };
 
   // const isLoggedIn = (localStorage.getItem("adminToken") || localStorage.getItem("subAdminToken")) && localStorage.getItem("userId");
-
 
   useEffect(() => {
     Aos.init({ duration: 1000 });
@@ -211,8 +221,6 @@ function Home() {
     setIsVisible(true);
   };
 
- 
-
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -277,32 +285,31 @@ function Home() {
           />
         </div>
       </div>
-      {isLoggedIn || !isVisible && (
-        <div
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            zIndex: 10,
-            textAlign: "center",
-            display: "flex",
-            alignItems: "center",
-            gap: "3em",
-          }}
-        >
-          <h2 className={style.title}>
-            MOW
-          </h2>
-          <TypeAnimation
-            data-aos="fade-up"
-            sequence={["NEWS", 2000, "GAMING", 2000, ""]}
-            speed={30}
-            repeat={Infinity}
-            className={style.textAnimation}
-          />
-        </div>
-      )}
+      {isLoggedIn ||
+        (!isVisible && (
+          <div
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              zIndex: 10,
+              textAlign: "center",
+              display: "flex",
+              alignItems: "center",
+              gap: "3em",
+            }}
+          >
+            <h2 className={style.title}>MOW</h2>
+            <TypeAnimation
+              data-aos="fade-up"
+              sequence={["NEWS", 2000, "GAMING", 2000, ""]}
+              speed={30}
+              repeat={Infinity}
+              className={style.textAnimation}
+            />
+          </div>
+        ))}
 
       <nav
         style={{ zIndex: "999999999" }}
@@ -377,24 +384,38 @@ function Home() {
       </div>
 
       {/* Sidebar */}
-      <div className={`${style.sidebar} ${isSidebarOpen ? style.open : ""}`}>
+      <div
+        className={`${style.sidebar} ${isSidebarOpen ? style.open : ""} ${
+          theme === "dark" ? style.dark : ""
+        }`}
+      >
         {isSidebarOpen && (
           <div className={style.close} onClick={closeSidebar}>
             <ImCross />
           </div>
         )}
         {/* Main Menu Heading */}
-        <h2 className={style.mainMenu}>Main Menu</h2>
+        <h2
+          className={`${style.mainMenu} ${theme === "dark" ? style.dark : ""}`}
+        >
+          Main Menu
+        </h2>
         {/* Line */}
-        <hr style={{ marginBottom: "2em" }} />
+        <hr
+          className={`${theme === "dark" ? style.dark : ""}`}
+          style={{ marginBottom: "2em" }}
+        />
 
         <ul className={style.sidebarMenu}>
-          <li onClick={() => toggleSubmenu("Recommendations")}>
+          <li
+            onClick={() => toggleSubmenu("Recommendations")}
+            className={`${theme === "dark" ? style.dark : ""}`}
+          >
             Recommendations
             <span
               className={`${style.arrow} ${
                 submenus.Recommendations ? style.rotateArrow : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
             >
               +
             </span>
@@ -411,10 +432,15 @@ function Home() {
                     "4cXwk4rwIli2RwUm-NeJv"
                   )
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Anime Recommendations
               </li>
-              <hr className={style.line} />
+              <hr
+                className={`${style.line} ${
+                  theme === "dark" ? style.dark : ""
+                }`}
+              />
               <li
                 onClick={() =>
                   handleClick(
@@ -423,10 +449,15 @@ function Home() {
                     "ORIX6kz1CrlXy7g6lCxEI"
                   )
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Manga Recommendations
               </li>
-              <hr className={style.line} />
+              <hr
+                className={`${style.line} ${
+                  theme === "dark" ? style.dark : ""
+                }`}
+              />
               <li
                 onClick={() =>
                   handleClick(
@@ -435,18 +466,22 @@ function Home() {
                     "wz4rRU9GVo6zGUZ0JrBgq"
                   )
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Hentai Anime
               </li>
             </ul>
           </li>
 
-          <li onClick={() => toggleSubmenu("News")}>
+          <li
+            onClick={() => toggleSubmenu("News")}
+            className={`${theme === "dark" ? style.dark : ""}`}
+          >
             News
             <span
               className={`${style.arrow} ${
                 submenus.Recommendations ? style.rotateArrow : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
             >
               +
             </span>
@@ -457,6 +492,7 @@ function Home() {
                 onClick={() =>
                   handleClick("news", "anime", "XP7sPXbw785-8SGxTMRLM")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Anime News
               </li>
@@ -464,6 +500,7 @@ function Home() {
                 onClick={() =>
                   handleClick("news", "gaming", "PNIN3QyrEwILPaUXHqw3y")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Gaming News
               </li>
@@ -474,6 +511,7 @@ function Home() {
             onClick={() =>
               handleClick("fillers", " Guide", "Cfdin1qXn-QmSHr7jkpWc")
             }
+            className={`${theme === "dark" ? style.dark : ""}`}
           >
             Fillers Guide
           </li>
@@ -482,16 +520,20 @@ function Home() {
             onClick={() =>
               handleClick("watch", " orders", "Eb4dlK7Yn8WYrOUScs3Bf")
             }
+            className={`${theme === "dark" ? style.dark : ""}`}
           >
             Watch Orders
           </li>
 
-          <li onClick={() => toggleSubmenu("Gaming")}>
+          <li
+            onClick={() => toggleSubmenu("Gaming")}
+            className={`${theme === "dark" ? style.dark : ""}`}
+          >
             Gaming
             <span
               className={`${style.arrow} ${
                 submenus.Recommendations ? style.rotateArrow : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
             >
               +
             </span>
@@ -504,6 +546,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "cod", "TLISFSiThIftwKYJ5Ahs0")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Call of Duty
               </li>
@@ -511,6 +554,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "fortnite", "-PzwmFsl52UXzf846MvGm")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Fortnite
               </li>
@@ -518,6 +562,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "sims", "QUsIBQCjx_ssECnQuuxYs")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Sims
               </li>
@@ -525,6 +570,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "minecraft", "JYRssjDPZRv9FjkzxiLuK")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 MineCraft
               </li>
@@ -532,6 +578,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "genshin", "HnKRa97F7hZOjgUp6Nl-T")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 GenShin Impact
               </li>
@@ -539,6 +586,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "dnd", "9xAbNuoa7hUbX6IVUOoUl")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 D&D
               </li>
@@ -546,6 +594,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "runescape", "UgGxv3aBoT-gZF_d6RAUI")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 RuneScape
               </li>
@@ -553,6 +602,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "skyrim", "f50kmfVNH6_VKB2VNLAY1")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Skyrim
               </li>
@@ -560,6 +610,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "finalFantasy", "bOOKI1PV4QXVc2t-p28_M")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Final Fantasy
               </li>
@@ -567,6 +618,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "seaOfThieves", "M7qVpEtK0C6fSzCYpruCg")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Sea Of Thieves
               </li>
@@ -574,6 +626,7 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "acnh", "mVAgidZyGLiC_ESo0Qz0Q")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 ACNH
               </li>
@@ -581,17 +634,22 @@ function Home() {
                 onClick={() =>
                   handleClick("gaming", "superMario", "rAOnH2rTRl2F_dN4d3gQp")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Super Mario
               </li>
             </ul>
           </li>
-          <li onClick={() => toggleSubmenu("Browse")}>
+
+          <li
+            onClick={() => toggleSubmenu("Browse")}
+            className={`${theme === "dark" ? style.dark : ""}`}
+          >
             Browse
             <span
               className={`${style.arrow} ${
                 submenus.Recommendations ? style.rotateArrow : ""
-              }`}
+              } ${theme === "dark" ? style.dark : ""}`}
             >
               +
             </span>
@@ -604,6 +662,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "characters", "-oDl7-pEus8vU9F1h5fiZ")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Characters
               </li>
@@ -611,6 +670,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "featured", "k8yfvXBLuOaVwzMbYA0-T")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Featured
               </li>
@@ -618,6 +678,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "fanTheories", "YPrUcLj6TK4pauv15RU4N")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Fan Theories
               </li>
@@ -625,6 +686,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "japan", "GioLhWWNvePrVr97KFtme")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Japan
               </li>
@@ -632,6 +694,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "animeQuotes", "jJW4MORPqCsQ-DtVhOZmD")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Anime Quotes
               </li>
@@ -639,6 +702,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "disney", "XMnoqwAjfKfAmit5Z0eG9")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Disney
               </li>
@@ -646,6 +710,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "dragonBall", "Mm4mvsy9GP0rn721u-T3R")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Dragon Ball
               </li>
@@ -653,6 +718,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "naruto", "V9R6Hs9SaMXotVQzbx7hK")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Naruto
               </li>
@@ -660,6 +726,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "onePiece", "I2WSPLVsHzo2pyTVmiHCR")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 One Piece
               </li>
@@ -667,6 +734,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "pokemon", "9QayKOWIHGQyIceq24nZa")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Pokemon
               </li>
@@ -674,6 +742,7 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "cosplay", "7t-hzkEYBWZD6LtBVfTvn")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Cosplay
               </li>
@@ -681,12 +750,19 @@ function Home() {
                 onClick={() =>
                   handleClick("browse", "giftGuides", "DOfoBalSvvw5OV9_BBwII")
                 }
+                className={`${theme === "dark" ? style.dark : ""}`}
               >
                 Gift Guides
               </li>
             </ul>
           </li>
-          <li className={style.more}>Forums</li>
+          <li className={`${style.more} ${theme === "dark" ? style.dark : ""}`}>
+            Forums
+          </li>
+          
+
+          <ToggleSwitch onChange={toggleTheme} checked={theme === "dark"} />
+
         </ul>
       </div>
       {/* Overlay */}
@@ -914,25 +990,27 @@ function Home() {
         <h1>My Otaku World</h1>
 
         <div className={style.card}>
-        {latestArticles.map((article) => (
-          <div 
-            key={article.blogId} 
-            data-aos="fade-up" 
-            className={style.cards}
-            onClick={() => handleContinueReading(article.blogId, article.slug)}
-            style={{ cursor: 'pointer' }} // Optional: change cursor to pointer
-          >
-            <div className={style.imageContainer}>
-              <img
-                src={article.mediaUrl}
-                alt={article.title}
-                className={style.cardImage}
-              />
+          {latestArticles.map((article) => (
+            <div
+              key={article.blogId}
+              data-aos="fade-up"
+              className={style.cards}
+              onClick={() =>
+                handleContinueReading(article.blogId, article.slug)
+              }
+              style={{ cursor: "pointer" }} // Optional: change cursor to pointer
+            >
+              <div className={style.imageContainer}>
+                <img
+                  src={article.mediaUrl}
+                  alt={article.title}
+                  className={style.cardImage}
+                />
+              </div>
+              <h3>{article.title}</h3>
             </div>
-            <h3>{article.title}</h3>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
         <div className={style.btncontainer}>
           <button onClick={() => navigate("/Blogs")} className={style.btn2}>
@@ -992,13 +1070,15 @@ function Home() {
         <hr className={style.line} />
       </div>
 
-      <footer>
-        <p>© 2019-2023 MyOtakuWorld</p>
-        <p>
+      <footer className={theme === "dark" ? style.dark : ""}>
+        <p className={theme === "dark" ? "dark" : ""}>
+          © 2019-2023 MyOtakuWorld
+        </p>
+        <p className={theme === "dark" ? "dark" : ""}>
           All other assets and trademarks are property of their original owners.
         </p>
-        <p>
-          MyOtakuWorld is neither affiliated with nor endorsed any brands and
+        <p className={theme === "dark" ? "dark" : ""}>
+          MyOtakuWorld is neither affiliated with nor endorsed by any brands and
           trademarks on this site unless explicitly stated.
         </p>
       </footer>
