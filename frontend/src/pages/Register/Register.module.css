@@ -300,7 +300,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100px;
+  width: 150px;
   background-color: #f8f9fb;
   display: flex;
   flex-direction: column;
@@ -439,7 +439,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100px;
+  width: 150px;
   background-color: #f8f9fb;
 
   display: flex;
@@ -818,36 +818,41 @@
 
 .Sideicons {
   height: 54vh;
-  color: #838daa;
-  margin-bottom: 1em;
-}
-.Sideicons {
-  height: 54vh;
-  color: #838daa;
-  margin-bottom: 1em;
-}
 
+  color: #838daa;
+  margin-bottom: 1em;
+}
 .Sideicons.dark {
   color: var(--text-color-dark);
 }
 
-.sidelogin .img .sideform a {
-  text-align: right;
-  text-decoration: none;
-  font-size: 1.1em;
-  font-weight: lighter;
-  color: #4f515b;
+.Sideicons > .sideTop {
+  margin-top: 10em;
+  display: flex;
+  justify-content: center;
+  gap: 5em;
 }
-
 .sidelogin .img .sideform a.dark {
   color: var(--text-color-dark);
 }
-
-.sidelogin .img .sideform a:hover {
-  color: #d33;
-  text-decoration: underline;
+.sideTop > .div1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
 }
 
+.Sideicons > .sideTop2 {
+  margin-top: 2.5em;
+  display: flex;
+  justify-content: center;
+  gap: 5.2em;
+}
+
+.sideTop2 > .div1 {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+}
 .remember input {
   position: absolute;
   left: -99999px;

@@ -1,104 +1,178 @@
+/* Variables for light theme */
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --card-background-color-light: #f0f0f0;
+  --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Variables for dark theme */
+[data-theme='dark'] {
+  --background-color-dark: #15171a;
+  --text-color-dark: #ffffff;
+  --card-background-color-dark: #242424;
+  --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  --border-color-dark: #ffffff;
+  --input-background-dark: #2a2a2a;
+}
+
 .container {
-    padding: 20px;
-    background-color: #ffffff;
-    min-height: 100vh;
-    color: white;
-  }
-  
-  .heading {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #f0f0f0;
-  }
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .table th,
-  .table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-    color: #282c34; /* Default color for odd rows */
-  }
-  
-  .table th {
-    background-color: #333;
-    color: #f0f0f0;
-  }
-  
-  /* Styling for even rows */
-  .table tr:nth-child(even) {
-    background-color: #333;
-  }
-  
-  /* Ensuring the text color is white for td elements in even rows */
-  .table tr:nth-child(even) td {
-    color: white;
-  }
-  
-  
-  .mediaImg {
-    max-width: 100px;
-    height: auto;
-  }
-  
-  .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-  }
-  
-  .paginationList {
-    list-style: none;
-    display: flex;
-    padding: 0;
-  }
-  
-  .paginationItem {
-    margin: 0 5px;
-  }
-  
-  .pageLink {
-    background-color: #333;
-    color: #f0f0f0;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .pageLink:hover {
-    background-color: #555;
-  }
-  
-  .pageLink.active {
-    background-color: #007bff;
-    font-weight: bold;
-  }
-  
-  .publishButton {
-    background: linear-gradient(to right, #00b09b, #96c93d);
-    color: white;
-    border: none; /* Add border none if required */
-    padding: 10px 20px; /* Adjust padding as needed */
-    border-radius: 5px; /* Add border radius if needed */
-    cursor: pointer; /* Change cursor to pointer */
-  }
-  
-  .draftButton {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    
-    color: white;
-    border: none; /* Add border none if required */
-    padding: 10px 20px; /* Adjust padding as needed */
-    border-radius: 5px; /* Add border radius if needed */
-    cursor: pointer; /* Change cursor to pointer */
-  }
-  
-  .publishButton:hover, .draftButton:hover {
-    opacity: 0.9; /* Add hover effect if needed */
-  }
-  
+  padding: 20px;
+  background-color: var(--background-color-light);
+  min-height: 100vh;
+  color: var(--text-color-light);
+}
+
+.container.dark {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--text-color-light);
+}
+
+.heading.dark {
+  color: var(--text-color-dark);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  color: var(--text-color-light); /* Default color for odd rows */
+}
+
+.table th {
+  background-color: #333;
+  color: #f0f0f0;
+}
+
+.table.dark td {
+  /* background-color: var(--card-background-color-dark); */
+  color: var(--text-color-dark);
+}
+
+.table.dark th {
+  background-color: var(--card-background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.table tr:nth-child(even) {
+  background-color: #333;
+}
+
+.table.dark tr:nth-child(even) {
+  background-color: var(--card-background-color-dark);
+}
+
+.table tr:nth-child(even) td {
+  color: white;
+}
+
+.table.dark tr:nth-child(even) td {
+  color: var(--text-color-dark);
+}
+
+.mediaImg {
+  max-width: 100px;
+  height: auto;
+}
+
+.mediaImg.dark {
+  background-color: var(--card-background-color-dark);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.paginationList {
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+.paginationItem {
+  margin: 0 5px;
+}
+
+.pageLink {
+  background-color: #333;
+  color: #f0f0f0;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pageLink:hover {
+  background-color: #555;
+}
+
+.pageLink.active {
+  background-color: #007bff;
+  font-weight: bold;
+}
+
+.pageLink.dark {
+  background-color: var(--card-background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.pageLink.dark:hover {
+  background-color: #555;
+}
+
+.pageLink.dark.active {
+  background-color: #007bff;
+  font-weight: bold;
+}
+
+.publishButton {
+  background: linear-gradient(to right, #00b09b, #96c93d);
+  color: white;
+  border: none; /* Add border none if required */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 5px; /* Add border radius if needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.draftButton {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+  color: white;
+  border: none; /* Add border none if required */
+  padding: 10px 20px; /* Adjust padding as needed */
+  border-radius: 5px; /* Add border radius if needed */
+  cursor: pointer; /* Change cursor to pointer */
+}
+
+.publishButton:hover, .draftButton:hover {
+  opacity: 0.9; /* Add hover effect if needed */
+}
+
+.publishButton.dark {
+  background: linear-gradient(to right, #00b09b, #96c93d);
+}
+
+.draftButton.dark {
+  background: linear-gradient(to right, #ff7e5f, #feb47b);
+}
+
+.publishButton.dark:hover,
+.draftButton.dark:hover {
+  opacity: 0.9; /* Add hover effect if needed */
+}

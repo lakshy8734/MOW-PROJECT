@@ -1,3 +1,156 @@
+/* Variables for light theme */
+:root {
+  --background-color-light: #ffffff;
+  --text-color-light: #000000;
+  --card-background-color-light: #f0f0f0;
+  --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Variables for dark theme */
+[data-theme="dark"] {
+  --background-color-dark: #15171a;
+  --text-color-dark: #ffffff;
+  --card-background-color-dark: #242424;
+  --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+  --border-color-dark: #ffffff;
+  --input-background-dark: #2a2a2a;
+}
+
+/* :root {
+  --border-color-dark: #333;
+  --text-color-dark: #f0f0f0;
+  --background-color-dark: #1e1e1e;
+  --link-color-dark: #4caf50;
+  --hover-background-dark: #444;
+  --button-background-dark: #d33;
+  --button-hover-dark: #b22;
+  --error-color-dark: #d33;
+} */
+
+.nav.dark {
+  border-color: var(--border-color-dark);
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+.nav.dark > ul > li,
+.reqmenu.dark,
+.reqsubmenus.dark,
+.friendRequest.dark,
+.acceptBtn.dark,
+.rejectBtn.dark {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
+/* .nav.dark > ul > li:hover,
+.reqmenu.dark:hover,
+.reqsubmenus.dark:hover,
+.friendRequest.dark:hover,
+.acceptBtn.dark:hover,
+.rejectBtn.dark:hover {
+  background-color: var(--hover-background-dark);
+} */
+
+.acceptBtn.dark,
+.rejectBtn.dark {
+  background-color: var(--button-background-dark);
+  color: white;
+}
+
+.acceptBtn.dark:hover,
+.rejectBtn.dark:hover {
+  background-color: var(--button-hover-dark);
+}
+
+.friendRequest.dark p,
+.Profile .DPsec .DP .imgs .uploadLabel.dark,
+.Profile .DPsec .DP .imgs .options .activebtn.dark,
+.Profile .DPsec .DP .imgs .options .inactivebtn.dark,
+.Profile .DPsec .contex .control h2.dark,
+.Profile .DPsec .contex .control h2.dark:hover,
+.Profile .DPsec .contex .control .active.dark,
+.Profile .DPsec .contex .tab.dark,
+.Profile .DPsec .contex .tab .contex div h1.dark,
+.Profile .DPsec .contex .tab .contex h5.dark,
+.table .cell.dark,
+.formLabel.dark,
+.formInput.dark,
+.submitButton.dark,
+.submitButton.dark:hover,
+.submitButton.dark:active,
+.error.dark,
+.toast.dark,
+.card.dark,
+.addFriendBtn.dark,
+.pagination button.dark,
+.pagination button.dark:hover,
+.blogtitle.dark,
+.blogpara.dark {
+  color: var(--text-color-dark);
+}
+
+.formInput.dark {
+  border: 1px solid var(--border-color-dark);
+}
+
+.formInput.dark:focus {
+  border-color: var(--button-background-dark);
+}
+
+.submitButton.dark {
+  background-color: var(--button-background-dark);
+}
+
+.submitButton.dark:hover {
+  background-color: var(--button-hover-dark);
+}
+
+.submitButton.dark:active {
+  background-color: var(--button-hover-dark);
+}
+
+.error.dark {
+  color: var(--error-color-dark);
+}
+
+.toast.dark {
+  background-color: var(--button-background-dark);
+}
+
+.cards.dark .card.dark {
+  background-color: var(--background-color-dark);
+  border: 1px solid var(--border-color-dark);
+}
+
+.cards.dark .card.dark:hover {
+  transform: scale(1.05);
+}
+
+.addFriendBtn.dark {
+  background-color: var(--button-background-dark);
+}
+
+.addFriendBtn.dark:hover {
+  background-color: var(--button-hover-dark);
+}
+
+.pagination button.dark {
+  background: var(--button-background-dark);
+}
+
+.pagination button.dark:hover {
+  background: var(--button-hover-dark);
+}
+
+.blogtitle.dark,
+.blogpara.dark {
+  color: var(--text-color-dark);
+}
+
+
 .container {
   max-width: 550px;
   margin: 0 auto;
@@ -6,6 +159,13 @@
   border-radius: 15px;
   background-color: #ffffff;
   box-shadow: 0px 1px 5px -2px black;
+}
+
+.container.dark {
+  background-color: var(--background-color-dark);
+  color: var(--text-color-dark);
+  border: 1px solid;
+  border-color: var(--border-color-dark);
 }
 
 @media screen and (max-width: 768px) {
@@ -22,6 +182,9 @@
   color: #4f515b;
 }
 
+.heading.dark {
+  color: var(--text-color-dark);
+}
 /* sidebr */
 
 .sidebar {
@@ -29,7 +192,7 @@
   top: 0;
   left: 0;
   height: 100vh;
-  width: 100px;
+  width: 150px;
   background-color: #f8f9fb;
   z-index: 3;
 
@@ -39,6 +202,12 @@
   padding: 0;
   box-sizing: border-box;
   border-right: 1px solid #838daa;
+}
+
+.sidebar.dark {
+  background-color: var(--background-color-dark);
+  border-color: var(--border-color-dark);
+  color: var(--text-color-dark);
 }
 
 .logo {
@@ -80,6 +249,11 @@
   position: sticky;
   top: 0;
   z-index: 2;
+}
+
+.nav.dark {
+  border-color: var(--border-color-dark);
+  color: var(--text-color-dark);
 }
 
 .nav > ul {
@@ -713,12 +887,14 @@
 /* Hamburger menu icon */
 
 .hamburgerIcon {
-  display: none;
+  /* display: none; */
   font-size: 20px;
   cursor: pointer;
   color: gray;
 }
-
+.hamburgerIcon.dark {
+  color: var(--text-color-dark);
+}
 /* Sidebar */
 .sidebar2 {
   position: fixed;
@@ -730,6 +906,11 @@
   z-index: 1000;
   transition: right 0.3s ease;
   border: 1px solid #ccc;
+}
+
+.sidebar2.dark {
+  background-color: var(--background-color-dark);
+  border-color: var(--border-color-dark);
 }
 
 .sidebarMenu {
@@ -745,11 +926,8 @@
   transition: all 0.3s linear;
 }
 
-.sidebarMenu > li {
-  padding: 10px 40px;
-  cursor: pointer;
-  color: #000000;
-  transition: all 0.3s linear;
+.sidebarMenu > li.dark {
+  color: var(--text-color-dark);
 }
 
 .sidebarMenu > li:hover {
@@ -786,6 +964,9 @@
   font-size: 30px;
   z-index: 1001;
 }
+.close.dark {
+  color: var(--text-color-dark);
+}
 
 /* .close:hover {
     color: red;
@@ -805,6 +986,10 @@
 .arrow {
   cursor: pointer;
   float: right;
+}
+
+.arrow.dark {
+  color: var(--text-color-dark);
 }
 
 .rotateArrow {
@@ -827,9 +1012,17 @@
   font-family: quicksand, Verdana, sans-serif;
 }
 
+.mainMenu.dark {
+  color: var(--text-color-dark);
+}
+
 .line {
   border: 1px solid #ccc;
   margin: 10px 0;
+}
+
+.line.dark {
+  border-color: var(--border-color-dark);
 }
 
 /* Overlay */
@@ -901,9 +1094,17 @@
   box-shadow: 0px 10px 0px #f5f2f2;
 }
 
+.sidelogin .img .sideform.dark {
+  background: var(--background-color-dark);
+  color: var(--text-color-dark);
+}
+
 .sidelogin .img .sideform h1 {
   color: #4f515b;
   font-size: 1.2em;
+}
+.sidelogin .img .sideform h1.dark {
+  color: var(--text-color-dark);
 }
 
 .input2 {
@@ -923,7 +1124,10 @@
   padding: 7px 36px;
   border-radius: 30px;
 }
-
+.input2 input.dark {
+  background: var(--input-background-dark);
+  color: var(--text-color-dark);
+}
 .input2 input:focus {
   outline-color: red;
   outline-style: solid;
@@ -936,6 +1140,10 @@
   border-radius: 28px;
   left: 4px;
   color: #5e5e5e;
+}
+.icons.dark {
+  background-color: var(--input-background-dark);
+  color: var(--text-color-dark);
 }
 
 .btn3 {
@@ -957,6 +1165,10 @@
   font-size: 0.7em;
   font-weight: 600;
   cursor: pointer;
+}
+.btn3.dark {
+  background-color: #0056b3;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.5);
 }
 
 .btn3:hover::before {
@@ -1005,6 +1217,9 @@
   color: #838daa;
   margin-bottom: 1em;
 }
+.Sideicons.dark {
+  color: var(--text-color-dark);
+}
 
 .Sideicons > .sideTop {
   margin-top: 10em;
@@ -1012,7 +1227,9 @@
   justify-content: center;
   gap: 5em;
 }
-
+.sidelogin .img .sideform a.dark {
+  color: var(--text-color-dark);
+}
 .sideTop > .div1 {
   display: flex;
   flex-direction: column;

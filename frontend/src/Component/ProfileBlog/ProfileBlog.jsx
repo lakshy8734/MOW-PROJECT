@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import styles from "./ProfileBlog.module.css";
 import "react-toastify/dist/ReactToastify.css";
+import { ThemeContext } from "../../contexts/ThemeContext";
+
 
 const ProfileBlog = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [blogs, setBlogs] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const blogsPerPage = 5;
@@ -24,7 +28,9 @@ const ProfileBlog = () => {
 
   const fetchBlogs = async () => {
     try {
-      const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/blog/user/${userId}`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_BACKEND_URL}/api/blog/user/${userId}`
+      );
       setBlogs(response.data);
     } catch (error) {
       console.error("Error fetching blogs:", error);
@@ -33,7 +39,9 @@ const ProfileBlog = () => {
 
   const handleDelete = async (blogId) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/blogs/${blogId}`);
+      await axios.delete(
+        `${process.env.REACT_APP_BACKEND_URL}/api/blogs/${blogId}`
+      );
       setBlogs(blogs.filter((blog) => blog.blogId !== blogId));
       toast.success("Blog deleted successfully");
     } catch (error) {
@@ -49,7 +57,9 @@ const ProfileBlog = () => {
   const handlePublishStatusChange = async (blogId, newStatus) => {
     const result = await Swal.fire({
       title: "Are you sure?",
-      text: `Do you want to change the status to ${newStatus ? "Publish" : "Draft"}?`,
+      text: `Do you want to change the status to ${
+        newStatus ? "Publish" : "Draft"
+      }?`,
       icon: "warning",
       showCancelButton: true,
       confirmButtonText: "Yes, change it!",
@@ -105,9 +115,17 @@ const ProfileBlog = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.heading}>Your Blogs</h1>
-      <table className={styles.table}>
+    <div
+      className={`${styles.container} ${theme === "dark" ? styles.dark : ""}`}
+    >
+      <h1
+        className={`${styles.heading} ${theme === "dark" ? styles.dark : ""}`}
+      >
+        Your Blogs
+      </h1>
+      <table
+        className={`${styles.table} ${theme === "dark" ? styles.dark : ""}`}
+      >
         <thead>
           <tr>
             <th>Title</th>
@@ -122,31 +140,48 @@ const ProfileBlog = () => {
         </thead>
         <tbody>
           {currentBlogs.map((blog) => (
-            <tr 
+            <tr
               key={blog.blogId}
               onClick={() => handleContinueReading(blog.blogId, blog.slug)}
-              style={{ cursor: 'pointer' }} // Optional: change cursor to pointer
+              className={theme === "dark" ? styles.dark : ""}
+              style={{ cursor: "pointer" }} // Optional: change cursor to pointer
             >
-              <td>{blog.title}</td>
+              <td className={theme === "dark" ? styles.dark : ""}>{blog.title}</td>
               <td>
-                <img src={blog.mediaUrl} alt="Media" className={styles.mediaImg} />
+                <img
+                  src={blog.mediaUrl}
+                  alt="Media"
+                  className={`${styles.mediaImg} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                />
               </td>
-              <td>{blog.authorName}</td>
-              <td>{blog.views}</td>
-              <td>{blog.likes}</td>
-              <td>{blog.slug}</td>
+              <td className={theme === "dark" ? styles.dark : ""}>{blog.authorName}</td>
+              <td className={theme === "dark" ? styles.dark : ""}>{blog.views}</td>
+              <td className={theme === "dark" ? styles.dark : ""}>{blog.likes}</td>
+              <td className={theme === "dark" ? styles.dark : ""}>{blog.slug}</td>
               <td>
                 {blog.publish ? (
                   <button
-                    className={styles.publishButton}
-                    onClick={(e) => { e.stopPropagation(); handlePublishStatusChange(blog.blogId, false); }}
+                    className={`${styles.publishButton} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePublishStatusChange(blog.blogId, false);
+                    }}
                   >
                     Publish
                   </button>
                 ) : (
                   <button
-                    className={styles.draftButton}
-                    onClick={(e) => { e.stopPropagation(); handlePublishStatusChange(blog.blogId, true); }}
+                    className={`${styles.draftButton} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handlePublishStatusChange(blog.blogId, true);
+                    }}
                   >
                     Draft
                   </button>
@@ -175,12 +210,13 @@ const ProfileBlog = () => {
         totalBlogs={blogs.length}
         paginate={paginate}
         currentPage={currentPage}
+        theme={theme}
       />
     </div>
   );
 };
 
-const Pagination = ({ blogsPerPage, totalBlogs, paginate, currentPage }) => {
+const Pagination = ({ blogsPerPage, totalBlogs, paginate, currentPage, theme }) => {
   const pageNumbers = [];
 
   for (let i = 1; i <= Math.ceil(totalBlogs / blogsPerPage); i++) {
@@ -188,13 +224,26 @@ const Pagination = ({ blogsPerPage, totalBlogs, paginate, currentPage }) => {
   }
 
   return (
-    <nav className={styles.pagination}>
-      <ul className={styles.paginationList}>
+    <nav
+      className={`${styles.pagination} ${theme === "dark" ? styles.dark : ""}`}
+    >
+      <ul
+        className={`${styles.paginationList} ${
+          theme === "dark" ? styles.dark : ""
+        }`}
+      >
         {pageNumbers.map((number) => (
-          <li key={number} className={styles.paginationItem}>
+          <li
+            key={number}
+            className={`${styles.paginationItem} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
+          >
             <button
               onClick={() => paginate(number)}
-              className={`${styles.pageLink} ${currentPage === number ? styles.active : ""}`}
+              className={`${styles.pageLink} ${
+                theme === "dark" ? styles.dark : ""
+              } ${currentPage === number ? styles.active : ""}`}
             >
               {number}
             </button>

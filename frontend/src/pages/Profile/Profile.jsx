@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./Profile.module.css";
 import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,6 @@ import { FaArrowAltCircleRight } from "react-icons/fa";
 import { MdOutlineNotificationAdd } from "react-icons/md";
 import crossover from "../../assets/crossover.jpg";
 
-
 import { IoChatbubblesOutline } from "react-icons/io5";
 import { LuNewspaper } from "react-icons/lu";
 import { FiHome } from "react-icons/fi";
@@ -34,14 +33,16 @@ import {
 
 import UsersList from "../../Component/UsersList/UsersList";
 import ProfileBlog from "../../Component/ProfileBlog/ProfileBlog";
+import { ThemeContext } from "../../contexts/ThemeContext";
+
 
 const Profile = () => {
+  const { theme } = useContext(ThemeContext);
+
   const navigate = useNavigate();
 
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [user, setUser] = useState(null);
-
- 
 
   const [view, setView] = useState("view");
   const [profile, setProfile] = useState(null);
@@ -302,64 +303,124 @@ const Profile = () => {
 
   return (
     <>
-      <div className={styles.sidebar}>
-        <div className={styles.logo} onClick={handleLogoClick}>
-          <img src={img} alt="Logo" className={styles.logo} />
+      <div
+        className={`${styles.sidebar} ${theme === "dark" ? styles.dark : ""}`}
+      >
+        <div
+          className={`${styles.logo} ${theme === "dark" ? styles.dark : ""}`}
+          onClick={handleLogoClick}
+        >
+          <img
+            src={img}
+            alt="Logo"
+            className={`${styles.logo} ${theme === "dark" ? styles.dark : ""}`}
+          />
         </div>
-        <div className={styles.iconsContainer}>
+        <div
+          className={`${styles.iconsContainer} ${
+            theme === "dark" ? styles.dark : ""
+          }`}
+        >
           <FiHome
             onClick={() => navigate("/")}
-            className={styles.iconss}
+            className={`${styles.iconss} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
             title="Home"
           />
-
           <LuUser2
             onClick={() => navigate("/members")}
-            className={styles.iconss}
+            className={`${styles.iconss} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
             title="People"
           />
-
           <LuNewspaper
             onClick={() => navigate("/Blogs")}
-            className={styles.iconss}
+            className={`${styles.iconss} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
             title="Blogs"
           />
-
           <IoChatbubblesOutline
             onClick={() => navigate("/forums")}
-            className={styles.iconss}
+            className={`${styles.iconss} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
             title="Forums"
           />
         </div>
       </div>
 
       <div>
-        <nav className={styles.nav}>
+        <nav className={`${styles.nav} ${theme === "dark" ? styles.dark : ""}`}>
           <div>
             <li onClick={toggleSidebar}>
-              <GiHamburgerMenu className={styles.hamburgerIcon} />
+              <GiHamburgerMenu
+                className={`${styles.hamburgerIcon} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              />
             </li>
           </div>
 
-          <ul>
+          <ul className={`${theme === "dark" ? styles.dark : ""}`}>
             <li
-              className={styles.reqmenu}
+              className={`${styles.reqmenu} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
               onClick={handleClick}
             >
               <MdOutlineNotificationAdd />
               {showSubMenu && (
-                <div className={styles.reqsubmenus}>
-                  <div className={styles.friendRequest}>
+                <div
+                  className={`${styles.reqsubmenus} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
+                  <div
+                    className={`${styles.friendRequest} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  >
                     <p>John Doe sent you a friend request</p>
-                    <button className={styles.acceptBtn}>Accept</button>
-                    <button className={styles.rejectBtn}>Reject</button>
+                    <button
+                      className={`${styles.acceptBtn} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className={`${styles.rejectBtn} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                    >
+                      Reject
+                    </button>
                   </div>
-                  <div className={styles.friendRequest}>
+                  <div
+                    className={`${styles.friendRequest} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  >
                     <p>John Doe sent you a friend request</p>
-                    <button className={styles.acceptBtn}>Accept</button>
-                    <button className={styles.rejectBtn}>Reject</button>
+                    <button
+                      className={`${styles.acceptBtn} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                    >
+                      Accept
+                    </button>
+                    <button
+                      className={`${styles.rejectBtn} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                    >
+                      Reject
+                    </button>
                   </div>
                 </div>
               )}
@@ -369,6 +430,7 @@ const Profile = () => {
                 onClick={() => {
                   navigate("/");
                 }}
+                className={theme === "dark" ? styles.dark : ""}
               >
                 Login
               </li>
@@ -377,38 +439,81 @@ const Profile = () => {
         </nav>
         {/* Sidebar */}
         <div
-          className={`${styles.sidebar2} ${isSidebarOpen ? styles.open : ""}`}
+          className={`${styles.sidebar2} ${
+            theme === "dark" ? styles.dark : ""
+          } ${isSidebarOpen ? styles.open : ""}`}
         >
           {isSidebarOpen && (
-            <div className={styles.close} onClick={closeSidebar}>
+            <div
+              className={`${styles.close} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+              onClick={closeSidebar}
+            >
               <ImCross />
             </div>
           )}
-          <div className={styles.mainbox}>
-            <div  className={styles.sidelogin}>
-              <div className={styles.img}>
-                <img  src={side} alt="" />
+          <div
+            className={`${styles.mainbox} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
+          >
+            <div
+              className={`${styles.sidelogin} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+            >
+              <div
+                className={`${styles.img} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
+                <img src={side} alt="" />
                 <p>My Otaku World</p>
 
-                <div className={styles.sideform}>
+                <div
+                  className={`${styles.sideform} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
                   <h1>Login Now</h1>
 
-                  <div className={styles.input2}>
-                    <FontAwesomeIcon className={styles.icons} icon={faUsers} />
+                  <div
+                    className={`${styles.input2} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon
+                      className={`${styles.icons} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                      icon={faUsers}
+                    />
                     <input
                       required
                       name="email"
                       type={"email"}
                       placeholder="Email"
+                      className={theme === "dark" ? styles.dark : ""}
                     />
                   </div>
-                  <div className={styles.input2}>
-                    <FontAwesomeIcon className={styles.icons} icon={faKey} />
+                  <div
+                    className={`${styles.input2} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  >
+                    <FontAwesomeIcon
+                      className={`${styles.icons} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                      icon={faKey}
+                    />
                     <input
                       required
                       name="password"
                       type="password"
                       placeholder="Password"
+                      className={theme === "dark" ? styles.dark : ""}
                     />
                   </div>
                   <div
@@ -421,11 +526,17 @@ const Profile = () => {
                       width: "80%",
                     }}
                   >
-                    <button className={styles.btn3}>
+                    <button
+                      className={`${styles.btn3} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                    >
                       Login into your Account
                     </button>
                     <button
-                      className={styles.btn4}
+                      className={`${styles.btn4} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
                       onClick={() => navigate("/register")}
                     >
                       Create your Account
@@ -440,38 +551,77 @@ const Profile = () => {
               </div>
             </div>
 
-            <div className={styles.Sideicons}>
-              <div className={styles.sideTop}>
-                <div className={styles.div1}>
+            <div
+              className={`${styles.Sideicons} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+            >
+              <div
+                className={`${styles.sideTop} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
+                <div
+                  className={`${styles.div1} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
                   <FontAwesomeIcon
                     onClick={() => {
                       navigate("/");
                     }}
                     icon={faHome}
+                    className={theme === "dark" ? styles.dark : ""}
                   />
-                  <h6>Home</h6>
+                  <h6 className={theme === "dark" ? styles.dark : ""}>Home</h6>
                 </div>
-                <div className={styles.div1}>
-                  <FontAwesomeIcon icon={faUser} />
-                  <h6>People</h6>
+                <div
+                  className={`${styles.div1} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className={theme === "dark" ? styles.dark : ""}
+                  />
+                  <h6 className={theme === "dark" ? styles.dark : ""}>
+                    People
+                  </h6>
                 </div>
               </div>
 
-              <div className={styles.sideTop2}>
-                <div className={styles.div1}>
+              <div
+                className={`${styles.sideTop2} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
+                <div
+                  className={`${styles.div1} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
                   <FontAwesomeIcon
                     icon={faUser}
                     onClick={() => {
                       navigate("/blogs");
                     }}
+                    className={theme === "dark" ? styles.dark : ""}
                   />
-
-                  <h6>Blog</h6>
+                  <h6 className={theme === "dark" ? styles.dark : ""}>Blog</h6>
                 </div>
 
-                <div className={styles.div1}>
-                  <FontAwesomeIcon icon={faUser} />
-                  <h6>Forums</h6>
+                <div
+                  className={`${styles.div1} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
+                  <FontAwesomeIcon
+                    icon={faUser}
+                    className={theme === "dark" ? styles.dark : ""}
+                  />
+                  <h6 className={theme === "dark" ? styles.dark : ""}>
+                    Forums
+                  </h6>
                 </div>
               </div>
             </div>
@@ -479,11 +629,20 @@ const Profile = () => {
         </div>
         {/* Overlay */}
         {isSidebarOpen && (
-          <div className={styles.overlay} onClick={closeSidebar}></div>
+          <div
+            className={`${styles.overlay} ${
+              theme === "dark" ? styles.dark : ""
+            }`}
+            onClick={closeSidebar}
+          ></div>
         )}
 
-        <div className={styles.Profile}>
-          <div className={styles.Empty}>
+        <div
+          className={`${styles.Profile} ${theme === "dark" ? styles.dark : ""}`}
+        >
+          <div
+            className={`${styles.Empty} ${theme === "dark" ? styles.dark : ""}`}
+          >
             {/* <img
               src={crossover}
               alt="Uploaded DP"
@@ -492,20 +651,41 @@ const Profile = () => {
             /> */}
           </div>
 
-          <div className={styles.DPsec}>
-            <div className={styles.DP}>
-              <div className={styles.imgs}>
+          <div
+            className={`${styles.DPsec} ${theme === "dark" ? styles.dark : ""}`}
+          >
+            <div
+              className={`${styles.DP} ${theme === "dark" ? styles.dark : ""}`}
+            >
+              <div
+                className={`${styles.imgs} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
                 {image ? (
                   <img
                     src={image}
                     alt="Uploaded DP"
-                    className={styles.uploadedImage}
+                    className={`${styles.uploadedImage} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
                   />
                 ) : (
-                  <img src={zen} alt="" className={styles.defaultImage} />
+                  <img
+                    src={zen}
+                    alt=""
+                    className={`${styles.defaultImage} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  />
                 )}
 
-                <label htmlFor="upload" className={styles.uploadLabel}>
+                <label
+                  htmlFor="upload"
+                  className={`${styles.uploadLabel} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
                   <LuImagePlus />
                 </label>
 
@@ -513,50 +693,56 @@ const Profile = () => {
                   type="file"
                   accept="image/*"
                   id="upload"
-                  className={styles.uploadInput}
+                  className={`${styles.uploadInput} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
                   onChange={handleImageChange}
                 />
-                <h3 style={{whiteSpace:'nowrap'}}>{tempProfile?.name}</h3>
+                <h3 style={{ whiteSpace: "nowrap" }}>{tempProfile?.name}</h3>
 
-                <div className={styles.options}>
+                <div
+                  className={`${styles.options} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
                   <button
                     onClick={() => handleTabClick("profile")}
-                    className={
+                    className={`${
                       activeTab === "profile"
                         ? styles.activebtn
                         : styles.inactivebtn
-                    }
+                    } ${theme === "dark" ? styles.dark : ""}`}
                   >
                     Profile
                   </button>
                   <button
                     onClick={() => handleTabClick("users")}
-                    className={
+                    className={`${
                       activeTab === "users"
                         ? styles.activebtn
                         : styles.inactivebtn
-                    }
+                    } ${theme === "dark" ? styles.dark : ""}`}
                   >
                     Users
                   </button>
                   <button
                     onClick={() => handleTabClick("blog")}
-                    className={
+                    className={`${
                       activeTab === "blog"
                         ? styles.activebtn
                         : styles.inactivebtn
-                    }
+                    } ${theme === "dark" ? styles.dark : ""}`}
                   >
                     Blog
                   </button>
                   <button
                     style={{ whiteSpace: "nowrap" }}
                     onClick={() => window.open("/blogform", "_blank")}
-                    className={
+                    className={`${
                       activeTab === "Uploadblog"
                         ? styles.activebtn
                         : styles.inactivebtn
-                    }
+                    } ${theme === "dark" ? styles.dark : ""}`}
                   >
                     Upload Blog
                   </button>
@@ -565,100 +751,174 @@ const Profile = () => {
             </div>
 
             {activeTab === "profile" && (
-              <div className={styles.contex}>
-                <div className={styles.control}>
+              <div
+                className={`${styles.contex} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
+                <div
+                  className={`${styles.control} ${
+                    theme === "dark" ? styles.dark : ""
+                  }`}
+                >
                   <h2
                     onClick={handleViewClick}
-                    className={view === "view" ? styles.active : ""}
+                    className={`${view === "view" ? styles.active : ""} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
                   >
                     View
                   </h2>
                   <h2
                     onClick={handleEditClick}
-                    className={view === "edit" ? styles.active : ""}
+                    className={`${view === "edit" ? styles.active : ""} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
                   >
                     Edit
                   </h2>
                 </div>
 
                 {view === "edit" && (
-                  <div className={styles.fourm}>
+                  <div
+                    className={`${styles.fourm} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  >
                     <h1>Edit Profile</h1>
 
                     <form
-                      className={styles.editProfileForm}
+                      className={`${styles.editProfileForm} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
                       onSubmit={handleSubmit2}
                     >
-                      <div className={styles.editProfileField}>
-                        <label>Name:</label>
+                      <div
+                        className={`${styles.editProfileField} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
+                      >
+                        <label className={theme === "dark" ? styles.dark : ""}>
+                          Name:
+                        </label>
                         <input
                           type="text"
                           name="name"
                           value={tempProfile.name}
                           onChange={handleChange2}
                           placeholder="Name"
+                          className={theme === "dark" ? styles.dark : ""}
                         />
                         {errors.name && (
-                          <div className={styles.errorMessage}>
+                          <div
+                            className={`${styles.errorMessage} ${
+                              theme === "dark" ? styles.dark : ""
+                            }`}
+                          >
                             {errors.name}
                           </div>
                         )}
                       </div>
-                      <div className={styles.editProfileField}>
-                        <label>Email:</label>
+                      <div
+                        className={`${styles.editProfileField} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
+                      >
+                        <label className={theme === "dark" ? styles.dark : ""}>
+                          Email:
+                        </label>
                         <input
                           type="email"
                           name="email"
                           value={tempProfile.email}
                           onChange={handleChange2}
                           placeholder="Email"
+                          className={theme === "dark" ? styles.dark : ""}
                         />
                         {errors.email && (
-                          <div className={styles.errorMessage}>
+                          <div
+                            className={`${styles.errorMessage} ${
+                              theme === "dark" ? styles.dark : ""
+                            }`}
+                          >
                             {errors.email}
                           </div>
                         )}
                       </div>
-                      <div className={styles.editProfileField}>
-                        <label>Username:</label>
+                      <div
+                        className={`${styles.editProfileField} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
+                      >
+                        <label className={theme === "dark" ? styles.dark : ""}>
+                          Username:
+                        </label>
                         <input
                           type="text"
                           name="username"
                           value={tempProfile.username}
                           onChange={handleChange2}
                           placeholder="Username"
+                          className={theme === "dark" ? styles.dark : ""}
                         />
                         {errors.username && (
-                          <div className={styles.errorMessage}>
+                          <div
+                            className={`${styles.errorMessage} ${
+                              theme === "dark" ? styles.dark : ""
+                            }`}
+                          >
                             {errors.username}
                           </div>
                         )}
                       </div>
-                      <div className={styles.editProfileButtons}>
+                      <div
+                        className={`${styles.editProfileButtons} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
+                      >
                         <button
                           type="button"
-                          className={styles.cancelButton}
+                          className={`${styles.cancelButton} ${
+                            theme === "dark" ? styles.dark : ""
+                          }`}
                           onClick={handleViewClick}
                         >
                           Cancel
                         </button>
-                        <button type="submit" className={styles.saveButton}>
+                        <button
+                          type="submit"
+                          className={`${styles.saveButton} ${
+                            theme === "dark" ? styles.dark : ""
+                          }`}
+                        >
                           Save
                         </button>
                       </div>
                     </form>
                     {showToast && (
-                      <div className={styles.toast}>
+                      <div
+                        className={`${styles.toast} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
+                      >
                         Please fill all required fields!
                       </div>
                     )}
                   </div>
                 )}
                 {view === "view" && (
-                  <div className={styles.tab}>
+                  <div
+                    className={`${styles.tab} ${
+                      theme === "dark" ? styles.dark : ""
+                    }`}
+                  >
                     <h1>View Profile</h1>
 
-                    <div className={styles.profileContainer}>
+                    <div
+                      className={`${styles.profileContainer} ${
+                        theme === "dark" ? styles.dark : ""
+                      }`}
+                    >
                       {/* <div className={styles.profileImageContainer}>
                         <img
                           src={user?.profilePicture || zen}
@@ -675,13 +935,19 @@ const Profile = () => {
                         </label>
                       </div> */}
 
-                      <div className={styles.profileInfo}>
+                      <div
+                        className={`${styles.profileInfo} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
+                      >
                         <h2>{tempProfile?.name}</h2>
                         <p>Email: {tempProfile?.email}</p>
                         <p>Username: {tempProfile?.username}</p>
                       </div>
                       <button
-                        className={styles.editButton}
+                        className={`${styles.editButton} ${
+                          theme === "dark" ? styles.dark : ""
+                        }`}
                         onClick={handleEditClick}
                       >
                         Edit Profile
@@ -693,13 +959,21 @@ const Profile = () => {
             )}
 
             {activeTab === "users" && (
-              <div className={styles.contex}>
+              <div
+                className={`${styles.contex} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
                 <UsersList />
               </div>
             )}
 
             {activeTab === "blog" && (
-              <div className={styles.contex}>
+              <div
+                className={`${styles.contex} ${
+                  theme === "dark" ? styles.dark : ""
+                }`}
+              >
                 <ProfileBlog />
               </div>
             )}

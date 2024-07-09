@@ -1,3 +1,154 @@
+/* Variables for light theme */
+:root {
+    --background-color-light: #ffffff;
+    --text-color-light: #000000;
+    --card-background-color-light: #f0f0f0;
+    --box-shadow-light: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-box-shadow-light: 0px 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Variables for dark theme */
+[data-theme='dark'] {
+    --background-color-dark: #15171a;
+    --text-color-dark: #ffffff;
+    --card-background-color-dark: #242424;
+    --box-shadow-dark: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    --hover-box-shadow-dark: 0px 8px 20px rgba(0, 0, 0, 0.15);
+    --border-color-dark: #ffffff;
+    --input-background-dark: #2a2a2a;
+}
+
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+.card {
+    background-color: var(--background-color-light);
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    width: 100%;
+    max-width: 300px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.card.dark {
+    background-color: var(--card-background-color-dark);
+    border-color: var(--border-color-dark);
+    box-shadow: var(--box-shadow-dark);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.profileImg {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-bottom: 16px;
+}
+
+.name {
+    font-size: 1.5em;
+    margin: 0;
+    color: var(--text-color-light);
+}
+
+.name.dark {
+    color: var(--text-color-dark);
+}
+
+.lastActive,
+.friends {
+    color: #555;
+    margin: 8px 0;
+}
+
+.lastActive.dark,
+.friends.dark {
+    color: var(--text-color-dark);
+}
+
+.addFriendBtn {
+    background-color: #d33;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 10px 20px;
+    font-size: 1em;
+}
+
+.addFriendBtn:hover {
+    background-color: rgb(209, 46, 46);
+}
+
+@media (min-width: 600px) {
+    .card {
+        width: calc(50% - 32px);
+    }
+}
+
+@media (min-width: 900px) {
+    .card {
+        width: calc(33.333% - 32px);
+    }
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 2em 0;
+}
+
+.pagination button {
+    all: unset;
+    margin: 0 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: #d33;
+    color: white;
+    border-radius: 5px;
+}
+
+.pagination button {
+    all: unset;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.pagination button:hover {
+    background: #d33;
+    color: white;
+    border-radius: 5px;
+    transform: scale(1.1);
+}
+
+.pagination span {
+    margin: 0 10px;
+    color: var(--text-color-light);
+}
+
+.pagination span.dark {
+    color: var(--text-color-dark);
+}
+
+
+
+
+
+
 .container {
     max-width: 550px;
     margin: 0 auto;
@@ -625,119 +776,10 @@
         opacity: 0;
     }
 }
+/*        fjkvnjnvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv */
 
 
-
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    justify-content: center;
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 16px;
-    text-align: center;
-    width: 100%;
-    max-width: 300px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-}
-
-.card:hover {
-    transform: scale(1.05);
-}
-
-.profileImg {
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    margin-bottom: 16px;
-}
-
-.name {
-    font-size: 1.5em;
-    margin: 0;
-}
-
-.lastActive,
-.friends {
-    color: #555;
-    margin: 8px 0;
-}
-
-.addFriendBtn {
-    background-color: #d33;
-    border: none;
-    border-radius: 4px;
-    color: white;
-    cursor: pointer;
-    padding: 10px 20px;
-    font-size: 1em;
-}
-
-.addFriendBtn:hover {
-    background-color: rgb(209, 46, 46);
-}
-
-@media (min-width: 600px) {
-    .card {
-        width: calc(50% - 32px);
-    }
-}
-
-@media (min-width: 900px) {
-    .card {
-        width: calc(33.333% - 32px);
-    }
-}
-
-
-.pagination {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin: 2em 0;
-}
-
-.pagination button {
-    all: unset;
-    margin: 0 10px;
-    padding: 5px 10px;
-    cursor: pointer;
-    background: #d33;
-    color: white;
-    border-radius: 5px;
-}
-
-.pagination button {
-    all: unset;
-    padding: 5px 10px;
-    cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.pagination button:hover {
-    background: #d33;
-    color: white;
-    border-radius: 5px;
-    transform: scale(1.1);
-}
-
-
-
-.pagination span {
-    margin: 0 10px;
-}
-
-
-
+/* fjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj */
 
 .blog {
     display: flex;

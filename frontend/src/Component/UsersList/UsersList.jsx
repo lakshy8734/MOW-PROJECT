@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import zen from "../../assets/Default.webp";
 import axios from "axios";
 import styles from "./UsersList.module.css";
+import { ThemeContext } from "../../contexts/ThemeContext";
 
 const UsersList = () => {
+  const { theme } = useContext(ThemeContext);
+
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const usersPerPage = 6;
@@ -11,7 +14,9 @@ const UsersList = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/subadmin`); // Replace with your actual API endpoint
+        const response = await axios.get(
+          `${process.env.REACT_APP_BACKEND_URL}/api/subadmin`
+        ); // Replace with your actual API endpoint
         const subAdminUsers = response.data.map((user) => ({
           id: user.userId,
           name: user.name,
@@ -86,26 +91,59 @@ const UsersList = () => {
   };
 
   return (
-    <div className={styles.contex}>
-      <div className={styles.cards}>
+    <div className={`${styles.contex} ${theme === "dark" ? styles.dark : ""}`}>
+      <div className={`${styles.cards} ${theme === "dark" ? styles.dark : ""}`}>
         {currentUsers.map((user) => (
-          <div key={user.id} className={styles.card}>
+          <div
+            key={user.id}
+            className={`${styles.card} ${theme === "dark" ? styles.dark : ""}`}
+          >
             <img
               src={user.profilePicture !== zen ? user.profilePicture : zen}
               alt="Profile"
-              className={styles.profileImg}
+              className={`${styles.profileImg} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
               onError={(e) => {
                 e.target.src = zen;
               }}
             />
-            <h2 className={styles.name}>{user.name}</h2>
-            <p className={styles.lastActive}>{user.lastActive}</p>
-            <p className={styles.friends}>{user.friendsCount} Friends</p>
-            <button className={styles.addFriendBtn}>Add Friend</button>
+            <h2
+              className={`${styles.name} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+            >
+              {user.name}
+            </h2>
+            <p
+              className={`${styles.lastActive} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+            >
+              {user.lastActive}
+            </p>
+            <p
+              className={`${styles.friends} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+            >
+              {user.friendsCount} Friends
+            </p>
+            <button
+              className={`${styles.addFriendBtn} ${
+                theme === "dark" ? styles.dark : ""
+              }`}
+            >
+              Add Friend
+            </button>
           </div>
         ))}
       </div>
-      <div className={styles.pagination}>
+      <div
+        className={`${styles.pagination} ${
+          theme === "dark" ? styles.dark : ""
+        }`}
+      >
         <button onClick={handlePrevPage} disabled={currentPage === 1}>
           &larr;
         </button>
